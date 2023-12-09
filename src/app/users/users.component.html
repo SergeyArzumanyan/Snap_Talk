@@ -1,0 +1,36 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper{
+    width: 50%;
+    margin: 100px auto;
+
+    .header {
+      text-align: center;
+    }
+
+    .user {
+      display: flex;
+      gap: 10px;
+    }
+  }
+</style>
+
+<div class="wrapper">
+  <h1 class="header">Users List</h1>
+
+  <button type="button" (click)="createUser()">Create</button>
+
+  @for (user of users; track user) {
+    <div class="user">
+      <p>{{ 'Name: ' + user.name }}</p>
+
+      <p>{{ 'age: ' + user.age }}</p>
+
+      <button type="button" (click)="deleteUser(user.id)">Delete</button>
+      <button type="button" (click)="updateUser(user)">Update</button>
+    </div>
+  }
+</div>
