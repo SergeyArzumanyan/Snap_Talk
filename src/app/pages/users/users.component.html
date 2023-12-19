@@ -1,0 +1,27 @@
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper{
+    width: 50%;
+    margin: 100px auto;
+
+    .header {
+      text-align: center;
+    }
+  }
+</style>
+
+<div class="wrapper">
+  <h1 class="header">Messages</h1>
+
+  <div style="display: flex; gap: 10px; justify-content: center">
+    <input type="text" [(ngModel)]="Text" pInputText>
+    <button type="button" (click)="SendMessage()" pRipple pButton>Send</button>
+  </div>
+
+  @for (message of messages; track message) {
+    <h5>{{ message.Text }}</h5>
+  }
+</div>

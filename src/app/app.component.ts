@@ -10,6 +10,4 @@ import { HttpClientModule } from "@angular/common/http";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'SnapTalk';
-}
+export class AppComponent {}
