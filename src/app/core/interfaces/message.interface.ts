@@ -2,8 +2,12 @@ export interface IMessage {
   SenderId: number;
   ChatId: number;
   Text: string;
+  CreatedAt: Date;
+  Id: number;
 }
 
-export interface IMessageSocketResponse {
-  Messages: IMessage[];
+export interface IAddMessageBody {
+  SenderId: number;
+  ChatId: number;
+  Text: string;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 
 import { InputTextModule } from "primeng/inputtext";
@@ -7,15 +7,21 @@ import { ButtonModule } from "primeng/button";
 
 import {
   HttpService,
-  WebsocketService,
-  IMessage,
-  IMessageSocketResponse, wsEvents,
+  PusherService,
+  IMessage, pusherEvents, pusherChannels, IChat, IAddMessageBody,
 } from "@app/core";
+import { UsersService } from "@pages/users/services";
+import { Subject, takeUntil } from "rxjs";
+import { IUser, IUserAddBody } from "@pages/users/interfaces";
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  providers: [HttpService],
+  providers: [
+    HttpService,
+    UsersService,
+    PusherService,
+  ],
   templateUrl: './users.component.html',
   imports: [
     FormsModule,
@@ -25,38 +31,81 @@ import {
   ],
   styleUrl: './users.component.scss'
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
   public messages: IMessage[] = [];
+  public SenderId: string = '';
+  public ChatId: string = '';
   public Text: string = '';
 
-  constructor(private websocketService: WebsocketService) {}
+  private unsubscribe$: Subject<void> = new Subject<void>();
 
-  ngOnInit(): void {
-    this.connectToWebsocketServer();
+  constructor(
+    private usersService: UsersService,
+    private pusherService: PusherService
+  ) {
   }
 
-  private connectToWebsocketServer(): void {
-    this.websocketService.listenToServer<IMessageSocketResponse>(wsEvents.onNewMessage)
+  ngOnInit(): void {
+    this.getAllChatMessages();
+    this.subscribeToMessages();
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
+  public addMessageToChat(): void {
+    const messagePayload: IAddMessageBody = {
+      SenderId: +this.SenderId,
+      ChatId: +this.ChatId,
+      Text: this.Text
+    };
+
+
+    this.usersService.addMessageToChat(messagePayload)
       .subscribe({
-        next: (res: IMessageSocketResponse): void => {
-          this.messages = res.Messages;
+        next: (res: IMessage[]): void => {
+          this.messages = res;
         },
         error: (err): void => {
-          console.group('Socket Connection Error');
-          console.log('Socket Connection Error.');
+          console.group('HTTP Error')
+          console.log('Something Went Wrong In \'addMessageToChat\'');
           console.log(err);
           console.groupEnd();
         }
       });
   }
 
-  public SendMessage(): void {
-    const messagePayload: IMessage = {
-      SenderId: 1,
-      ChatId: 1,
-      Text: this.Text
-    };
+  public getAllChatMessages() {
+    this.usersService.getAllMessagesByChatId(+this.SenderId || 1, +this.ChatId || 1)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (res: IMessage[]): void => {
+          this.messages = res;
+        },
+        error: (err): void => {
+          console.group('HTTP Error')
+          console.log('Something Went Wrong In \'getAllChatMessages\'');
+          console.log(err);
+          console.groupEnd();
+        }
+      });
+  }
 
-    this.websocketService.emitToServer<IMessage>(wsEvents.sendMessage, messagePayload);
+  private subscribeToMessages(): void {
+    this.pusherService.subscribeToPusherChannel(pusherChannels.chatChannel);
+
+    this.pusherService.listenToChannelEvents(
+      pusherChannels.chatChannel,
+      pusherEvents.onNewMessage,
+      (newMessage: IMessage) => {
+        this.handleIncomingMessages(newMessage);
+      }
+    );
+  }
+
+  private handleIncomingMessages(message: IMessage): void {
+    this.messages.push(message);
   }
 }

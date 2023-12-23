@@ -14,11 +14,38 @@
 </style>
 
 <div class="wrapper">
-  <h1 class="header">Messages</h1>
+  <h1 class="header">SnapTalk</h1>
 
-  <div style="display: flex; gap: 10px; justify-content: center">
-    <input type="text" [(ngModel)]="Text" pInputText>
-    <button type="button" (click)="SendMessage()" pRipple pButton>Send</button>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="display: flex; gap: 10px; justify-content: center">
+      <input type="number"
+             min="1"
+             [(ngModel)]="SenderId"
+             pInputText
+             placeholder="Enter SenderId"
+      >
+
+      <input type="number"
+             min="1"
+             [(ngModel)]="ChatId"
+             pInputText
+             placeholder="Enter ChatId"
+             (input)="getAllChatMessages()"
+      >
+    </div>
+    <div style="display: flex; gap: 10px; justify-content: center">
+      <input type="text"
+             [(ngModel)]="Text"
+             pInputText
+             placeholder="Enter Message"
+      >
+      <button type="button"
+              (click)="addMessageToChat()"
+              pRipple
+              pButton
+              label="Send"
+      ></button>
+    </div>
   </div>
 
   @for (message of messages; track message) {
