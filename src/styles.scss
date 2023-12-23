@@ -1,2 +1,18 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
+
+:root {
+  --color-main: purple;
+  --color-block: black;
+  --color-text: #FFFFFF;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  color: var(--color-text);
+}
+
+body {
+  background-color: var(--color-block);
+}
