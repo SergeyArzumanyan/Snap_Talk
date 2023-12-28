@@ -1,3 +1,12 @@
-<i [routerLink]="['profile']" class="ri-user-line"></i>
-<i [routerLink]="['messages']" class="ri-chat-2-line"></i>
-<i [routerLink]="['settings']" class="ri-settings-line"></i>
+<img src="favicon.ico" width="40px" height="40px" alt="logo">
+<nav>
+    @for (item of navItems; track item) {
+        <i
+            #rla="routerLinkActive"
+            [routerLink]="item.Link" 
+            [ngClass]="rla.isActive ? item.ActiveIcon : item.Icon"
+            [routerLinkActive]="['active']"
+            [pTooltip]="item.Tooltip">
+        </i>
+    }
+</nav>

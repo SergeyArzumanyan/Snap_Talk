@@ -7,7 +7,6 @@ import { HttpClientModule } from "@angular/common/http";
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
     RouterOutlet,
     HttpClientModule,
   ],

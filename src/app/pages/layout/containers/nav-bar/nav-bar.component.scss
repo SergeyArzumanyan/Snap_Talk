@@ -1,0 +1,24 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 80px;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 20px;
+    background-color: var(--color-dark);
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+
+        i {
+            font-size: 26px;
+
+            &.active {
+                color: var(--color-main);
+            }
+        }
+    }
+}

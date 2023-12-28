@@ -2,17 +2,26 @@
 @import "primeng/resources/primeng.css";
 
 :root {
-  --color-main: purple;
-  --color-block: black;
-  --color-text: #FFFFFF;
+  --color-main: #9615DB;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-dark: #2D3032;
+  --color-medium: #555759;
+  --color-light: #D2D3D3;
 }
 
 * {
   margin: 0;
   box-sizing: border-box;
-  color: var(--color-text);
+  color: var(--color-white);
+  font-family: 'Raleway', sans-serif;
 }
 
 body {
-  background-color: var(--color-block);
+  background-color: var(--color-dark);
+}
+
+i {
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
 }
