@@ -22,7 +22,7 @@ jobs:
       - name: Send Telegram Message Ok
         uses: appleboy/telegram-action@master
         with:
-          to: ${{ secrets.TELEGRAM_ID }}
+          to: ${{ secrets.TELEGRAM_ID_S }},${{ secrets.TELEGRAM_ID_K }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
