@@ -1,2 +1,1 @@
-export * from './messages-content';
-export * from './welcome';
+export * from './chat';

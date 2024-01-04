@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
 
+function getOutlet(): string | undefined {
+  return window.innerWidth > 768 ? 'content' : undefined;
+}
+
 export const LAYOUT_ROUTES: Routes = [
   {
     path: 'profile',
@@ -19,18 +23,11 @@ export const LAYOUT_ROUTES: Routes = [
         .then((c) => c.SettingsComponent),
   },
   {
-    path: 'welcome',
-    outlet: 'content',
+    path: 'chat',
+    outlet: getOutlet(),
     loadComponent: () =>
-      import('./containers/content/pages/welcome/welcome.component')
-        .then((c) => c.WelcomeComponent),
-  },
-  {
-    path: 'messages-content',
-    outlet: 'content',
-    loadComponent: () =>
-      import('./containers/content/pages/messages-content/messages-content.component')
-        .then((c) => c.MessagesContentComponent),
+      import('./containers/content/pages/chat/chat.component')
+        .then((c) => c.ChatComponent),
   },
   {
     path: '',
@@ -40,18 +37,6 @@ export const LAYOUT_ROUTES: Routes = [
   {
     path: '**',
     redirectTo: 'profile',
-    pathMatch: "full",
-  },
-  {
-    path: '',
-    outlet: 'content',
-    redirectTo: 'welcome',
-    pathMatch: "full",
-  },
-  {
-    path: '**',
-    outlet: 'content',
-    redirectTo: 'welcome',
     pathMatch: "full",
   },
 ];
