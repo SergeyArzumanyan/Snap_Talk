@@ -1,9 +1,5 @@
 import { Routes } from '@angular/router';
 
-function getOutlet(): string | undefined {
-  return window.innerWidth > 768 ? 'content' : undefined;
-}
-
 export const LAYOUT_ROUTES: Routes = [
   {
     path: 'profile',
@@ -24,7 +20,7 @@ export const LAYOUT_ROUTES: Routes = [
   },
   {
     path: 'chat',
-    outlet: getOutlet(),
+    outlet: 'content',
     loadComponent: () =>
       import('./containers/content/pages/chat/chat.component')
         .then((c) => c.ChatComponent),

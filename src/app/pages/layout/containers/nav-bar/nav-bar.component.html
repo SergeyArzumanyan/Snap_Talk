@@ -3,7 +3,11 @@
     @for (item of navItems; track item) {
         <i
             #rla="routerLinkActive"
-            [routerLink]="item.Link" 
+            [routerLink]="['', { 
+                outlets: layoutService.isMobile  
+                    ? { primary: item.Link, content: null } 
+                    : { primary: item.Link } 
+            }]" 
             [ngClass]="rla.isActive ? item.ActiveIcon : item.Icon"
             [routerLinkActive]="['active']"
             [pTooltip]="item.Tooltip">

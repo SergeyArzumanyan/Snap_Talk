@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
+
+import { LayoutService } from '@core/services';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +14,19 @@ import { HttpClientModule } from "@angular/common/http";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {}
+export class AppComponent {
+
+  @HostListener('window:resize')
+  detectDeviceView(): void {
+    if (
+      this.layoutService.isMobile && window.innerWidth > 768 ||
+      !this.layoutService.isMobile && window.innerWidth < 768
+    ) {
+      this.layoutService.isMobile = window.innerWidth < 768;
+    }
+  }
+
+  constructor(private layoutService: LayoutService) {
+    this.detectDeviceView();
+  }
+}

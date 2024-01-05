@@ -4,7 +4,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { TooltipModule } from 'primeng/tooltip';
 
-import { IMenuIcon } from '@app/core';
+import { LayoutService } from '@core/services';
+import { IMenuIcon } from '@core/interfaces';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,24 +20,29 @@ import { IMenuIcon } from '@app/core';
   styleUrl: './nav-bar.component.scss',
 })
 export class NavBarComponent {
+
   public navItems: IMenuIcon[] = [
     {
       Tooltip: 'Profile',
-      Link: ['profile'],
+      Link: 'profile',
       Icon: 'ri-user-line',
       ActiveIcon: 'ri-user-fill',
     },
     {
       Tooltip: 'Messages',
-      Link: ['messages'],
-      Icon: 'ri-chat-4-line',
-      ActiveIcon: 'ri-chat-4-fill',
+      Link: 'messages',
+      Icon: 'ri-question-answer-line',
+      ActiveIcon: 'ri-question-answer-fill',
     },
     {
       Tooltip: 'Settings',
-      Link: ['settings'],
+      Link: 'settings',
       Icon: 'ri-settings-line',
       ActiveIcon: 'ri-settings-fill',
     },
   ];
+
+  constructor(public layoutService: LayoutService) {
+
+  }
 }
