@@ -7,10 +7,10 @@ export const LAYOUT_ROUTES: Routes = [
       import('./containers/menu/pages/profile/profile.component').then((c) => c.ProfileComponent),
   },
   {
-    path: 'messages',
+    path: 'chats',
     loadComponent: () =>
-      import('./containers/menu/pages/messages/messages.component')
-        .then((c) => c.MessagesComponent),
+      import('@pages/layout/containers/menu/pages/chats/chats.component')
+        .then((c) => c.ChatsComponent),
   },
   {
     path: 'settings',

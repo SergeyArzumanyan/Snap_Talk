@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 
 import { LayoutService } from '@core/services';
 import {
@@ -22,14 +22,14 @@ import {
 
 })
 export class LayoutComponent {
-  
+
   constructor(
     private route: ActivatedRoute,
     public layoutService: LayoutService,
   ) {
     this.layoutService.showMenu = !this.route.children[1];
   }
-  
+
   public toggleMenuState(isActive: boolean): void {
     this.layoutService.showMenu = isActive;
   }

@@ -3,3 +3,4 @@ export * from './pusher.service';
 export * from './pusher';
 export * from './aws.service';
 export * from './layout.service';
+export * from './config.service';

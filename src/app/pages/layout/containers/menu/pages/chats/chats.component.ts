@@ -5,16 +5,16 @@ import { AvatarModule } from 'primeng/avatar';
 import { BadgeModule } from 'primeng/badge';
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-chats',
   standalone: true,
   imports: [
     RouterLink,
     AvatarModule,
     BadgeModule,
   ],
-  templateUrl: './messages.component.html',
-  styleUrl: './messages.component.scss'
+  templateUrl: './chats.component.html',
+  styleUrl: './chats.component.scss'
 })
-export class MessagesComponent {
+export class ChatsComponent {
 
 }

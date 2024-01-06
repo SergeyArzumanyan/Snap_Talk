@@ -1,11 +1,11 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 300px;
-    background-color: var(--color-medium);
-    padding: 20px;
+  flex: 0 0 300px;
 
-    @media only screen and (max-width: 768px) {
-        flex: 1;
-    }
+  @media only screen and (max-width: 768px) {
+    flex: 1;
+  }
+}
+
+.menu-wrapper {
+    padding: 20px;
 }

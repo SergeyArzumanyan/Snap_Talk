@@ -1,0 +1,13 @@
+@import './fonts/_fonts';
+
+html {
+  font-size: $fontSize;
+}
+
+body {
+  font-family: $fontFamily;
+  font-weight: 400;
+  color: $text-0;
+  background: $background-0;
+  transition: background 0.2s;
+}

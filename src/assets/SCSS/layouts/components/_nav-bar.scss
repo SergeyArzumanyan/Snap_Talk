@@ -1,0 +1,9 @@
+.navbar-wrapper {
+  background-color: $background-40;
+
+  nav > i {
+      &.active {
+        color: $accent-0;
+      }
+    }
+}

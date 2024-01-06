@@ -1,0 +1,19 @@
+@import '../variables/colors/_colors_light';
+@import './_main_themes';
+
+//:root {
+//  --primary: #{$primary};
+//  --secondary: #{$secondary};
+//  --text: #{$text};
+//  --background: #{$background};
+//  --accent: #{$accent};
+//}
+
+::-webkit-scrollbar-thumb {
+  background: $primary-0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: $background-0;
+}

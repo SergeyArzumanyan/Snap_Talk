@@ -1,8 +1,9 @@
-import { ChangeDetectorRef, Component, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from "@angular/common/http";
+import { AsyncPipe } from "@angular/common";
 
-import { LayoutService } from '@core/services';
+import { ConfigService, LayoutService } from '@core/services';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { LayoutService } from '@core/services';
   imports: [
     RouterOutlet,
     HttpClientModule,
+    AsyncPipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -26,7 +28,10 @@ export class AppComponent {
     }
   }
 
-  constructor(private layoutService: LayoutService) {
+  constructor(
+    private layoutService: LayoutService,
+    public configService: ConfigService,
+  ) {
     this.detectDeviceView();
   }
 }

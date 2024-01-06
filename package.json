@@ -2,11 +2,9 @@
   "name": "snap-talk",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
+    "generate:styles": "sass --update src/assets/CSS/themes/theme-light.scss:src/assets/CSS/themes/theme-light.css && sass --update src/assets/CSS/themes/theme-dark.scss:src/assets/CSS/themes/theme-dark.css && sass --update src/assets/CSS/layouts/layout-light.scss:src/assets/CSS/layouts/layout-light.css && sass --update src/assets/CSS/layouts/layout-dark.scss:src/assets/CSS/layouts/layout-dark.css",
     "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "build": "npm run generate:styles && ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +18,7 @@
     "@angular/router": "^17.0.0",
     "@types/socket.io-client": "^3.0.0",
     "ngx-cookie-service": "^17.0.1",
+    "primeflex": "^3.3.1",
     "primeng": "^17.0.0",
     "pusher-js": "^8.4.0-rc2",
     "rxjs": "~7.8.0",

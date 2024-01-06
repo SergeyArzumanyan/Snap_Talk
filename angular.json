@@ -43,11 +43,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets",
+                "ignore": ["SCSS/**"]
+              }
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeflex/primeflex.css",
+              "node_modules/primeng/resources/themes/md-dark-deeppurple/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []
@@ -109,7 +115,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/primeng/resources/themes/lara-light-blue/theme.css",
+              "node_modules/primeng/resources/themes/md-dark-deeppurple/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": []

@@ -1,16 +1,19 @@
-<img src="favicon.ico" width="40px" height="40px" alt="logo">
-<nav>
+<div class="navbar-wrapper w-full h-full flex flex-column justify-content-between align-items-center">
+  <img src="favicon.ico" width="40px" height="40px" alt="logo">
+  <nav class="flex gap-6 flex-column align-items-center">
     @for (item of navItems; track item) {
-        <i
-            #rla="routerLinkActive"
-            [routerLink]="['', { 
-                outlets: layoutService.isMobile  
-                    ? { primary: item.Link, content: null } 
-                    : { primary: item.Link } 
-            }]" 
-            [ngClass]="rla.isActive ? item.ActiveIcon : item.Icon"
-            [routerLinkActive]="['active']"
-            [pTooltip]="item.Tooltip">
-        </i>
+      <i
+        class="text-2xl"
+        #rla="routerLinkActive"
+        [routerLink]="['', {
+                outlets: layoutService.isMobile
+                    ? { primary: item.Link, content: null }
+                    : { primary: item.Link }
+            }]"
+        [ngClass]="rla.isActive ? item.ActiveIcon : item.Icon"
+        [routerLinkActive]="'active'"
+        [pTooltip]="item.Tooltip"
+      ></i>
     }
-</nav>
+  </nav>
+</div>

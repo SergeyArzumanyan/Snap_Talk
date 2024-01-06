@@ -11,7 +11,7 @@ import { IMenuIcon } from '@core/interfaces';
   selector: 'app-nav-bar',
   standalone: true,
   imports: [
-    RouterLink, 
+    RouterLink,
     RouterLinkActive,
     NgClass,
     TooltipModule,
@@ -30,7 +30,7 @@ export class NavBarComponent {
     },
     {
       Tooltip: 'Messages',
-      Link: 'messages',
+      Link: 'chats',
       Icon: 'ri-question-answer-line',
       ActiveIcon: 'ri-question-answer-fill',
     },
@@ -42,7 +42,5 @@ export class NavBarComponent {
     },
   ];
 
-  constructor(public layoutService: LayoutService) {
-
-  }
+  constructor(public layoutService: LayoutService) {}
 }
