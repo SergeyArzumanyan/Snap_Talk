@@ -25,12 +25,12 @@ export const LAYOUT_ROUTES: Routes = [
   },
   {
     path: '',
-    redirectTo: 'profile',
+    redirectTo: 'chats',
     pathMatch: "full",
   },
   {
     path: '**',
-    redirectTo: 'profile',
+    redirectTo: 'chats',
     pathMatch: "full",
   },
 ];

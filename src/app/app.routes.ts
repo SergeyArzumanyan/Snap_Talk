@@ -2,19 +2,22 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadComponent: () =>
-      import('@pages/layout/layout.component')
-        .then((c) => c.LayoutComponent),
-    loadChildren: () =>
-      import('@pages/layout/layout.routes')
-        .then((r) => r.LAYOUT_ROUTES),
-  },
-  {
     path: 'auth',
     loadComponent: () =>
-      import('@pages/auth/auth.component')
+      import('@pages/auth')
         .then((c) => c.AuthComponent),
+    loadChildren: () => 
+      import('@pages/auth')
+        .then((r) => r.AUTH_ROUTES),
+  },
+  {
+    path: '',
+    loadComponent: () =>
+      import('@pages/layout')
+        .then((c) => c.LayoutComponent),
+    loadChildren: () =>
+      import('@pages/layout')
+        .then((r) => r.LAYOUT_ROUTES),
   },
   {
     path: '**',
