@@ -1,4 +1,5 @@
 @import './fonts/_fonts';
+@import '../variables/colors/_main_colors';
 
 html {
   font-size: $fontSize;
@@ -7,7 +8,16 @@ html {
 body {
   font-family: $fontFamily;
   font-weight: 400;
-  color: $text-0;
-  background: $background-0;
+  color: $text-normal;
+  background: $main-bg;
   transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-color-tint);
 }

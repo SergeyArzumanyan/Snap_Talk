@@ -1,9 +1,9 @@
 .navbar-wrapper {
-  background-color: $background-40;
+  background-color: $main-bg;
 
   nav > i {
       &.active {
-        color: $accent-0;
+        color: var(--theme-color);
       }
     }
 }

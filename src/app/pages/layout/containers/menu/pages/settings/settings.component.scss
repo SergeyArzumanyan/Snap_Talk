@@ -1,0 +1,127 @@
+.accordion-wrapper ::ng-deep {
+  //  Personal Info Part
+  .p-accordion-tab {
+    margin: 0;
+    box-shadow: none;
+  }
+
+  .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
+    transition: 0.2s background-color;
+  }
+}
+
+// PrimeNg Styles End ----------------------------------------------------------------
+
+
+//  Profile Pictures Part
+.user-pictures-wrapper {
+  .background-edit {
+    border-radius: 999px;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.2s background-color, color;
+  }
+
+  .profile-background-image {
+    max-width: 300px;
+    height: 200px;
+    object-fit: cover;
+    vertical-align: middle;
+  }
+
+  .avatar-wrapper {
+    left: 105px;
+    bottom: -30px;
+
+    .profile-avatar-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 999px;
+      object-fit: cover;
+      transition: 0.2s box-shadow, background-color, color;
+    }
+
+    .avatar-camera {
+      border-radius: 999px;
+      bottom: 0;
+      right: 0;
+      cursor: pointer;
+      transition: 0.2s box-shadow, background-color, color;
+    }
+  }
+}
+
+//  Personal Info Part
+.user-info-wrapper {
+  .action-icon {
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s background-color, color;
+  }
+
+  .info-items {
+    .info-item {
+      width: 180px;
+      height: 60px;
+
+      .info-label {
+        height: 25px;
+      }
+
+      .info-item-value {
+        height: 30px;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    .same-text-input {
+      height: 30px;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      margin: 0;
+      transition: 0.2s box-shadow;
+    }
+
+    .info-item-value {
+      padding-bottom: 5px;
+    }
+  }
+}
+
+//   Appearance Part
+.appearance-items {
+  .appearance-item {
+    .colors-wrapper {
+      .color {
+        width: 25px;
+        height: 25px;
+        border-radius: 999px;
+        transition: 0.2s box-shadow;
+        cursor: pointer;
+
+        &:focus {
+          opacity: 0;
+        }
+      }
+    }
+
+    .color-picker-wrapper {
+      .icon-overlay {
+        width: 25px;
+        height: 25px;
+        border-radius: 999px;
+        z-index: 2;
+        background-color: rgba(black, 0.25);
+        pointer-events: none;
+        transition: 0.2s box-shadow;
+      }
+    }
+  }
+}
+

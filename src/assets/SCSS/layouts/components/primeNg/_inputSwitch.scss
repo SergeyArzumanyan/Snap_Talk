@@ -1,0 +1,31 @@
+.p-inputswitch {
+  width: 2.5rem;
+  height: 20px;
+
+  .p-inputswitch-slider {
+    background-color: $secondary-bg;
+
+    &::before {
+      background-color: $main-bg;
+      width: 0.9rem;
+      height: 0.9rem;
+      left: 0.17rem;
+      margin-top: -0.45rem;
+      border-radius: 50%;
+      transition-duration: .2s;
+      box-shadow: none;
+    }
+  }
+}
+
+.p-inputswitch-checked > .p-inputswitch-slider {
+  &::before {
+    left: -0.2rem;
+  }
+}
+
+.p-inputswitch-checked .p-inputswitch-slider {
+  &::before {
+    background-color: var(--theme-color);
+  }
+}

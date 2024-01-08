@@ -21,24 +21,17 @@ import { IMenuIcon } from '@core/interfaces';
 })
 export class NavBarComponent {
 
-  public navItems: IMenuIcon[] = [
-    {
-      Tooltip: 'Profile',
-      Link: 'profile',
-      Icon: 'ri-user-line',
-      ActiveIcon: 'ri-user-fill',
-    },
-    {
-      Tooltip: 'Messages',
+  public navItems: IMenuIcon[] = [{
+      Tooltip: 'Chats',
       Link: 'chats',
-      Icon: 'ri-question-answer-line',
-      ActiveIcon: 'ri-question-answer-fill',
+      Icon: 'ri-chat-3-line',
+      ActiveIcon: 'ri-chat-3-fill',
     },
     {
       Tooltip: 'Settings',
       Link: 'settings',
-      Icon: 'ri-settings-line',
-      ActiveIcon: 'ri-settings-fill',
+      Icon: 'ri-settings-5-line',
+      ActiveIcon: 'ri-settings-5-fill',
     },
   ];
 

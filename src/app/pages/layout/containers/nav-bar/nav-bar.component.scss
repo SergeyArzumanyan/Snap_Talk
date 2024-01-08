@@ -1,9 +1,9 @@
 .navbar-wrapper {
-  padding: 15px 20px;
+  padding: 15px 18px;
   padding-block: 20px;
+  transition: 0.2s background-color;
 
   nav > i {
-    transition: 0.2s ease-in-out;
     cursor: pointer;
   }
 }

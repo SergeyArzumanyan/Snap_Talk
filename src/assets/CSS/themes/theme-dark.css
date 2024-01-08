@@ -26,6 +26,34 @@
   font-weight: 700;
   src: local("Roboto Bold"), local("Roboto-Bold"), url("../fonts/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto-Bold.woff") format("woff"); /* Modern Browsers */
 }
+:root {
+  --text-normal: #A0A8AE;
+  --text-heading: #adb5bd;
+  --main-bg: #2E2E2E;
+  --secondary-bg: #262626;
+  --accent-bg: #333333;
+}
+
+.navbar-icon {
+  transition: 0.2s color;
+  color: #878A91;
+}
+
+.txt-white {
+  transition: 0.2s color;
+  color: #FFFFFF;
+}
+
+.txt-color {
+  transition: 0.2s color;
+  color: #A0A8AE;
+}
+
+.txt-heading {
+  transition: 0.2s color;
+  color: #adb5bd;
+}
+
 html {
   font-size: 16px;
 }
@@ -33,18 +61,18 @@ html {
 body {
   font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 400;
-  color: #e2e9f3;
-  background: #090d15;
+  color: #A0A8AE;
+  background: #2E2E2E;
   transition: background 0.2s;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a6bbd8;
+  background: var(--theme-color);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d15;
+  background: var(--theme-color-tint);
 }
 
 /*# sourceMappingURL=theme-dark.css.map */

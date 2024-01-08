@@ -9,7 +9,9 @@ import { environment } from "@env/environment";
   styleUrl: './image.component.scss'
 })
 export class ImageComponent implements OnInit {
-  @Input() imageName: string;
+  @Input({required: true}) imageName: string;
+  @Input() className: string;
+
   public imageSrc: string;
 
   ngOnInit(): void {

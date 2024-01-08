@@ -1,0 +1,12 @@
+.p-colorpicker-preview {
+  padding: 0;
+  margin: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 999px;
+  border: none;
+
+  &:hover, &:focus {
+    border: none;
+  }
+}

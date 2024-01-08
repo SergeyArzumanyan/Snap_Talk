@@ -7,5 +7,10 @@
 }
 
 .menu-wrapper {
-    padding: 20px;
+  transition: 0.2s background-color;
+
+  .menu-title {
+    top: 20px;
+    left: 100px;
+  }
 }
