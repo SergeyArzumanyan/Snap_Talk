@@ -6,7 +6,16 @@
   }
 
   .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
+    background-color: var(--accent-bg);
     transition: 0.2s background-color;
+
+    &:hover, &:active, &:focus, &:focus-visible {
+      background-color: var(--accent-bg);
+    }
+
+    .p-accordion-toggle-icon-end {
+      color: var(--text-normal);
+    }
   }
 }
 
@@ -20,6 +29,7 @@
     right: 20px;
     top: 20px;
     cursor: pointer;
+    background-color: var(--secondary-bg);
     transition: 0.2s background-color, color;
   }
 
@@ -39,6 +49,8 @@
       height: 80px;
       border-radius: 999px;
       object-fit: cover;
+      background-color: var(--accent-bg);
+      box-shadow: 0 0 0 4px var(--accent-bg);
       transition: 0.2s box-shadow, background-color, color;
     }
 
@@ -47,6 +59,7 @@
       bottom: 0;
       right: 0;
       cursor: pointer;
+      background-color: var(--accent-bg);
       transition: 0.2s box-shadow, background-color, color;
     }
   }
@@ -57,7 +70,12 @@
   .action-icon {
     cursor: pointer;
     border-radius: 8px;
+    background-color: var(--secondary-bg);
     transition: 0.2s background-color, color;
+
+    &.save-icon {
+      background-color: var(--theme-color);
+    }
   }
 
   .info-items {
@@ -80,12 +98,20 @@
 
     .same-text-input {
       height: 30px;
-      background: transparent;
+      background-color: var(--accent-bg);
       border: none;
       outline: none;
       padding: 0;
       margin: 0;
       transition: 0.2s box-shadow;
+
+      &:focus {
+        background-color: var(--accent-bg);
+      }
+
+      &.ng-invalid.ng-touched {
+        box-shadow: 0 1px 0 0 var(--invalid);
+      }
     }
 
     .info-item-value {
@@ -121,7 +147,10 @@
         pointer-events: none;
         transition: 0.2s box-shadow;
       }
+
+      .active-theme-color {
+        box-shadow: 0 0 0 4px var(--text-normal);
+      }
     }
   }
 }
-

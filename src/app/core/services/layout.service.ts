@@ -9,4 +9,8 @@ export class LayoutService {
   public showMenu: boolean;
 
   constructor() {}
+
+  public loadTheme(): void {
+
+  }
 }

@@ -3,10 +3,10 @@
   height: 20px;
 
   .p-inputswitch-slider {
-    background-color: $secondary-bg;
+    background-color: var(--secondary-bg);
 
     &::before {
-      background-color: $main-bg;
+      background-color: var(--main-bg);
       width: 0.9rem;
       height: 0.9rem;
       left: 0.17rem;

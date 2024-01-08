@@ -52,9 +52,7 @@ export class ConfigService {
     if (isClickedManually) {
       this.setColorSchemeStates();
     }
-
-    this.changeStyleSheetsColor('layout-css', 'layout-' + this.colorScheme + '.css');
-    this.changeStyleSheetsColor('theme-css', 'theme-' + this.colorScheme + '.css');
+    this.changeStyleSheetsColor('theme', this.colorScheme + '-theme.css');
     this.setColorSchemeOfHTML();
   }
 

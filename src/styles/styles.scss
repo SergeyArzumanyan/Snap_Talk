@@ -1,0 +1,43 @@
+@import "remixicon/fonts/remixicon.css";
+@import "./fonts/fonts";
+@import "./themes/main-theme";
+@import "./shared/shared";
+@import "./prime-ng/prime-ng";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-family: var(--font-family);
+  color: var(text-normal);
+  background: var(--main-bg);
+  transition: background 0.2s;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+  zoom: 1;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--theme-color-tint);
+}
