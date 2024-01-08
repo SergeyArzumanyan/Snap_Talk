@@ -1,20 +1,28 @@
 <h3>Sign in to continue.</h3>
-<form [formGroup]="loginForm"
+<form 
+    [formGroup]="loginForm"
     (ngSubmit)="login()"
-    class="flex flex-column gap-3">
+    class="flex flex-column gap-4">
     <div class="flex flex-column gap-1">
         <label for="UserName">Username</label>
-        <input id="UserName"
-            formControlName="UserName"
-            pInputText
-            aria-describedby="username-help"/>
+        <input 
+            pInputText 
+            aria-describedby="username-help"
+            id="UserName"
+            formControlName="UserName"/>
     </div>
     <div class="flex flex-column gap-1">
         <label for="Password">Password</label>
-        <p-password id="Password"
-            formControlName="Password"
+        <p-password 
             [toggleMask]="true"
-            [feedback]="false"/>
+            [feedback]="false"
+            id="Password"
+            formControlName="Password"/>
     </div>
-    <p-button type="submit" label="Login"></p-button>
+    <button 
+        pButton 
+        pRipple
+        label="Login"
+        class="shadow">
+    </button>
 </form>

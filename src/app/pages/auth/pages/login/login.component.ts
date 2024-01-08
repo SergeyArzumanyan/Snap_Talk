@@ -9,6 +9,7 @@ import {
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 import { AuthService } from '@core/services';
 import { ILoginDataForm } from '@core/interfaces'; 
@@ -21,6 +22,7 @@ import { ILoginDataForm } from '@core/interfaces';
     InputTextModule,
     PasswordModule,
     ButtonModule,
+    RippleModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
