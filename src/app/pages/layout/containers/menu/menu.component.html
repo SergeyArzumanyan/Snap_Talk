@@ -1,8 +1,6 @@
-<div class="menu-wrapper w-full h-full flex flex-column">
-  <span class="menu-title text-lg font-semibold"
-        [ngClass]="isHeaderAbsolute ? 'txt-white absolute z-1' : 'txt-heading'"
-  >
-    {{ pageTitle | titlecase }}
-  </span>
-  <ng-content/>
-</div>
+<span class="menu-title text-lg font-semibold"
+      [ngClass]="isHeaderAbsolute ? 'txt-white absolute z-1' : 'txt-heading'"
+>
+  {{ pageTitle | titlecase }}
+</span>
+<ng-content/>

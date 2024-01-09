@@ -1,17 +1,14 @@
 :host {
-  flex: 0 0 300px;
-
-  @media only screen and (max-width: 768px) {
-    flex: 1;
-  }
-}
-
-.menu-wrapper {
+  flex-basis: 300px;
   background: var(--secondary-bg);
   transition: 0.2s background-color;
 
   .menu-title {
     top: 20px;
     left: 100px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    flex-basis: calc(100% - 76px);
   }
 }
