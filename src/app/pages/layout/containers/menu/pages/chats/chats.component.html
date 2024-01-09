@@ -1,15 +1,20 @@
-<div [routerLink]="['', { outlets: { content: ['chat'] } }]"
-    class="flex">
-    <p-avatar image="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQK1d3WKDSLOwKXTCQBzsoY1dXbKY_MXrRk0gHyXhzz6gXhOYfg" pBadge severity="success"></p-avatar>
-    <span>Esqo Pablobar</span>
-</div>
-<div [routerLink]="['', { outlets: { content: ['chat'] } }]"
-    class="flex">
-    <p-avatar image="https://yaktribe.games/community/media/hasbulla-jpg.93511/full" pBadge severity="success"></p-avatar>
-    <span>Xasbula Magamedov</span>
-</div>
-<div [routerLink]="['', { outlets: { content: ['chat'] } }]"
-    class="flex">
-    <p-avatar image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC6X-aYJ1tdj73ZsnUdAm6keGf-wxc5IaNYQ&usqp=CAU" pBadge severity="danger"></p-avatar>
-    <span>Vardan Ghukasov</span>
+<div class="w-full flex flex-column gap-3">
+  <div class="search-wrapper">
+    <input type="text"
+           class="w-full h-full search-input text-base txt-white"
+           placeholder="Search"
+           pInputText
+           (keyup)="onSearch($event)"/>
+  </div>
+
+  <div class="chats-wrapper w-full h-full">
+      @for (chat of chats; track chat) {
+        <app-chat-preview [ChatId]="chat.Id"
+                          [ChatName]="chat.Name"
+                          [ChatImageName]="chat.ImageName"
+                          [ChatLastMessage]="chat.LastMessage"
+                          [ChatLastMessageTime]="chat.LastMessageTime"
+        />
+      }
+  </div>
 </div>

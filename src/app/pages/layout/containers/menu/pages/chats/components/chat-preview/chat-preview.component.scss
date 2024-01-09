@@ -1,0 +1,37 @@
+.chat-wrapper {
+  height: 80px;
+  padding: 20px 16px;
+  background-color: transparent;
+  transition: 0.2s background-color;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--accent-bg);
+  }
+
+  &.active-chat {
+    background-color: var(--theme-color-tint);
+  }
+
+  .chat-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+  }
+
+  .preview-info {
+    .preview-name, .preview-message {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .preview-name {
+      max-width: 120px;
+    }
+
+    .preview-message {
+      max-width: 180px;
+    }
+  }
+}

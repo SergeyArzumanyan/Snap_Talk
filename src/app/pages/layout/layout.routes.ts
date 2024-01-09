@@ -17,7 +17,7 @@ export const LAYOUT_ROUTES: Routes = [
         .then((c) => c.SettingsComponent),
   },
   {
-    path: 'chat',
+    path: 'chat/:id',
     outlet: 'content',
     loadComponent: () =>
       import('./containers/content/pages/chat')
