@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router, RouterLink } from '@angular/router';
 import { 
   FormControl, 
   FormGroup, 
@@ -18,6 +20,7 @@ import { ILoginDataForm } from '@core/interfaces';
   selector: 'app-login',
   standalone: true,
   imports: [
+    RouterLink,
     ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
@@ -33,12 +36,24 @@ export class LoginComponent {
     Password: new FormControl<string>('', Validators.required),
   });
 
-  constructor(private authService: AuthService) {
-  }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
 
   public login(): void {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.getRawValue());
+      this.authService.login(this.loginForm.getRawValue())
+        .subscribe({
+          next: (data) => {
+            this.authService.userData$.next(data);
+            this.authService.isAuthenticated$.next(true);
+            this.router.navigate(['/']);
+          },
+          error: (err: HttpErrorResponse) => {
+            console.error(err);
+          }
+        });
     }
   }
 }

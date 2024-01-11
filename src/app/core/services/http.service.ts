@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { take } from "rxjs/operators"
 
 import { CookieService } from "ngx-cookie-service";
 
@@ -53,7 +54,7 @@ export class HttpService {
     type: 'post' | 'get' | 'patch' | 'put' | 'delete',
     url: string,
     body: object | null = null,
-    useParams?: boolean,
+    useParams: boolean = true,
     reqOptions?: object,
     addQuery?: boolean
   ): Observable<T> {
@@ -117,6 +118,6 @@ export class HttpService {
     argsArray.push(options);
 
     // @ts-ignore
-    return this.http[type](...argsArray);
+    return this.http[type](...argsArray).pipe(take(1));
   }
 }

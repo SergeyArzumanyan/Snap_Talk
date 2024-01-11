@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HttpClientModule } from "@angular/common/http";
 import { AsyncPipe } from "@angular/common";
 
 import { ConfigService, LayoutService } from '@core/services';
@@ -10,7 +9,6 @@ import { ConfigService, LayoutService } from '@core/services';
   standalone: true,
   imports: [
     RouterOutlet,
-    HttpClientModule,
     AsyncPipe,
   ],
   templateUrl: './app.component.html',

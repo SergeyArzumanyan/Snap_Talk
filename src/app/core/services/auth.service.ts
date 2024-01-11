@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
+import { Methods } from '@app/methods';
+import { HttpService } from './http.service';
 import { ILoginData } from '../interfaces';
 
 @Injectable({
@@ -11,16 +12,25 @@ export class AuthService {
   public isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public userData$: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpService) {}
 
-  public login(loginData: ILoginData): void {
-    localStorage.setItem('isAuthenticated', 'true');
-    this.isAuthenticated$.next(true);
-    this.router.navigate(['/']);
+  public verifyUser(): Observable<any> {
+    return this.http.request(
+      'get',
+      Methods.VERIFY_USER,
+    );
+  }
+
+  public login(loginData: ILoginData): Observable<any> {
+    return this.http.request(
+      'post',
+      Methods.LOGIN,
+      loginData,
+    );
   }
 
   public logout(): void {
-    localStorage.removeItem('isAuthenticated');
+    this.userData$.next(null);
     this.isAuthenticated$.next(false);
   }
 }
