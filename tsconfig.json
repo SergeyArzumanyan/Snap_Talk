@@ -26,14 +26,14 @@
     ],
     "baseUrl": "./",
     "paths": {
+      "@env/*": [
+        "environments/*"
+      ],
       "@app/*": [
         "src/app/*"
       ],
       "@core/*": [
         "src/app/core/*"
-      ],
-      "@env/*": [
-        "src/environments/*"
       ],
       "@pages/*": [
         "src/app/pages/*"
