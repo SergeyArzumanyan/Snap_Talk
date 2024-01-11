@@ -15,6 +15,8 @@ export class ImageComponent implements OnInit {
   public imageSrc: string;
 
   ngOnInit(): void {
+    console.log(environment.ApiUrl);
+    
     this.imageSrc = environment.ImagesUrl + this.imageName;
   }
 }
