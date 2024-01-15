@@ -1,6 +1,85 @@
 <h3 class="m-0 color-text-heading">Sign up to continue.</h3>
-<form>
+<form 
+    [formGroup]="registerForm"
+    (ngSubmit)="register()"
+    class="flex flex-column w-full gap-4">
     
+    <div 
+        [ngClass]="{
+            'flex-column': layoutService.isMobile
+        }"
+        class="flex gap-4">
+        <div class="flex flex-1 flex-column gap-1">
+            <label for="Name">Name</label>
+            <input 
+                pInputText 
+                aria-describedby="name-help"
+                id="Name"
+                formControlName="Name"/>
+        </div>
+
+        <div class="flex flex-1 flex-column gap-1">
+            <label for="Surname">Surname</label>
+            <input 
+                pInputText 
+                aria-describedby="surname-help"
+                id="Surname"
+                formControlName="Surname"/>
+        </div>
+    </div>
+
+    <div class="flex flex-column gap-1">
+        <label for="UserName">Gender</label>
+        <p-selectButton 
+            [options]="genders" 
+            [unselectable]="true"
+            formControlName="Gender">
+        </p-selectButton>
+    </div>
+
+    <div class="flex flex-column gap-1">
+        <label for="UserName">Username</label>
+        <input 
+            pInputText 
+            aria-describedby="username-help"
+            id="UserName"
+            formControlName="UserName"/>
+    </div>
+
+    <div class="flex flex-column gap-1">
+        <label for="Email">Email</label>
+        <input 
+            pInputText
+            aria-describedby="email-help"
+            id="Email"
+            type="email"
+            formControlName="Email"/>
+    </div>
+
+    <div class="flex flex-column gap-1">
+        <label for="Password">Password</label>
+        <p-password 
+            [toggleMask]="true"
+            [feedback]="false"
+            id="Password"
+            formControlName="Password"/>
+    </div>
+
+    <div class="flex flex-column gap-1">
+        <label for="ConfirmPassword">ConfirmPassword</label>
+        <p-password 
+            [toggleMask]="true"
+            [feedback]="false"
+            id="ConfirmPassword"
+            formControlName="ConfirmPassword"/>
+    </div>
+
+    <button 
+        pButton 
+        pRipple
+        label="Register"
+        class="shadow">
+    </button>
 </form>
 <div>
     <span class="color-text-normal">Already have an account? </span>

@@ -4,6 +4,11 @@
   gap: 3rem;
   padding: 1rem;
 
+  .auth-fields {
+    max-width: 500px;
+    width: 100%;
+  }
+
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     gap: 1rem;

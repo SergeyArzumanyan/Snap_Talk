@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
+
+import { AuthService } from '@core/services';
 
 @Component({
   selector: 'app-auth',
@@ -11,5 +13,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-
+  constructor(
+    public router: Router,
+    public authService: AuthService,
+  ) {}
 }

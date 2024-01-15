@@ -13,8 +13,8 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 
-import { AuthService } from '@core/services';
 import { ILoginDataForm } from '@core/interfaces'; 
+import { AuthComponent } from '@pages/auth';
 
 @Component({
   selector: 'app-login',
@@ -37,18 +37,17 @@ export class LoginComponent {
   });
 
   constructor(
-    private router: Router,
-    private authService: AuthService,
+    private parent: AuthComponent,
   ) {}
 
   public login(): void {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.getRawValue())
+      this.parent.authService.login(this.loginForm.getRawValue())
         .subscribe({
           next: (data) => {
-            this.authService.userData$.next(data);
-            this.authService.isAuthenticated$.next(true);
-            this.router.navigate(['/']);
+            this.parent.authService.userData$.next(data);
+            this.parent.authService.isAuthenticated$.next(true);
+            this.parent.router.navigate(['/']);
           },
           error: (err: HttpErrorResponse) => {
             console.error(err);

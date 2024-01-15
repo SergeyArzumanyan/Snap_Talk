@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Methods } from '@app/methods';
 import { HttpService } from './http.service';
-import { ILoginData } from '../interfaces';
+import { ILoginData, IRegisterData } from '../interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,14 @@ export class AuthService {
       'get',
       Methods.VERIFY_USER,
     );
+  }
+
+  public register(registerData: IRegisterData): Observable<any> {
+    return this.http.request(
+      'post',
+      Methods.REGISTER,
+      registerData,
+    ); 
   }
 
   public login(loginData: ILoginData): Observable<any> {
