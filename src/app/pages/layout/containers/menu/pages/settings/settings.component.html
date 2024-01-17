@@ -2,13 +2,13 @@
   <i class="background-edit p-2 ri-pencil-fill text-sm txt-color absolute"
      (click)="changeBackgroundPicture()"></i>
 
-  <!--  <app-image imageName="" className="profile-background-image"></app-image>-->
+<!--  <app-image [imageName]="user.ProfileImage" className="profile-background-image"/>-->
   <img class="profile-background-image"
        src="data:image/jpeg;base64,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"
        alt="background-image">
 
   <div class="avatar-wrapper absolute">
-    <!--      <app-image imageName="" className="profile-avatar-image"></app-image>-->
+<!--    <app-image [imageName]="user.ProfileImage" className="profile-avatar-image"/>-->
     <img class="profile-avatar-image"
          src="https://themustangmessenger.org/wp-content/uploads/2023/03/61O8usiIS7L-1.jpg">
 
@@ -42,35 +42,48 @@
           <div class="info-items flex flex-column gap-3">
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
               <span class="w-full info-label font-light text-sm txt-color">Name</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">Vrdanes</span>
+              <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Name }}
+              </span>
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
               <span class="w-full info-label font-light text-sm txt-color">Surname</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">Papazyan</span>
+              <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user?.Surname ? user?.Surname : '' }}
+              </span>
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
               <span class="w-full info-label font-light text-sm txt-color">Gender</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">Male</span>
+              <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Gender }}
+              </span>
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
               <span class="w-full info-label font-light text-sm txt-color">Username</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">&#64;partizan</span>
+              <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Username }}
+              </span>
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
               <span class="w-full info-label font-light text-sm txt-color">Mail</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">abc&#64;gmail.com</span>
+              <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Mail }}
+              </span>
             </div>
-
           </div>
+
         } @else {
           <form [formGroup]="personalInfoForm" (ngSubmit)="onSave()">
             <div class="actions-wrapper absolute right-0 flex gap-2">
               <i class="action-icon p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
-              <i class="action-icon save-icon p-2 ri-save-fill text-base txt-white" (click)="onSave()"></i>
+              <i class="action-icon save-icon p-2 ri-save-fill text-base txt-white"
+                 [ngClass]="{'disabled-action-icon': personalInfoForm.pristine && personalInfoForm.valid}"
+                 (click)="onSave()"
+              ></i>
             </div>
 
             <div class="info-items flex flex-column gap-3">
@@ -96,11 +109,10 @@
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Username*</span>
-                <input type="text"
-                       class="font-semibold text-sm same-text-input txt-color"
-                       spellcheck="false"
-                       formControlName="Username"/>
+                <span class="w-full info-label font-light text-sm txt-color">Username</span>
+                <span class="w-full info-item-value font-semibold text-sm txt-color">
+                  {{ user.Username }}
+                </span>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
@@ -133,9 +145,9 @@
           <div class="appearance-item flex gap-2 align-items-center">
             <i class="h-full ri-moon-fill text-sm txt-color"></i>
             <span class="appearance-item-label font-light text-sm txt-color">Dark Mode</span>
-            <p-inputSwitch formControlName="IsDarkMode"
+            <p-inputSwitch formControlName="IsDarkTheme"
                            [tabindex]="-1"
-                           (onChange)="configService.changeColorScheme()"/>
+                           (onChange)="configService.changeTheme(true)"/>
           </div>
 
           <div class="appearance-item flex gap-2 align-items-center">
@@ -147,9 +159,9 @@
                   @for (prefixedColor of prefixedThemeColors; track prefixedColor.Color) {
                     <div class="color"
                          [ngStyle]="{'background-color': prefixedColor.Color}"
-                         [ngClass]="{'active-theme-color': appearanceForm.value.MainColor === prefixedColor.Color}"
-                         (click)="changeMainColor(
-                            appearanceForm.value.MainColor !== prefixedColor.Color ?
+                         [ngClass]="{'active-theme-color': appearanceForm.value.ThemeColor === prefixedColor.Color}"
+                         (click)="changeThemeColor(
+                            appearanceForm.value.ThemeColor !== prefixedColor.Color ?
                             prefixedColor.Color : undefined
                           )"
                     ></div>
@@ -162,11 +174,11 @@
                   >
                     <i class="ri-sip-line text-xs txt-white"></i>
                   </div>
-                  <p-colorPicker formControlName="MainColor"
+                  <p-colorPicker formControlName="ThemeColor"
                                  format="hex"
                                  appendTo="body"
                                  tabindex="-1"
-                                 (onHide)="changeMainColor()"/>
+                                 (onHide)="changeThemeColor()"/>
                 </div>
               </div>
 

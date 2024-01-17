@@ -24,6 +24,8 @@
 
 //  Profile Pictures Part
 .user-pictures-wrapper {
+  min-height: 200px;
+
   .background-edit {
     border-radius: 999px;
     right: 20px;
@@ -33,7 +35,7 @@
     transition: 0.2s background-color, color;
   }
 
-  .profile-background-image {
+  ::ng-deep .profile-background-image {
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -45,7 +47,7 @@
     transform: translateX(-50%);
     bottom: -30px;
 
-    .profile-avatar-image {
+    ::ng-deep .profile-avatar-image {
       width: 80px;
       height: 80px;
       border-radius: 999px;
@@ -77,6 +79,11 @@
     &.save-icon {
       background-color: var(--theme-color);
     }
+
+    &.disabled-action-icon {
+      background-color: var(--theme-color-bg);
+      cursor: not-allowed;
+    }
   }
 
   .info-items {
@@ -100,6 +107,7 @@
     .same-text-input {
       height: 30px;
       background-color: var(--accent-bg);
+      box-shadow: 0 1px 0 0;
       border: none;
       outline: none;
       padding: 0;

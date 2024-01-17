@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Methods } from '@app/methods';
-import { HttpService } from './http.service';
-import { ILoginData, IRegisterData } from '../interfaces';
+import { HttpService, ILoginData, IRegisterData } from '@app/core';
 
 @Injectable({
   providedIn: 'root',
@@ -26,7 +25,7 @@ export class AuthService {
       'post',
       Methods.REGISTER,
       registerData,
-    ); 
+    );
   }
 
   public login(loginData: ILoginData): Observable<any> {

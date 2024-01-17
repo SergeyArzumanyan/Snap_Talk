@@ -6,7 +6,7 @@ export interface ISettings {
 export interface IPersonalInfo {
     Id: number;
     Status: number;
-    UserName: string;
+    Username: string;
     FirstName: string;
     LastName: string;
     Email: string;

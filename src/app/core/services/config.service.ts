@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
+import { take } from "rxjs/operators";
+
+import { SettingsService } from "@pages/layout/containers/menu/pages/settings/services";
+import { AuthService } from "@app/core";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
 
-  private systemDefaultColorScheme: string = this.colorSchemeInitialValue;
-  private colorScheme: string = localStorage.getItem('SelectedTheme') || this.systemDefaultColorScheme;
-  public colorScheme$: BehaviorSubject<string> = new BehaviorSubject<string>(this.colorScheme);
+  private systemDefaultTheme: string = this.themeInitialValue;
+  public Theme: string = this.systemDefaultTheme;
+  public Theme$: BehaviorSubject<string> = new BehaviorSubject<string>(this.Theme);
 
-  public themeColor: string;
+  public ThemeColor: string = '#6153CC';
   public prefixedThemeColors: { Color: string }[] = [
     { Color: '#6153CC' },
     { Color: '#797C8C' },
@@ -19,96 +23,53 @@ export class ConfigService {
     { Color: '#E73E8C' }
   ];
 
-  get colorSchemeInitialValue(): string {
+  get themeInitialValue(): string {
     const isSystemDark: boolean = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     return isSystemDark ? 'dark' : 'light'
   }
 
-  constructor() {
+  constructor(
+    private authService: AuthService,
+    private settingsService: SettingsService
+  ) {
     /** @desc Listens to system default theme changes. */
     window.matchMedia('(prefers-color-scheme: dark)')
       .addEventListener(
         'change',
         (e: MediaQueryListEvent) => {
-          this.systemDefaultColorScheme = e.matches ? "dark" : "light";
+          this.systemDefaultTheme = e.matches ? "dark" : "light";
         }
       );
 
-    if (!localStorage.getItem('SelectedTheme')) {
-      localStorage.setItem('SelectedTheme', this.colorScheme);
+    this.changeTheme(false, this.Theme);
+    this.makeColorsBasedOnMainColor(this.ThemeColor);
+  }
+
+  private toggleTheme(): void {
+    this.Theme = this.Theme === 'light' ? 'dark' : 'light';
+    this.Theme$.next(this.Theme);
+  }
+
+  public changeTheme(saveTheme: boolean = false, theme?: string, ): void {
+    if (!theme) {
+      this.toggleTheme();
     }
 
-    this.changeColorScheme(false);
-    this.initThemeColor();
-  }
-  /** @desc Toggles theme and saves it in local storage. */
-  private setColorSchemeStates(): void {
-    this.colorScheme = this.colorScheme === 'light' ? 'dark' : 'light';
-    this.colorScheme$.next(this.colorScheme);
-    localStorage.setItem('SelectedTheme', this.colorScheme);
-  }
+    this.changeCSSFilePath('theme', this.Theme + '-theme.css');
+    this.setHTMLTheme();
 
-  public changeColorScheme(isClickedManually: boolean = true): void {
-    if (isClickedManually) {
-      this.setColorSchemeStates();
+    if (saveTheme) {
+      this.saveAppearanceSettings();
     }
-    this.changeStyleSheetsColor('theme', this.colorScheme + '-theme.css');
-    this.setColorSchemeOfHTML();
   }
 
-  private setColorSchemeOfHTML(): void {
-    document.documentElement.style.colorScheme = this.colorScheme;
-  }
-
-  /** @desc Changes filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
-  private changeStyleSheetsColor(id: string, cssFileName: string): void {
-    const element: HTMLElement | null = document.getElementById(id);
-
-    const cssFilePath: string[] = element!.getAttribute('href')!.split('/');
-    cssFilePath[cssFilePath.length - 1] = cssFileName;
-
-    const newURL = cssFilePath.join('/');
-
-    this.replaceLink(element, newURL);
-  }
-
-  /** @desc Replaces filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
-  private replaceLink(linkElement: any, href: string): void {
-    const id = linkElement?.getAttribute('id');
-    const cloneLinkElement = linkElement.cloneNode(true);
-
-    cloneLinkElement?.setAttribute('href', href);
-    cloneLinkElement?.setAttribute('id', id + '-clone');
-
-    linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-
-    /** @desc Waits until changed css file is loaded. */
-    cloneLinkElement.addEventListener('load', () => {
-      linkElement.remove();
-      cloneLinkElement.setAttribute('id', id);
-      this.initThemeColor();
-    });
-  }
-
-  private initThemeColor(): void {
-    if (!localStorage.getItem('ThemeColor')) {
-      localStorage.setItem('ThemeColor', this.prefixedThemeColors[0].Color);
-    }
-
-    document.documentElement.style
-      .setProperty('--theme-color', localStorage.getItem('ThemeColor'));
-    this.themeColor = localStorage.getItem('ThemeColor')!;
-    this.makeColorsBasedOnMainColor(this.themeColor);
-  }
-
-  public changeThemeColor(color: string): void {
-    localStorage.setItem('ThemeColor', color);
+  public changeThemeColor(color: string, saveColor: boolean = false): void {
     document.documentElement.style.setProperty('--theme-color', color);
-    this.themeColor = color;
-    this.makeColorsBasedOnMainColor(this.themeColor);
+    this.ThemeColor = color;
+    this.makeColorsBasedOnMainColor(this.ThemeColor, saveColor);
   }
 
-  public makeColorsBasedOnMainColor(baseColor: string, percentage: number = 40): void {
+  public makeColorsBasedOnMainColor(baseColor: string, saveColor: boolean = false, percentage: number = 40,): void {
     /** @desc Converts HEX to RGB */
     const hexToRgb = (hex: string) => ({
       r: parseInt(hex.slice(1, 3), 16),
@@ -122,7 +83,7 @@ export class ConfigService {
 
     /** @desc Darken the color by a certain percentage */
     const changedColorBasedOnTheme = (color: number): number => {
-      if (this.colorScheme === 'dark') {
+      if (this.Theme === 'dark') {
         return Math.round(color * (1 - percentage / 100));
       } else {
         return Math.round(color + (255 - color) * (percentage / 100));
@@ -145,8 +106,75 @@ export class ConfigService {
     };
     const bgColor: string = rgbToHex(bgColorRGB);
 
-    document.documentElement.style.setProperty('--theme-color-tint',  tintColor);
+    document.documentElement.style.setProperty('--theme-color-tint', tintColor);
     document.documentElement.style.setProperty('--theme-color-bg', bgColor);
+
+    if (saveColor) {
+      this.saveAppearanceSettings();
+    }
   }
 
+  public applyUserThemeSettings(Theme: string, ThemeColor: string): void {
+    this.Theme = Theme ? Theme : this.themeInitialValue;
+    this.Theme$.next(this.Theme);
+    this.changeTheme(false, this.Theme);
+
+    this.ThemeColor = ThemeColor;
+    this.changeThemeColor(ThemeColor);
+  }
+
+  private saveAppearanceSettings(): void {
+    const payload: any = {
+      Theme: this.Theme,
+      ThemeColor: this.ThemeColor
+    };
+
+    this.settingsService.saveAppearanceSettings(this.authService.userData$.getValue().Id, payload)
+      .pipe(take(1))
+      .subscribe({
+        next: () => {
+          console.log('Appearance Settings Saved Successfully.');
+        },
+        error: (err) => {
+          console.group('HTTP Error')
+          console.log('Something Went Wrong In \'saveAppearanceSettings\'');
+          console.log(err);
+          console.groupEnd();
+        }
+      });
+  }
+
+  private setHTMLTheme(): void {
+    document.documentElement.style.colorScheme = this.Theme;
+  }
+
+  /** @desc Changes filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
+  private changeCSSFilePath(id: string, cssFileName: string): void {
+    const element: HTMLElement | null = document.getElementById(id);
+
+    const cssFilePath: string[] = element.getAttribute('href').split('/');
+    cssFilePath[cssFilePath.length - 1] = cssFileName;
+
+    const newURL = cssFilePath.join('/');
+
+    this.replaceLink(element, newURL);
+  }
+
+  /** @desc Replaces filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
+  private replaceLink(linkElement: any, href: string): void {
+    const id = linkElement?.getAttribute('id');
+    const cloneLinkElement = linkElement.cloneNode(true);
+
+    cloneLinkElement?.setAttribute('href', href);
+    cloneLinkElement?.setAttribute('id', id + '-clone');
+
+    linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+
+    /** @desc Waits until changed css file is loaded. */
+    cloneLinkElement.addEventListener('load', () => {
+      linkElement.remove();
+      cloneLinkElement.setAttribute('id', id);
+      this.makeColorsBasedOnMainColor(this.ThemeColor);
+    });
+  }
 }

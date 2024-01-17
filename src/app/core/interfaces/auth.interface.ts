@@ -1,17 +1,17 @@
 import { FormControl } from "@angular/forms";
 
 export interface ILoginData {
-    UserName: string;
+    Username: string;
     Password: string;
 }
 
 export interface ILoginDataForm {
-    UserName: FormControl<string>;
+    Username: FormControl<string>;
     Password: FormControl<string>;
 }
 
 export interface IRegisterData {
-    UserName: string;
+    Username: string;
     Email: string;
     Password: string;
     ConfirmPassword: string;
@@ -21,7 +21,7 @@ export interface IRegisterData {
 }
 
 export interface IRegisterDataForm {
-    UserName: FormControl<string>;
+    Username: FormControl<string>;
     Email: FormControl<string>;
     Password: FormControl<string>;
     ConfirmPassword: FormControl<string>;

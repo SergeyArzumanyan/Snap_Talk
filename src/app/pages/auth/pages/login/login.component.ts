@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router, RouterLink } from '@angular/router';
-import { 
-  FormControl, 
-  FormGroup, 
-  ReactiveFormsModule, 
-  Validators 
+import { RouterLink } from '@angular/router';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
 } from '@angular/forms';
 
 import { InputTextModule } from 'primeng/inputtext';
@@ -13,8 +13,9 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 
-import { ILoginDataForm } from '@core/interfaces'; 
+import { ILoginDataForm } from '@core/interfaces';
 import { AuthComponent } from '@pages/auth';
+import { ConfigService } from "@app/core";
 
 @Component({
   selector: 'app-login',
@@ -32,11 +33,12 @@ import { AuthComponent } from '@pages/auth';
 })
 export class LoginComponent {
   public loginForm: FormGroup<ILoginDataForm> = new FormGroup({
-    UserName: new FormControl<string>('', Validators.required),
+    Username: new FormControl<string>('', Validators.required),
     Password: new FormControl<string>('', Validators.required),
   });
 
   constructor(
+    private configService: ConfigService,
     private parent: AuthComponent,
   ) {}
 
@@ -44,10 +46,13 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.parent.authService.login(this.loginForm.getRawValue())
         .subscribe({
-          next: (data) => {
-            this.parent.authService.userData$.next(data);
+          next: (res) => {
+            this.parent.authService.userData$.next(res);
             this.parent.authService.isAuthenticated$.next(true);
             this.parent.router.navigate(['/']);
+
+            const { Theme, ThemeColor } = res.AppearanceSettings;
+            this.configService.applyUserThemeSettings(Theme, ThemeColor);
           },
           error: (err: HttpErrorResponse) => {
             console.error(err);

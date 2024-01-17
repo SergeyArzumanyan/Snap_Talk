@@ -12,7 +12,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('@pages/auth')
             .then((c) => c.AuthComponent),
-        loadChildren: () => 
+        loadChildren: () =>
           import('@pages/auth')
             .then((r) => r.AUTH_ROUTES),
       },

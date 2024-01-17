@@ -19,7 +19,7 @@ import { AuthComponent } from '@pages/auth';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink, 
+    RouterLink,
     ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
@@ -32,7 +32,7 @@ import { AuthComponent } from '@pages/auth';
 })
 export class RegisterComponent {
   public registerForm: FormGroup<IRegisterDataForm> = new FormGroup({
-    UserName: new FormControl<string>('', Validators.required),
+    Username: new FormControl<string>('', Validators.required),
     Password: new FormControl<string>('', Validators.required),
     ConfirmPassword: new FormControl<string>('', Validators.required),
     Email: new FormControl<string>('', [

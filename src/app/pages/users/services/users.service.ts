@@ -34,14 +34,6 @@ export class UsersService {
     );
   }
 
-  public editUser(Id: number, payload: IUser): Observable<IUser> {
-    return this.http.request<IUser>(
-      'patch',
-      Methods.USERS + Id,
-      payload
-    );
-  }
-
 
   public deleteUser(Id: number): Observable<IUser> {
     return this.http.request<IUser>(

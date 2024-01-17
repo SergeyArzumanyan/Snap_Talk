@@ -1,18 +1,18 @@
 <h3 class="m-0 color-text-heading">Sign up to continue.</h3>
-<form 
+<form
     [formGroup]="registerForm"
     (ngSubmit)="register()"
     class="flex flex-column w-full gap-4">
-    
-    <div 
+
+    <div
         [ngClass]="{
             'flex-column': layoutService.isMobile
         }"
         class="flex gap-4">
         <div class="flex flex-1 flex-column gap-1">
             <label for="Name">Name</label>
-            <input 
-                pInputText 
+            <input
+                pInputText
                 aria-describedby="name-help"
                 id="Name"
                 formControlName="Name"/>
@@ -20,8 +20,8 @@
 
         <div class="flex flex-1 flex-column gap-1">
             <label for="Surname">Surname</label>
-            <input 
-                pInputText 
+            <input
+                pInputText
                 aria-describedby="surname-help"
                 id="Surname"
                 formControlName="Surname"/>
@@ -29,26 +29,26 @@
     </div>
 
     <div class="flex flex-column gap-1">
-        <label for="UserName">Gender</label>
-        <p-selectButton 
-            [options]="genders" 
+        <label for="Username">Gender</label>
+        <p-selectButton
+            [options]="genders"
             [unselectable]="true"
             formControlName="Gender">
         </p-selectButton>
     </div>
 
     <div class="flex flex-column gap-1">
-        <label for="UserName">Username</label>
-        <input 
-            pInputText 
+        <label for="Username">Username</label>
+        <input
+            pInputText
             aria-describedby="username-help"
-            id="UserName"
-            formControlName="UserName"/>
+            id="Username"
+            formControlName="Username"/>
     </div>
 
     <div class="flex flex-column gap-1">
         <label for="Email">Email</label>
-        <input 
+        <input
             pInputText
             aria-describedby="email-help"
             id="Email"
@@ -58,7 +58,7 @@
 
     <div class="flex flex-column gap-1">
         <label for="Password">Password</label>
-        <p-password 
+        <p-password
             [toggleMask]="true"
             [feedback]="false"
             id="Password"
@@ -67,15 +67,15 @@
 
     <div class="flex flex-column gap-1">
         <label for="ConfirmPassword">ConfirmPassword</label>
-        <p-password 
+        <p-password
             [toggleMask]="true"
             [feedback]="false"
             id="ConfirmPassword"
             formControlName="ConfirmPassword"/>
     </div>
 
-    <button 
-        pButton 
+    <button
+        pButton
         pRipple
         label="Register"
         class="shadow">
