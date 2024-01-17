@@ -1,10 +1,10 @@
 import { FormControl } from "@angular/forms";
 
 export interface IPersonalInfoForm {
-  Name: FormControl<string>;
-  Surname: FormControl<string>;
+  FirstName: FormControl<string>;
+  LastName: FormControl<string>;
   Username:FormControl<string>;
-  Mail: FormControl<string>;
+  Email: FormControl<string>;
 }
 
 export interface IAppearanceForm {

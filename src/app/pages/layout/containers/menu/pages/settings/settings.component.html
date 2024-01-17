@@ -41,16 +41,16 @@
 
           <div class="info-items flex flex-column gap-3">
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Name</span>
+              <span class="w-full info-label font-light text-sm txt-color">First Name</span>
               <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.Name }}
+                {{ user.FirstName }}
               </span>
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Surname</span>
+              <span class="w-full info-label font-light text-sm txt-color">Last Name</span>
               <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user?.Surname ? user?.Surname : '' }}
+                {{ user?.LastName }}
               </span>
             </div>
 
@@ -69,9 +69,9 @@
             </div>
 
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Mail</span>
+              <span class="w-full info-label font-light text-sm txt-color">Email</span>
               <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.Mail }}
+                {{ user.Email }}
               </span>
             </div>
           </div>
@@ -88,19 +88,19 @@
 
             <div class="info-items flex flex-column gap-3">
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Name*</span>
+                <span class="w-full info-label font-light text-sm txt-color">First Name *</span>
                 <input type="text"
                        class="font-semibold text-sm same-text-input txt-color"
                        spellcheck="false"
-                       formControlName="Name"/>
+                       formControlName="FirstName"/>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Surname</span>
+                <span class="w-full info-label font-light text-sm txt-color">Last Name *</span>
                 <input type="text"
                        class="font-semibold text-sm same-text-input txt-color"
                        spellcheck="false"
-                       formControlName="Surname"/>
+                       formControlName="LastName"/>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
@@ -116,11 +116,11 @@
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Mail*</span>
+                <span class="w-full info-label font-light text-sm txt-color">Email*</span>
                 <input type="text"
                        class="font-semibold text-sm same-text-input txt-color"
                        spellcheck="false"
-                       formControlName="Mail"/>
+                       formControlName="Email"/>
               </div>
             </div>
           </form>

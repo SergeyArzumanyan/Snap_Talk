@@ -42,14 +42,14 @@ export class SettingsComponent implements OnInit {
   public isEditMode: boolean = false;
 
   public personalInfoForm: FormGroup<IPersonalInfoForm> = new FormGroup<IPersonalInfoForm>({
-    Name: new FormControl<string>(null, [
+    FirstName: new FormControl<string>(null, [
       Validators.required
     ]),
-    Surname: new FormControl<string>(null),
+    LastName: new FormControl<string>(null),
     Username: new FormControl<string>(null, [
       Validators.required
     ]),
-    Mail: new FormControl<string>(null, [
+    Email: new FormControl<string>(null, [
       Validators.required,
       Validators.email
     ]),

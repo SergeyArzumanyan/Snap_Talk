@@ -15,8 +15,8 @@ export interface IRegisterData {
     Email: string;
     Password: string;
     ConfirmPassword: string;
-    Name: string;
-    Surname: string;
+    FirstName: string;
+    LastName: string;
     Gender: string;
 }
 
@@ -25,8 +25,8 @@ export interface IRegisterDataForm {
     Email: FormControl<string>;
     Password: FormControl<string>;
     ConfirmPassword: FormControl<string>;
-    Name: FormControl<string>;
-    Surname: FormControl<string>;
+    FirstName: FormControl<string>;
+    LastName: FormControl<string>;
     Gender: FormControl<string>;
 }
 

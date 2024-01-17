@@ -39,8 +39,8 @@ export class RegisterComponent {
       Validators.required,
       Validators.email,
     ]),
-    Name: new FormControl<string>('', Validators.required),
-    Surname: new FormControl<string>('', Validators.required),
+    FirstName: new FormControl<string>('', Validators.required),
+    LastName: new FormControl<string>('', Validators.required),
     Gender: new FormControl<string>('', Validators.required),
   });
 
