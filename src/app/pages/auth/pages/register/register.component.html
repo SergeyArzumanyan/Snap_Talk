@@ -71,7 +71,10 @@
             [toggleMask]="true"
             [feedback]="false"
             id="ConfirmPassword"
-            formControlName="ConfirmPassword"/>
+            formControlName="ConfirmPassword"
+            [ngClass]="{
+                'custom-invalid': registerForm.hasError('passwordsMatch')
+            }"/>
     </div>
 
     <button

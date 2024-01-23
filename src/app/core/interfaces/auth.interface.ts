@@ -14,7 +14,6 @@ export interface IRegisterData {
     Username: string;
     Email: string;
     Password: string;
-    ConfirmPassword: string;
     FirstName: string;
     LastName: string;
     Gender: string;

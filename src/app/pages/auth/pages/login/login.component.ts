@@ -58,6 +58,8 @@ export class LoginComponent {
             console.error(err);
           }
         });
+    } else {
+      this.loginForm.markAllAsTouched();
     }
   }
 }

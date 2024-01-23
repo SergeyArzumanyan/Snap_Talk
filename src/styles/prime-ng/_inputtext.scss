@@ -1,3 +1,14 @@
 .p-inputwrapper, .p-inputtext {
     width: 100%;
+
+    &.ng-invalid.ng-touched, &.custom-invalid.ng-touched {
+        &, .p-password-input {
+            border-color: var(--invalid);
+
+            &:focus {
+                box-shadow: inset 0 0 0 1px var(--invalid), inset 0 0 0 1px var(--invalid),
+                inset 0 0 0 1px var(--invalid), inset 0 0 0 1px var(--invalid) !important;
+            }
+        }
+    }
 }

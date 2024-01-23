@@ -12,6 +12,7 @@ import { RippleModule } from 'primeng/ripple';
 
 import { LayoutService } from '@core/services';
 import { IRegisterDataForm } from '@core/interfaces';
+import { AuthValidators } from '@core/validators';
 import { AuthComponent } from '@pages/auth';
 
 @Component({
@@ -42,7 +43,7 @@ export class RegisterComponent {
     FirstName: new FormControl<string>('', Validators.required),
     LastName: new FormControl<string>('', Validators.required),
     Gender: new FormControl<string>('', Validators.required),
-  });
+  }, AuthValidators.passwordsMatch);
 
   public genders: string[] = [
     'Male',
@@ -56,7 +57,8 @@ export class RegisterComponent {
 
   public register(): void {
     if (this.registerForm.valid) {
-      this.parent.authService.register(this.registerForm.getRawValue())
+      const { ConfirmPassword, ...requestBody } = this.registerForm.getRawValue();
+      this.parent.authService.register(requestBody)
         .subscribe({
           next: (data) => {
             this.parent.authService.userData$.next(data);
@@ -67,6 +69,8 @@ export class RegisterComponent {
             console.error(err);
           }
         });
+    } else {
+      this.registerForm.markAllAsTouched();
     }
   }
 }
