@@ -17,3 +17,13 @@
   transition: 0.2s color;
   color: var(--text-heading);
 }
+
+//  For Image Cropper Package
+.ngx-ic-source-image {
+  height: 100% !important;
+}
+
+.ngx-ic-overlay {
+  outline: none !important;
+}
+//  -------------------------

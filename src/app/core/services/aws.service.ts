@@ -10,15 +10,15 @@ export class AwsService {
 
   constructor(private http: HttpClient) {}
 
-  public uploadFile(file: File): Observable<any> {
+  public uploadFile(file: File, fileName: string): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file, file.name);
+    formData.append('file', file, fileName || file.name);
 
     return this.http
       .post(
         environment.ImagesUrl + 'upload',
         formData
       )
-      .pipe(take(1))
+      .pipe(take(1));
   }
 }

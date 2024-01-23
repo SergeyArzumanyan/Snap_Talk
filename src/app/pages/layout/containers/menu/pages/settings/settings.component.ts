@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgClass, NgStyle } from "@angular/common";
+import { AsyncPipe, NgClass, NgStyle } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { take } from "rxjs/operators";
 
@@ -7,8 +7,9 @@ import { AccordionModule, AccordionTabCloseEvent } from 'primeng/accordion';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from "primeng/inputswitch";
+import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
-import { ImageComponent } from "@core/components";
+import { ImageComponent, ImageSelectComponent } from "@core/components";
 import { AuthService, ConfigService } from "@app/core";
 import {
   IAppearanceForm,
@@ -29,9 +30,13 @@ import { SettingsService } from "./services";
     ImageComponent,
     NgClass,
     NgStyle,
+    AsyncPipe,
+    ImageComponent,
   ],
   providers: [
-    SettingsService
+    SettingsService,
+    DynamicDialogRef,
+    DialogService,
   ],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
@@ -72,6 +77,8 @@ export class SettingsComponent implements OnInit {
     public configService: ConfigService,
     public authService: AuthService,
     private settingsService: SettingsService,
+    private ref: DynamicDialogRef,
+    private dialogService: DialogService,
   ) {
     this.initThemeSettings();
     this.checkThemeColor();
@@ -131,14 +138,6 @@ export class SettingsComponent implements OnInit {
       });
   }
 
-  public changeBackgroundPicture(): void {
-
-  }
-
-  public changeAvatarPicture(): void {
-
-  }
-
   private checkThemeColor(): void {
     this.isCustomThemeColor = this.prefixedThemeColors
       .find(c => c.Color === this.appearanceForm.value.ThemeColor) === undefined;
@@ -172,5 +171,62 @@ export class SettingsComponent implements OnInit {
       this.personalInfoForm.reset();
       this.isEditMode = false;
     }
+  }
+
+  public onFileUpload(e: any, userImageProperty: string): void {
+    const file: File = e.target.files[0];
+    const fileName: string = file.name;
+
+    this.ref = this.dialogService.open(ImageSelectComponent, {
+      header: 'Select Image',
+      modal: true,
+      closeOnEscape: true,
+      dismissableMask: true,
+      width: '30vw',
+      breakpoints: {
+        '960px': '75vw',
+        '640px': '90vw'
+      },
+      styleClass: 'dialog-with-footer',
+      data: {
+        Image: file,
+        AspectRatio: userImageProperty === 'ProfileImage' ? 3 / 3 : 5 / 4,
+      },
+    });
+
+    this.ref.onClose
+      .pipe(take(1))
+      .subscribe({
+        next: (croppedImageUrl: string): void => {
+          if (croppedImageUrl) {
+            this.changeUserImage(
+              fileName,
+              croppedImageUrl,
+              userImageProperty
+            );
+          }
+        }
+      });
+  }
+
+  public changeUserImage(fileName: string, croppedImageUrl: string, userImageProperty: string): void {
+    this.settingsService.getFileFromObjectUrl(fileName, croppedImageUrl)
+      .then((croppedImageFile: File | null) => {
+        if (croppedImageFile) {
+          this.settingsService.editUserImage(croppedImageFile, userImageProperty)
+            .subscribe({
+              next: (user) => {
+                this.user = user;
+                this.authService.userData$.next(user);
+              },
+              error: (err) => {
+                console.group('HTTP Error')
+                console.log('Something Went Wrong In \'changeUserImage\'');
+                console.log(err);
+                console.groupEnd();
+              }
+            })
+        }
+      });
   }
 }

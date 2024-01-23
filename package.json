@@ -17,6 +17,7 @@
     "@angular/router": "^17.0.0",
     "@types/socket.io-client": "^3.0.0",
     "ngx-cookie-service": "^17.0.1",
+    "ngx-image-cropper": "^7.2.1",
     "primeflex": "^3.3.1",
     "primeng": "^17.0.0",
     "pusher-js": "^8.4.0-rc2",

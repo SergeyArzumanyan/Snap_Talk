@@ -50,7 +50,6 @@
     ::ng-deep .profile-avatar-image {
       width: 80px;
       height: 80px;
-      border-radius: 999px;
       object-fit: cover;
       background-color: var(--accent-bg);
       box-shadow: 0 0 0 4px var(--accent-bg);
@@ -58,7 +57,6 @@
     }
 
     .avatar-camera {
-      border-radius: 999px;
       bottom: 0;
       right: 0;
       cursor: pointer;
@@ -140,7 +138,6 @@
       .color {
         width: 25px;
         height: 25px;
-        border-radius: 999px;
         transition: 0.2s box-shadow;
         cursor: pointer;
 
@@ -154,7 +151,6 @@
       .icon-overlay {
         width: 25px;
         height: 25px;
-        border-radius: 999px;
         z-index: 2;
         background-color: rgba(black, 0.25);
         pointer-events: none;

@@ -1,0 +1,22 @@
+.image-select-wrapper {
+  display: block;
+  max-width: 400px;
+  min-height: 200px;
+  margin: 0 auto;
+
+  .image-selector-wrapper {
+    .image-selector-loader {
+      top: 45%;
+      left: 45%;
+      transform: translate(-50%, -50%);
+      margin: 0 auto;
+      color: white;
+      font-size: 40px;
+    }
+
+    .image-select {
+      max-width: 400px;
+      padding: 0;
+    }
+  }
+}

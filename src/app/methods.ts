@@ -5,7 +5,9 @@ export const Methods = {
   REGISTER: 'auth/register',
   LOGIN: 'auth/login',
   USERS: 'users/',
-  SAVE_USER_APPEARANCE_SETTINGS: 'user-settings/appearance/'
+  USERS_SETTINGS: 'user-settings/',
+  SAVE_USER_APPEARANCE_SETTINGS: 'user-settings/appearance/',
+  EDIT_USER_PROFILE_IMAGE: '/profileImage'
 };
 
 (() => {

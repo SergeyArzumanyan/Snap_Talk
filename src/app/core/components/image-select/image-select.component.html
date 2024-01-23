@@ -1,0 +1,36 @@
+<div class="image-select-wrapper flex flex-column gap-5 justify-content-center">
+    <div class="image-selector-wrapper relative">
+      @if (pending) {
+        <div class="image-selector-loader anm-spinner absolute z-5">
+          <i class="ri-loader-4-fill"></i>
+        </div>
+      }
+      <image-cropper
+        class="image-select"
+        [imageFile]="ImageFile"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="config.data.AspectRatio"
+        [cropperMaxWidth]="1500"
+        [cropperMaxHeight]="1500"
+
+        (loadstart)="onLoadStart()"
+        (imageLoaded)="imageLoaded()"
+        (imageCropped)="imageCropped($event)"
+        (loadImageFailed)="loadImageFailed()"
+      />
+    </div>
+
+    <div class="p-dialog-footer">
+      <p-button label="Cancel"
+                icon="ri-close-fill text-xl"
+                iconPos="right"
+                (onClick)="cancel()"
+                size="small" />
+
+      <p-button label="Save"
+                icon="ri-check-fill text-xl"
+                iconPos="right"
+                (onClick)="save()"
+                size="small" />
+    </div>
+</div>
