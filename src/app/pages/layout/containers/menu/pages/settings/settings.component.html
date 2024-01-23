@@ -2,10 +2,11 @@
   <i class="background-edit p-2 ri-pencil-fill text-sm txt-color absolute z-5"
      (click)="backgroundImageInput.click()"></i>
 
-  <app-image [imageName]="user.BackgroundImage"
-             className="profile-background-image"
-             (click)="backgroundImageInput.click()"
-  />
+  @if (user.BackgroundImage) {
+    <app-image [imageName]="user.BackgroundImage"
+      className="profile-background-image"
+      />
+  }
   <input #backgroundImageInput
          type="file"
          class="hidden"
@@ -15,11 +16,21 @@
   />
 
   <div class="avatar-wrapper absolute">
-    <app-image [imageName]="user.ProfileImage"
-               className="profile-avatar-image border-circle"
-               loaderClassName="border-circle"
-               (click)="profileImageInput.click()"
-    />
+    @if (!user.ProfileImage) {
+      <img src="/assets/images/default-avatar.jpg"
+           class="profile-avatar-image border-circle"
+           alt="default-user-image"
+           role="presentation"
+           loading="lazy"
+           (click)="profileImageInput.click()"
+      />
+    } @else {
+      <app-image [imageName]="user.ProfileImage"
+                 className="profile-avatar-image border-circle"
+                 loaderClassName="border-circle"
+                 (click)="profileImageInput.click()"
+      />
+    }
     <input #profileImageInput
            type="file"
            class="hidden"

@@ -1,7 +1,8 @@
 :host {
   display: flex;
+  gap: 60px;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 15px 18px;
   padding-block: 20px;
