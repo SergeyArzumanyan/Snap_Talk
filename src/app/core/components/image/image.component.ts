@@ -27,15 +27,17 @@ import { environment } from "@env/environment";
            (load)="onImageLoad()" />
     </div>
   `,
-  styles: [`
+  styles: `
     .image-wrapper {
+      user-select: none;
+
       .image-loader-overlay {
         width: 100%;
         height: 100%;
         background-color: transparent;
       }
     }
-  `]
+  `
 })
 export class ImageComponent implements OnChanges {
   @Input({required: true}) imageName: string;

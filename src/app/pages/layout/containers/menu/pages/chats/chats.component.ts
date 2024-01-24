@@ -17,14 +17,14 @@ export class ChatsComponent {
   public chats: any[] = [
     {
       Id: 1,
-      Name: 'Aram Asatryan',
+      Name: 'John Smith',
       ImageName: '',
       LastMessage: 'Last Sent Message',
       LastMessageTime: '12:12'
     },
     {
       Id: 2,
-      Name: 'Vrdanes Papazyan',
+      Name: 'Some User In Hereksajhfjahjskf',
       ImageName: '',
       LastMessage: '',
       LastMessageTime: ''

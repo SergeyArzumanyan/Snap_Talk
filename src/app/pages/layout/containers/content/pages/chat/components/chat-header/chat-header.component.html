@@ -1,0 +1,28 @@
+<header class="w-full chat-header-wrapper flex justify-content-between align-items-center">
+
+  <div class="header-left flex gap-3 align-items-center">
+    @if (layoutService.isMobile) {
+      <div class="back-wrapper">
+        <i class="back-icon border-circle ri-arrow-left-line text-lg txt-color"
+           (click)="navigateBack()"></i>
+      </div>
+    }
+
+    <div class="user-info-wrapper flex gap-3 align-items-center">
+      <!--      <app-image [imageName]="imageName" className="user-avatar border-circle"/>-->
+      <img
+        class="user-avatar border-circle"
+        src="/assets/images/default-avatar.jpg"
+        alt="avatar-img"
+        role="presentation"
+        loading="lazy"
+      />
+
+      <span class="name text-base txt-white">
+        {{ fullName }}
+      </span>
+    </div>
+
+  </div>
+
+</header>

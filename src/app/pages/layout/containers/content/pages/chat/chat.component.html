@@ -1,1 +1,10 @@
-<p>messages-content works!</p>
+<section class="w-full h-full chat-wrapper flex flex-column align-items-center justify-content-between">
+  <app-chat-header class="w-full"
+                   imageName=""
+                   fullName="John Smith"
+  />
+  <app-chat-body class="w-full h-full"
+                 [messages]="messages"
+  />
+  <app-chat-footer class="w-full"/>
+</section>
