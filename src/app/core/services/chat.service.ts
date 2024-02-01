@@ -118,7 +118,8 @@ export class ChatService implements OnDestroy {
       for (let j = 0; j < this.chatList[i].Users.length; j++) {
         if (this.chatList[i].Users[j].Id === updatedChatMemberData.Id) {
           this.chatList[i].Users[j] = updatedChatMemberData;
-          this.makeChatNameAndImage(this.chatList[i]);
+          this.Chat = this.chatList[i];
+          this.makeChatNameAndImage(this.Chat);
         }
       }
     }
