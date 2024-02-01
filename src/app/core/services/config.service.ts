@@ -60,12 +60,11 @@ export class ConfigService {
       this.toggleTheme();
     }
 
-    this.changeCSSFilePath('theme', this.Theme + '-theme.css');
-    this.setHTMLTheme();
+    saveTheme ?
+      this.saveAppearanceSettings() :
+      this.changeCSSFilePath('theme', this.Theme + '-theme.css');
 
-    if (saveTheme) {
-      this.saveAppearanceSettings();
-    }
+    this.setHTMLTheme();
   }
 
   public changeThemeColor(color: string, saveColor: boolean = false): void {
