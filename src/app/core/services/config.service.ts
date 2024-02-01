@@ -168,21 +168,6 @@ export class ConfigService {
   private replaceLink(linkElement: any, href: string): void {
     linkElement.href = href;
     this.makeColorsBasedOnMainColor(this.ThemeColor);
-
-    // const id = linkElement?.getAttribute('id');
-    // const cloneLinkElement = linkElement.cloneNode(true);
-    //
-    // cloneLinkElement?.setAttribute('href', href);
-    // cloneLinkElement?.setAttribute('id', id + '-clone');
-    //
-    // linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-    //
-    // /** @desc Waits until changed css file is loaded. */
-    // cloneLinkElement.addEventListener('load', () => {
-    //   linkElement.remove();
-    //   cloneLinkElement.setAttribute('id', id);
-    //   this.makeColorsBasedOnMainColor(this.ThemeColor);
-    // });
   }
 
   public subscribeToUserDataChanges(user: any): void {
