@@ -73,7 +73,7 @@ export class ConfigService {
     this.makeColorsBasedOnMainColor(this.ThemeColor, saveColor);
   }
 
-  public makeColorsBasedOnMainColor(baseColor: string, saveColor: boolean = false, percentage: number = 40,): void {
+  public makeColorsBasedOnMainColor(baseColor: string, saveColor: boolean = false, percentage: number = 40): void {
     /** @desc Converts HEX to RGB */
     const hexToRgb = (hex: string) => ({
       r: parseInt(hex.slice(1, 3), 16),
@@ -166,20 +166,23 @@ export class ConfigService {
 
   /** @desc Replaces filePaths in index.html for layout-{theme}.css and theme-{theme}.css files. */
   private replaceLink(linkElement: any, href: string): void {
-    const id = linkElement?.getAttribute('id');
-    const cloneLinkElement = linkElement.cloneNode(true);
+    linkElement.href = href;
+    this.makeColorsBasedOnMainColor(this.ThemeColor);
 
-    cloneLinkElement?.setAttribute('href', href);
-    cloneLinkElement?.setAttribute('id', id + '-clone');
-
-    linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
-
-    /** @desc Waits until changed css file is loaded. */
-    cloneLinkElement.addEventListener('load', () => {
-      linkElement.remove();
-      cloneLinkElement.setAttribute('id', id);
-      this.makeColorsBasedOnMainColor(this.ThemeColor);
-    });
+    // const id = linkElement?.getAttribute('id');
+    // const cloneLinkElement = linkElement.cloneNode(true);
+    //
+    // cloneLinkElement?.setAttribute('href', href);
+    // cloneLinkElement?.setAttribute('id', id + '-clone');
+    //
+    // linkElement.parentNode.insertBefore(cloneLinkElement, linkElement.nextSibling);
+    //
+    // /** @desc Waits until changed css file is loaded. */
+    // cloneLinkElement.addEventListener('load', () => {
+    //   linkElement.remove();
+    //   cloneLinkElement.setAttribute('id', id);
+    //   this.makeColorsBasedOnMainColor(this.ThemeColor);
+    // });
   }
 
   public subscribeToUserDataChanges(user: any): void {
