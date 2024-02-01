@@ -1,0 +1,76 @@
+p-multiselect {
+  .p-multiselect {
+    color: var(--form-input);
+    background-color: var(--accent-bg);
+    border: none;
+    box-shadow: none;
+    font-size: 16px;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:focus, &:focus-visible {
+      box-shadow: 0 0 0 2px var(--theme-color);
+    }
+
+    .p-multiselect-trigger > chevrondownicon > svg {
+      color: var(--form-input);
+    }
+  }
+
+  &.ng-invalid.ng-touched {
+    .p-multiselect {
+      box-shadow: 0 0 0 2px var(--invalid);
+    }
+  }
+}
+
+.p-multiselect-panel {
+  background-color: var(--secondary-bg);
+
+  .p-checkbox-box {
+    background: var(--accent-bg);
+
+    &.p-highlight {
+      background-color: var(--theme-color);
+      border-color: var(--theme-color);
+    }
+  }
+
+  .p-multiselect-header {
+    background-color: var(--secondary-bg);
+
+    .p-checkbox-icon {
+      color: var(--text-white);
+    }
+
+    .p-multiselect-filter {
+      background-color: var(--accent-bg);
+      color: var(--form-input);
+      height: 36px;
+      border: none;
+      box-shadow: none;
+
+      &:focus, &:focus-visible {
+        box-shadow: 0 0 0 2px var(--theme-color);
+      }
+    }
+  }
+
+  .p-multiselect-items {
+    .p-multiselect-item {
+      color: var(--form-input);
+      font-size: 16px;
+      transition: var(--animation-time) background-color;
+
+      &.p-highlight {
+        background: var(--theme-color-tint);
+      }
+
+      .p-checkbox-icon {
+        color: var(--text-white);
+      }
+    }
+  }
+}

@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Methods } from '@app/methods';
-import { HttpService, ILoginData, IRegisterData } from '@app/core';
+import {
+  HttpService,
+  ILoginData,
+  IRegisterData,
+} from '@app/core';
 
 @Injectable({
   providedIn: 'root',

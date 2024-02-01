@@ -1,7 +1,5 @@
 export const pusherEvents = {
-  onNewMessage: 'onNewMessage',
-}
-
-export const pusherChannels = {
-  chatChannel: 'chat'
+  onDataChanges: 'onDataChanges',
+  onChatChanges: 'onChatChanges',
+  onChatMemberChanges: 'onChatMemberChanges',
 }

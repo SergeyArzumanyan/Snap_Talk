@@ -3,8 +3,8 @@
             placeholder="Send a message..."
             spellcheck="false"
             pInputTextarea
-            (keyup.enter)="sendMessage()"
-  ></textarea>
+            [formControl]="MessageText"
+    ></textarea>
 
   <button class="h-full send-button flex justify-content-center align-items-center">
     <i class="ri-arrow-right-line txt-white" (click)="sendMessage()"></i>

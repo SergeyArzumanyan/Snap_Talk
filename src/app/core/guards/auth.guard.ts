@@ -3,6 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService, ConfigService } from '..';
+import { take } from "rxjs/operators";
 
 export const authGuard: CanActivateFn = (route) => {
   const router: Router = inject(Router);
@@ -14,19 +15,22 @@ export const authGuard: CanActivateFn = (route) => {
       obs.next(true);
     } else {
       authService.verifyUser()
+        .pipe(take(1))
         .subscribe({
-          next: (res) => {
-            authService.userData$.next(res);
-            authService.isAuthenticated$.next(true);
-
+          next: (user): void => {
             if (route.firstChild.routeConfig.path === 'auth') {
               obs.next(router.createUrlTree(['chats']));
             } else {
               obs.next(true);
             }
 
-            const { Theme, ThemeColor } = res.AppearanceSettings;
+            authService.userData$.next(user);
+            authService.isAuthenticated$.next(true);
+
+            const { Theme, ThemeColor } = user.AppearanceSettings;
             configService.applyUserThemeSettings(Theme, ThemeColor);
+
+            configService.subscribeToUserDataChanges(user);
           },
           error: () => {
             authService.userData$.next(null);

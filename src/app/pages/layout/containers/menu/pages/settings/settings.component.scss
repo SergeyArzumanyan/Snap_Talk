@@ -7,7 +7,7 @@
 
   .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
     background-color: var(--accent-bg);
-    transition: 0.2s background-color;
+    transition: var(--animation-time) background-color;
 
     &:hover, &:active, &:focus, &:focus-visible {
       background-color: var(--accent-bg);
@@ -33,7 +33,7 @@
     top: 20px;
     cursor: pointer;
     background-color: var(--secondary-bg);
-    transition: 0.2s background-color, color;
+    transition: var(--animation-time) background-color, color;
   }
 
   ::ng-deep .profile-background-image {
@@ -54,7 +54,7 @@
       object-fit: cover;
       background-color: var(--accent-bg);
       box-shadow: 0 0 0 4px var(--accent-bg);
-      transition: 0.2s box-shadow, background-color, color;
+      transition: var(--animation-time) box-shadow, background-color, color;
     }
 
     .avatar-camera {
@@ -62,7 +62,7 @@
       right: 0;
       cursor: pointer;
       background-color: var(--accent-bg);
-      transition: 0.2s box-shadow, background-color, color;
+      transition: var(--animation-time) box-shadow, background-color, color;
     }
   }
 }
@@ -73,7 +73,7 @@
     cursor: pointer;
     border-radius: 8px;
     background-color: var(--secondary-bg);
-    transition: 0.2s background-color, color;
+    transition: var(--animation-time) background-color, color;
 
     &.save-icon {
       background-color: var(--theme-color);
@@ -111,7 +111,7 @@
       outline: none;
       padding: 0;
       margin: 0;
-      transition: 0.2s box-shadow;
+      transition: var(--animation-time) box-shadow;
 
       &:focus {
         background-color: var(--accent-bg);
@@ -139,7 +139,7 @@
       .color {
         width: 25px;
         height: 25px;
-        transition: 0.2s box-shadow;
+        transition: var(--animation-time) box-shadow;
         cursor: pointer;
 
         &:focus {
@@ -155,8 +155,15 @@
         z-index: 2;
         background-color: rgba(black, 0.25);
         pointer-events: none;
-        transition: 0.2s box-shadow;
+        transition: var(--animation-time) box-shadow;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .accordion-wrapper {
+    max-height: calc(100dvh - 248px - 70px);
+    overflow: auto;
   }
 }

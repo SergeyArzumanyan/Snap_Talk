@@ -7,8 +7,7 @@ export interface IPersonalInfo {
     Id: number;
     Status: number;
     Username: string;
-    FirstName: string;
-    LastName: string;
+    FullName: string;
     Email: string;
     Avatar: string;
 }

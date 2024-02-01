@@ -1,0 +1,39 @@
+<div class="add-group-wrapper dialog-form flex flex-column gap-5 justify-content-center">
+
+  <form [formGroup]="addGroupForm" (ngSubmit)="onAdd()">
+
+    <div class="form-content flex flex-column gap-4">
+      <span class="p-float-label">
+        <input formControlName="Name"
+               id="Name"
+               type="text"
+               pInputText />
+        <label for="Name">Group Name</label>
+      </span>
+
+      <span class="p-float-label">
+        <p-multiSelect formControlName="Members"
+                       id="Members"
+                       [options]="users"
+                       optionValue="Id"
+                       optionLabel="FullName"
+                       appendTo="body" />
+        <label for="Members">Members</label>
+      </span>
+    </div>
+
+    <div class="p-dialog-footer">
+      <p-button label="Cancel"
+                icon="ri-close-fill text-xl"
+                iconPos="right"
+                (onClick)="cancel()"
+                size="small" />
+
+      <p-button label="Add"
+                icon="ri-add-fill text-xl"
+                iconPos="right"
+                (onClick)="onAdd()"
+                size="small" />
+    </div>
+  </form>
+</div>

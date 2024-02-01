@@ -33,16 +33,25 @@ import { AuthComponent } from '@pages/auth';
 })
 export class RegisterComponent {
   public registerForm: FormGroup<IRegisterDataForm> = new FormGroup({
-    Username: new FormControl<string>('', Validators.required),
-    Password: new FormControl<string>('', Validators.required),
-    ConfirmPassword: new FormControl<string>('', Validators.required),
-    Email: new FormControl<string>('', [
+    Username: new FormControl<string>(null, [
+      Validators.required,
+    ]),
+    Password: new FormControl<string>(null, [
+      Validators.required,
+    ]),
+    ConfirmPassword: new FormControl<string>(null, [
+      Validators.required,
+    ]),
+    Email: new FormControl<string>(null, [
       Validators.required,
       Validators.email,
     ]),
-    FirstName: new FormControl<string>('', Validators.required),
-    LastName: new FormControl<string>('', Validators.required),
-    Gender: new FormControl<string>('', Validators.required),
+    FullName: new FormControl<string>(null, [
+      Validators.required,
+    ]),
+    Gender: new FormControl<string>(null, [
+      Validators.required,
+    ]),
   }, AuthValidators.passwordsMatch);
 
   public genders: string[] = [
@@ -56,21 +65,19 @@ export class RegisterComponent {
   ) {}
 
   public register(): void {
-    if (this.registerForm.valid) {
-      const { ConfirmPassword, ...requestBody } = this.registerForm.getRawValue();
-      this.parent.authService.register(requestBody)
-        .subscribe({
-          next: (data) => {
-            this.parent.authService.userData$.next(data);
-            this.parent.authService.isAuthenticated$.next(true);
-            this.parent.router.navigate(['/']);
-          },
-          error: (err: HttpErrorResponse) => {
-            console.error(err);
-          }
-        });
-    } else {
-      this.registerForm.markAllAsTouched();
+    if (this.registerForm.invalid) {
+      return this.registerForm.markAllAsTouched();
     }
+
+    const { ConfirmPassword, ...requestBody } = this.registerForm.getRawValue();
+    this.parent.authService.register(requestBody)
+      .subscribe({
+        next: (user): void => {
+          this.parent.setUserDataAndSubscribeToChanges(user);
+        },
+        error: (err: HttpErrorResponse): void => {
+          console.error(err);
+        }
+      });
   }
 }

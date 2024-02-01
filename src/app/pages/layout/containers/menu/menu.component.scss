@@ -1,12 +1,12 @@
 :host {
   flex-basis: 300px;
   background: var(--secondary-bg);
-  transition: 0.2s background-color;
+  transition: var(--animation-time) background-color;
 
   .menu-title {
     top: 20px;
     left: 100px;
-    transition: color 0.2s;
+    transition: color var(--animation-time);
   }
 
   .non-absolute-heading {
@@ -15,6 +15,10 @@
   }
 
   @media only screen and (max-width: 768px) {
-    flex-basis: calc(100% - 76px);
+    flex-basis: calc(100dvh - 70px);
+
+    .menu-title {
+      left: 20px;
+    }
   }
 }

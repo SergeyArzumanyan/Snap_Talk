@@ -1,8 +1,9 @@
 .chat-body {
   width: 100%;
-  max-height: calc(100dvh - 150px);
+  height: calc(100dvh - 150px);
+
   padding: 15px 20px;
-  transition: 0.2s background-color;
+  transition: var(--animation-time) background-color;
   background-color: var(--theme-color-bg);
   overflow-x: hidden;
   overflow-y: auto;
@@ -14,7 +15,7 @@
     text-wrap: balance;
     white-space: pre-wrap;
     background-color: var(--accent-bg);
-    transition: 0.2s background-color, color;
+    transition: var(--animation-time) background-color, color;
     padding: 10px;
     border-radius: 10px;
 
@@ -26,7 +27,7 @@
       width: 10px;
       height: 15px;
       background-color: var(--accent-bg);
-      transition: 0.2s background-color;
+      transition: var(--animation-time) background-color;
       bottom: -5px;
       left: 10px;
       border-radius: 0 0 6px 2px;
@@ -48,6 +49,7 @@
 
 @media (max-width: 1200px) {
   .chat-body {
+    min-height: calc(100dvh - 80px - 70px);
     .message {
       max-width: 250px !important;
 
@@ -66,6 +68,7 @@
 
 @media (max-width: 768px) {
   .chat-body {
+    height: calc(100dvh - 60px - 70px);
     padding: 15px 10px !important;
 
     .message {

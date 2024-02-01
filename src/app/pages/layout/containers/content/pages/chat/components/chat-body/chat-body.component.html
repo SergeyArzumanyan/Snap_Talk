@@ -1,5 +1,9 @@
-<main #chatBody class="chat-body flex flex-column gap-4">
-  @for (message of messages; track message.Id) {
+<main #chatBody
+      id="chatBody"
+      class="chat-body flex flex-column gap-4 relative"
+      (scroll)="onScroll()"
+>
+  @for (message of parent.messages; track message.Id) {
     <div class="message text-base relative"
          [ngClass]="{
          'user-sent-message': isUserSentMessage(message),
@@ -10,7 +14,7 @@
         {{ message.Text }}
       </div>
       <div class="date text-xs font-light">
-        {{ message.CreatedAt | date: 'hh:mm d MMM y' }}
+        {{ message.CreatedAt | date: 'HH:mm d MMM y' }}
       </div>
 
       <div class="message-arrow absolute"></div>

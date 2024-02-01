@@ -3,7 +3,11 @@ import { BehaviorSubject } from "rxjs";
 import { take } from "rxjs/operators";
 
 import { SettingsService } from "@pages/layout/containers/menu/pages/settings/services";
-import { AuthService } from "@app/core";
+import {
+  AuthService,
+  pusherEvents,
+  PusherService,
+} from "@app/core";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +34,7 @@ export class ConfigService {
 
   constructor(
     private authService: AuthService,
+    private pusherService: PusherService,
     private settingsService: SettingsService
   ) {
     /** @desc Listens to system default theme changes. */
@@ -176,5 +181,21 @@ export class ConfigService {
       cloneLinkElement.setAttribute('id', id);
       this.makeColorsBasedOnMainColor(this.ThemeColor);
     });
+  }
+
+  public subscribeToUserDataChanges(user: any): void {
+    this.pusherService.subscribeToChannel(`user-${user.Id}`);
+
+    this.pusherService.listenToChannelEvents(
+      `user-${user.Id}`,
+      pusherEvents.onDataChanges,
+      (userData): void => {
+        this.authService.userData$.next(userData);
+        this.authService.isAuthenticated$.next(true);
+
+        const { Theme, ThemeColor } = userData.AppearanceSettings;
+        this.applyUserThemeSettings(Theme, ThemeColor);
+      }
+    );
   }
 }

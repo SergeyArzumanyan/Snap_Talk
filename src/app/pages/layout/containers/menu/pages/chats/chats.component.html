@@ -1,20 +1,39 @@
 <div class="w-full flex flex-column gap-3">
-  <div class="search-wrapper">
-    <input type="text"
+  <div class="search-wrapper flex gap-2 justify-content-between align-items-center">
+    <input #searchInput
+           type="text"
            class="w-full h-full search-input text-base txt-white"
            placeholder="Search"
+           spellcheck="false"
            pInputText
-           (keyup)="onSearch($event)"/>
+           (keyup)="onSearch()" />
+
+    <i class="action-icon add-group-icon p-2 ri-group-fill text-base txt-white"
+       (click)="addGroup()"
+       pTooltip="Add Group"
+    ></i>
   </div>
 
-  <div class="chats-wrapper w-full h-full">
-      @for (chat of chats; track chat) {
-        <app-chat-preview [ChatId]="chat.Id"
-                          [ChatName]="chat.Name"
-                          [ChatImageName]="chat.ImageName"
-                          [ChatLastMessage]="chat.LastMessage"
-                          [ChatLastMessageTime]="chat.LastMessageTime"
-        />
+  <div class="items-wrapper w-full h-full">
+    @if (!searchInput.value) {
+      @for (chat of chatService.chatList; track chat.Id) {
+        <app-chat-preview [Chat]="chat" />
+      } @empty {
+        <div class="empty-block flex flex-column gap-2 justify-content-center align-items-center">
+          <i class="ri-emotion-sad-fill txt-color"></i>
+          <span class="empty-chats text-sm txt-color">You Don't have any Chats</span>
+          <span class="empty-chats text-xs txt-color">start a new one</span>
+        </div>
       }
+    } @else {
+      @for (user of searchedUsers; track user.Id) {
+        <app-user-preview [User]="user" />
+      } @empty {
+        <div class="empty-block flex flex-column gap-2 justify-content-center align-items-center">
+          <i class="ri-search-line txt-color"></i>
+          <span class="empty-results text-sm txt-color">Nothing Found</span>
+        </div>
+      }
+    }
   </div>
 </div>

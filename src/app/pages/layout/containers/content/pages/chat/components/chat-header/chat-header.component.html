@@ -9,17 +9,10 @@
     }
 
     <div class="user-info-wrapper flex gap-3 align-items-center">
-      <!--      <app-image [imageName]="imageName" className="user-avatar border-circle"/>-->
-      <img
-        class="user-avatar border-circle"
-        src="/assets/images/default-avatar.jpg"
-        alt="avatar-img"
-        role="presentation"
-        loading="lazy"
-      />
+      <app-image [imageName]="parent.chatService.Chat?.Image" className="user-avatar border-circle"/>
 
       <span class="name text-base txt-white">
-        {{ fullName }}
+        {{ parent.chatService.Chat?.Name }}
       </span>
     </div>
 

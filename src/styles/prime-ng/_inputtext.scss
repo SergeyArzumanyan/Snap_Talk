@@ -12,3 +12,25 @@
         }
     }
 }
+
+.form-content {
+  .p-inputtext {
+    color: var(--form-input);
+    background-color: var(--accent-bg);
+    border: none;
+    box-shadow: none;
+    font-size: 16px;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &:focus, &:focus-visible {
+      box-shadow: 0 0 0 2px var(--theme-color);
+    }
+
+    &.ng-invalid.ng-touched {
+      box-shadow: 0 0 0 2px var(--invalid) !important;
+    }
+  }
+}

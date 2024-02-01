@@ -15,6 +15,17 @@
 
   .p-dialog-content {
     background: var(--secondary-bg);
+    border-radius: 0;
+  }
+
+  .form-content {
+    padding-top: 10px;
+
+    span.p-float-label > label {
+      color: var(--form-input);
+      background-color: var(--accent-bg);
+      border-radius: 5px 5px 0 0;
+    }
   }
 
   .p-dialog-footer {
@@ -34,7 +45,7 @@
       width: auto;
       background: var(--theme-color);
       color: #FFFFFF;
-      transition: background-color 0.2s, width 0.2s, height 0.2s;
+      transition: background-color var(--animation-time), width var(--animation-time), height var(--animation-time);
 
       &:hover {
         background: var(--theme-color-tint);

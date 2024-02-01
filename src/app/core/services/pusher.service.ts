@@ -17,7 +17,7 @@ export class PusherService {
     );
   }
 
-  public subscribeToPusherChannel(channelName:  string): void {
+  public subscribeToChannel(channelName:  string): void {
     this.Pusher.subscribe(channelName);
   }
 

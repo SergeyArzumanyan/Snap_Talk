@@ -18,7 +18,9 @@ import { environment } from "@env/environment";
         </div>
       }
 
-      <img [src]="envImagesUrl + imageName"
+      <img [src]="imageName ?
+              envImagesUrl + imageName :
+             '/assets/images/default-avatar.jpg'"
            [alt]="imageName"
            [class]="className"
            [ngClass]="{'opacity-70': !isImageLoaded}"

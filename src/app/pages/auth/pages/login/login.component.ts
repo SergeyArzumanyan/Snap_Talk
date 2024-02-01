@@ -33,33 +33,31 @@ import { ConfigService } from "@app/core";
 })
 export class LoginComponent {
   public loginForm: FormGroup<ILoginDataForm> = new FormGroup({
-    Username: new FormControl<string>('', Validators.required),
-    Password: new FormControl<string>('', Validators.required),
+    Username: new FormControl<string>(null, [
+      Validators.required,
+    ]),
+    Password: new FormControl<string>(null, [
+      Validators.required,
+    ]),
   });
 
   constructor(
-    private configService: ConfigService,
     private parent: AuthComponent,
   ) {}
 
   public login(): void {
-    if (this.loginForm.valid) {
-      this.parent.authService.login(this.loginForm.getRawValue())
-        .subscribe({
-          next: (res) => {
-            this.parent.authService.userData$.next(res);
-            this.parent.authService.isAuthenticated$.next(true);
-            this.parent.router.navigate(['/']);
-
-            const { Theme, ThemeColor } = res.AppearanceSettings;
-            this.configService.applyUserThemeSettings(Theme, ThemeColor);
-          },
-          error: (err: HttpErrorResponse) => {
-            console.error(err);
-          }
-        });
-    } else {
-      this.loginForm.markAllAsTouched();
+    if (this.loginForm.invalid) {
+      return this.loginForm.markAllAsTouched();
     }
+
+    this.parent.authService.login(this.loginForm.getRawValue())
+      .subscribe({
+        next: (user): void => {
+          this.parent.setUserDataAndSubscribeToChanges(user);
+        },
+        error: (err: HttpErrorResponse): void => {
+          console.error(err);
+        }
+      });
   }
 }

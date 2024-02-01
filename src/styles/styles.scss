@@ -21,7 +21,7 @@ body {
   font-family: var(--font-family);
   color: var(text-normal);
   background: var(--theme-color-bg);
-  transition: background 0.2s;
+  transition: background var(--animation-time);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   touch-action: manipulation;

@@ -1,7 +1,7 @@
 .chat-header-wrapper {
-  min-height: 100px;
+  height: 80px;
   padding: 0 25px;
-  transition: 0.2s background-color;
+  transition: var(--animation-time) background-color;
   background-color: var(--theme-color-tint);
 
   .header-left {
@@ -14,11 +14,17 @@
     }
 
     .user-info-wrapper {
-      .user-avatar {
+      ::ng-deep .user-avatar {
         width: 50px;
         height: 50px;
       }
     }
 
+  }
+}
+
+@media (max-width: 768px) {
+  .chat-header-wrapper {
+    height: 70px;
   }
 }

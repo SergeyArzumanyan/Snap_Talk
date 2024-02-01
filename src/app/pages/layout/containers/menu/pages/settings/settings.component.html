@@ -69,16 +69,9 @@
 
           <div class="info-items flex flex-column gap-3">
             <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">First Name</span>
+              <span class="w-full info-label font-light text-sm txt-color">Name</span>
               <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.FirstName }}
-              </span>
-            </div>
-
-            <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Last Name</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user?.LastName }}
+                {{ user?.FullName }}
               </span>
             </div>
 
@@ -116,19 +109,11 @@
 
             <div class="info-items flex flex-column gap-3">
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">First Name *</span>
+                <span class="w-full info-label font-light text-sm txt-color">Name</span>
                 <input type="text"
                        class="font-semibold text-sm same-text-input txt-color"
                        spellcheck="false"
-                       formControlName="FirstName"/>
-              </div>
-
-              <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Last Name</span>
-                <input type="text"
-                       class="font-semibold text-sm same-text-input txt-color"
-                       spellcheck="false"
-                       formControlName="LastName"/>
+                       formControlName="FullName"/>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">

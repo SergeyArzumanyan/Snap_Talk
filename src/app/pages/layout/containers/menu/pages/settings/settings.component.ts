@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AsyncPipe, NgClass, NgStyle } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { take } from "rxjs/operators";
+import { Subject, takeUntil } from "rxjs";
 
 import { AccordionModule, AccordionTabCloseEvent } from 'primeng/accordion';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -41,16 +42,15 @@ import { SettingsService } from "./services";
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss',
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, OnDestroy {
   public user: any;
 
   public isEditMode: boolean = false;
 
   public personalInfoForm: FormGroup<IPersonalInfoForm> = new FormGroup<IPersonalInfoForm>({
-    FirstName: new FormControl<string>(null, [
+    FullName: new FormControl<string>(null, [
       Validators.required
     ]),
-    LastName: new FormControl<string>(null),
     Username: new FormControl<string>(null, [
       Validators.required
     ]),
@@ -73,6 +73,8 @@ export class SettingsComponent implements OnInit {
 
   public isCustomThemeColor: boolean = false;
 
+  private unsubscribe$: Subject<void> = new Subject<void>();
+
   constructor(
     public configService: ConfigService,
     public authService: AuthService,
@@ -88,9 +90,14 @@ export class SettingsComponent implements OnInit {
     this.setUserData();
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
+  }
+
   private setUserData(): void {
     this.authService.userData$
-      .pipe(take(1))
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
         next: (user) => {
           this.user = user;
@@ -128,6 +135,7 @@ export class SettingsComponent implements OnInit {
           this.authService.userData$.next(res);
           this.user = res;
           this.isEditMode = false;
+          this.personalInfoForm.reset();
         },
         error: (err): void => {
           console.group('HTTP Error')

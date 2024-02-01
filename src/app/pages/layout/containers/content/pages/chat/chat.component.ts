@@ -1,12 +1,19 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, ParamMap } from "@angular/router";
-import { Subject, takeUntil } from "rxjs";
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { take } from "rxjs/operators";
+import { NgClass } from "@angular/common";
 
 import {
   ChatHeaderComponent,
   ChatBodyComponent,
   ChatFooterComponent,
 } from "./components";
+import {
+  AuthService,
+  ChatService,
+  PusherService,
+  pusherEvents,
+} from "@app/core";
 
 
 @Component({
@@ -15,156 +22,75 @@ import {
   imports: [
     ChatHeaderComponent,
     ChatFooterComponent,
-    ChatBodyComponent
+    ChatBodyComponent,
+    NgClass,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent implements OnDestroy {
-  public chatId: number;
+export class ChatComponent {
+  public messages: any[] = [];
 
-  private unsubscribe$: Subject<void> = new Subject<void>();
-
-  constructor(private route: ActivatedRoute) {
-    this.subscribeToRouteChanges();
+  constructor(
+    public authService: AuthService,
+    private pusherService: PusherService,
+    public route: ActivatedRoute,
+    public router: Router,
+    public chatService: ChatService,
+  ) {
+    this.subscribeToMessageEvents();
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
-  }
-
-  private subscribeToRouteChanges(): void {
-    this.route.paramMap
-      .pipe(takeUntil(this.unsubscribe$))
+  public getChatById(): void {
+    this.chatService.getChatById(this.chatService.chatId)
+      .pipe(take(1))
       .subscribe({
-        next: (params: ParamMap): void => {
-          this.chatId = +params.get('id');
+        next: (chat): void => {
+          this.chatService.Chat = chat;
+          this.chatService.makeChatNameAndImage(this.chatService.Chat);
+        },
+        error: (err): void => {
+          if (err?.error?.message) {
+            this.router.navigateByUrl('chats');
+            /** #ToDo Error Handling */
+              console.error('Chat doesn\'t exist');
+            /**--------------------- */
+          }
         }
       });
   }
 
-  //  For testing Purposes.
-  public messages: any[] = [
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Lorem Ipsum\n is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Text Text TextTextTextText',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Hello World !',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Lorem Ipsum\n is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Text Text TextTextTextText',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Hello World !',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Lorem Ipsum\n is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Text Text TextTextTextText',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Hello World !',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Lorem Ipsum\n is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 2,
-      Text: 'Other User\'s Lorem Ipsum text, Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Text Text TextTextTextText',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-    {
-      Id: 1,
-      SenderId: 1,
-      Text: 'Hello World !',
-      CreatedAt: '2024-01-24T07:02:26.378Z'
-    },
-  ];
+  private addMessageToChat(ChatChanges: any): void {
+    this.chatService.chatList = ChatChanges.ChatList;
+
+    this.chatService.chatList.forEach(chat => {
+      this.chatService.makeChatNameAndImage(chat);
+    });
+
+    const isInSameChatView: boolean = this.chatService.chatId === ChatChanges.ChatId;
+
+    if (isInSameChatView) {
+      this.messages.push(ChatChanges.LastMessage);
+      this.scrollChatToBottom();
+    }
+  }
+
+  public scrollChatToBottom(): void {
+    const chatBody: HTMLElement = document.getElementById('chatBody');
+
+    setTimeout((): void => {
+      chatBody.scrollTo({
+        top: chatBody.scrollHeight,
+        behavior: 'smooth',
+      })
+    }, 0);
+  }
+
+  private subscribeToMessageEvents(): void {
+    this.pusherService.listenToChannelEvents(
+      `user-${this.authService.userData$.getValue().Id}`,
+      pusherEvents.onChatChanges,
+      (chatChanges) => this.addMessageToChat(chatChanges),
+    );
+  }
 }

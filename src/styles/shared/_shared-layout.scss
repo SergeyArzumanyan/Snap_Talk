@@ -1,20 +1,26 @@
+@media (max-width: 768px) {
+  body {
+    overflow: hidden;
+  }
+}
+
 .navbar-icon {
-  transition: 0.2s color;
+  transition: var(--animation-time) color;
   color: #878a91;
 }
 
 .txt-white {
-  transition: 0.2s color;
+  transition: var(--animation-time) color;
   color: #ffffff;
 }
 
 .txt-color {
-  transition: 0.2s color;
+  transition: var(--animation-time) color;
   color: var(--text-normal);
 }
 
 .txt-heading {
-  transition: 0.2s color;
+  transition: var(--animation-time) color;
   color: var(--text-heading);
 }
 

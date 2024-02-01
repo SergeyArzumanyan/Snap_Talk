@@ -1,8 +1,7 @@
 import { FormControl } from "@angular/forms";
 
 export interface IPersonalInfoForm {
-  FirstName: FormControl<string>;
-  LastName: FormControl<string>;
+  FullName: FormControl<string>;
   Username:FormControl<string>;
   Email: FormControl<string>;
 }

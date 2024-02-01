@@ -6,7 +6,7 @@
   align-items: center;
   padding: 15px 18px;
   padding-block: 20px;
-  transition: 0.2s background-color;
+  transition: var(--animation-time) background-color;
   background-color: var(--main-bg);
 
   nav > i {
@@ -15,5 +15,17 @@
     &.active {
       color: var(--theme-color);
     }
+  }
+}
+
+@media (max-width: 768px) {
+  :host {
+    flex-direction: row !important;
+    padding: 15px 30px;
+  }
+
+  nav {
+    flex-direction: row !important;
+    justify-content: flex-end;
   }
 }

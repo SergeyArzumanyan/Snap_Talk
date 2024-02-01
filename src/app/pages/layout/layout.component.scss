@@ -2,3 +2,9 @@
   display: flex;
   flex: 1;
 }
+
+@media (max-width: 768px) {
+  :host {
+    flex-direction: column-reverse;
+  }
+}
