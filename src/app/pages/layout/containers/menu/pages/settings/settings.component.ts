@@ -97,19 +97,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   private setUserData(): void {
     this.authService.userData$
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(take(1))
       .subscribe({
         next: (user) => {
           this.user = user;
-          this.setAppearanceData();
+          this.appearanceForm.patchValue(this.user?.AppearanceSettings);
         }
       });
-  }
-
-  private setAppearanceData(): void {
-    this.configService.Theme$.next(this.user?.AppearanceSettings?.Theme);
-    this.configService.ThemeColor = this.user?.AppearanceSettings?.ThemeColor;
-    this.appearanceForm.patchValue(this.user?.AppearanceSettings);
   }
 
   public enableEditMode(): void {
@@ -224,6 +218,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
           this.settingsService.editUserImage(croppedImageFile, userImageProperty)
             .subscribe({
               next: (user): void => {
+                console.log('user => ', user);
                 this.user = user;
                 this.authService.userData$.next(user);
               },
