@@ -1,20 +1,26 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgClass } from "@angular/common";
 
+import { SkeletonModule } from "primeng/skeleton";
+
 import { environment } from "@env/environment";
 
 @Component({
   selector: 'app-image',
   standalone: true,
   imports: [
-    NgClass
+    NgClass,
+    SkeletonModule,
   ],
   template: `
     <div class="image-wrapper relative">
       @if (!isImageLoaded) {
-        <div class="image-loader-overlay anm-spinner absolute flex justify-content-center align-items-center"
+        <div class="image-loader-overlay absolute flex justify-content-center align-items-center"
              [class]="loaderClassName">
-          <i class="ri-loader-4-fill opacity-100"></i>
+          <p-skeleton [shape]="skeletonShape"
+                      [size]="skeletonSize"
+                      [width]="skeletonWidth"
+                      [height]="skeletonHeight" />
         </div>
       }
 
@@ -43,6 +49,12 @@ import { environment } from "@env/environment";
 })
 export class ImageComponent implements OnChanges {
   @Input({required: true}) imageName: string;
+
+  @Input() skeletonShape: string = '';  // Empty String = Rectangle
+  @Input() skeletonSize: string;
+  @Input() skeletonWidth: string;
+  @Input() skeletonHeight: string;
+
   @Input() className: string;
   @Input() loaderClassName: string;
 

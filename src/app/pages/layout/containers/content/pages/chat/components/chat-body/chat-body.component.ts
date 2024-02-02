@@ -46,7 +46,7 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
       const scrollHeight: number = this.chatBody.nativeElement.scrollHeight;
       const diff: number = scrollHeight - scrollPosition;
 
-      const didntGetAllChatMessages: boolean = (this.skip * this.take) < this.parent.chatService.Chat.MessagesCount;
+      const didntGetAllChatMessages: boolean = (this.skip * this.take) < this.parent.chatService.Chat?.MessagesCount;
 
       this.parent.chatService.isToBottomArrowVisible = diff >= 1200;
 

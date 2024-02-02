@@ -4,7 +4,10 @@
 >
 
   <div class="chat-image-wrapper">
-    <app-image className="chat-image" [imageName]="Chat?.Image"></app-image>
+    <app-image className="chat-image"
+               skeletonShape="circle"
+               skeletonSize="50px"
+               [imageName]="Chat?.Image" />
   </div>
 
   <div class="w-full h-full flex flex-column gap-2">
@@ -14,8 +17,8 @@
             {{ Chat?.Name }}
           </span>
 
-      <span class="chat-date text-xs txt-color">
-            {{ Chat?.LastMessageDate | date: 'MMM d HH:mm' }}
+          <span class="chat-date text-xs txt-color">
+            {{ Chat?.LastMessageDate | date: 'MMM d, HH:mm' }}
           </span>
     </div>
 

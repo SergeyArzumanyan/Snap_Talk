@@ -198,7 +198,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       styleClass: 'dialog-with-footer',
       data: {
         Image: file,
-        AspectRatio: userImageProperty === 'ProfileImage' ? 3 / 3 : 5 / 4,
+        AspectRatio: userImageProperty === 'ProfileImage' ? 3 / 3 :  16 / 9,
       },
     });
 
@@ -219,15 +219,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   public changeUserImage(fileName: string, croppedImageUrl: string, userImageProperty: string): void {
     this.settingsService.getFileFromObjectUrl(fileName, croppedImageUrl)
-      .then((croppedImageFile: File | null) => {
+      .then((croppedImageFile: File | null): void => {
         if (croppedImageFile) {
           this.settingsService.editUserImage(croppedImageFile, userImageProperty)
             .subscribe({
-              next: (user) => {
+              next: (user): void => {
                 this.user = user;
                 this.authService.userData$.next(user);
               },
-              error: (err) => {
+              error: (err): void => {
                 console.group('HTTP Error')
                 console.log('Something Went Wrong In \'changeUserImage\'');
                 console.log(err);

@@ -4,8 +4,9 @@
 
   @if (user.BackgroundImage) {
     <app-image [imageName]="user.BackgroundImage"
-      className="profile-background-image"
-      />
+               skeletonWidth="300px"
+               skeletonHeight="200px"
+               className="profile-background-image" />
   }
   <input #backgroundImageInput
          type="file"
@@ -26,10 +27,11 @@
       />
     } @else {
       <app-image [imageName]="user.ProfileImage"
+                 skeletonShape="circle"
+                 skeletonSize="80px"
                  className="profile-avatar-image border-circle"
                  loaderClassName="border-circle"
-                 (click)="profileImageInput.click()"
-      />
+                 (click)="profileImageInput.click()" />
     }
     <input #profileImageInput
            type="file"

@@ -9,7 +9,10 @@
     }
 
     <div class="user-info-wrapper flex gap-3 align-items-center">
-      <app-image [imageName]="parent.chatService.Chat?.Image" className="user-avatar border-circle"/>
+      <app-image [imageName]="parent.chatService.Chat?.Image"
+                 skeletonShape="circle"
+                 skeletonSize="50px"
+                 className="user-avatar border-circle" />
 
       <span class="name text-base txt-white">
         {{ parent.chatService.Chat?.Name }}

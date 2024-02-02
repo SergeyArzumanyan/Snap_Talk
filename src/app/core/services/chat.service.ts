@@ -48,6 +48,7 @@ export class ChatService implements OnDestroy {
         for (const chat of this.chatList) {
           if (chat.Id === changedChat.ChatId) {
             chat.LastMessage = changedChat.LastMessage.Text;
+            chat.LastMessageDate = changedChat.LastMessage.CreatedAt;
           }
         }
       }
