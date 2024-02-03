@@ -13,12 +13,13 @@
     cursor: pointer;
     border-radius: 8px;
     padding: 4px;
+    transition: box-shadow var(--animation-time);
 
     &.active {
       color: var(--theme-color);
     }
 
-    &:focus, &:focus-visible {
+    &:focus-visible {
       outline: none;
       box-shadow: 0 0 0 2px var(--theme-color);
     }
