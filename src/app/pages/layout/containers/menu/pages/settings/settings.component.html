@@ -4,7 +4,7 @@
 
   @if (user.BackgroundImage) {
     <app-image [imageName]="user.BackgroundImage"
-               skeletonWidth="300px"
+               skeletonWidth="100%"
                skeletonHeight="200px"
                className="profile-background-image" />
   }
@@ -17,22 +17,12 @@
   />
 
   <div class="avatar-wrapper absolute">
-    @if (!user.ProfileImage) {
-      <img src="/assets/images/default-avatar.jpg"
-           class="profile-avatar-image border-circle"
-           alt="default-user-image"
-           role="presentation"
-           loading="lazy"
-           (click)="profileImageInput.click()"
-      />
-    } @else {
-      <app-image [imageName]="user.ProfileImage"
-                 skeletonShape="circle"
-                 skeletonSize="80px"
-                 className="profile-avatar-image border-circle"
-                 loaderClassName="border-circle"
-                 (click)="profileImageInput.click()" />
-    }
+    <app-image [imageName]="user.ProfileImage"
+               skeletonShape="circle"
+               skeletonSize="80px"
+               className="profile-avatar-image border-circle"
+               loaderClassName="border-circle"
+               (click)="profileImageInput.click()" />
     <input #profileImageInput
            type="file"
            class="hidden"
@@ -49,7 +39,7 @@
 <div class="settings-wrapper flex flex-column">
   <div class="accordion-wrapper">
     <p-accordion [multiple]="true"
-                 [activeIndex]="[0]"
+                 [activeIndex]="layoutService.isMobile ? [] : [0]"
                  (onClose)="onAccordionClose($event)"
                  expandIcon="ri-arrow-down-s-line"
                  collapseIcon="ri-arrow-up-s-line"
@@ -121,7 +111,9 @@
 
                 <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
                   <span class="w-full info-label font-light text-sm txt-color">Gender</span>
-                  <span class="w-full info-item-value font-semibold text-sm txt-color">Male</span>
+                  <span class="w-full info-item-value font-semibold text-sm txt-color">
+                    {{ user.Gender }}
+                  </span>
                 </div>
 
                 <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">

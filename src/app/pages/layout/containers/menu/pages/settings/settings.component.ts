@@ -3,7 +3,7 @@ import { AsyncPipe, NgClass, NgStyle } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { Subject, takeUntil } from "rxjs";
 
 import { AccordionModule, AccordionTabCloseEvent } from 'primeng/accordion';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -12,7 +12,7 @@ import { InputSwitchModule } from "primeng/inputswitch";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { ImageComponent, ImageSelectComponent } from "@core/components";
-import { AuthService, ConfigService } from "@app/core";
+import { AuthService, ConfigService, LayoutService } from "@app/core";
 import {
   IAppearanceForm,
   IPersonalInfoForm,
@@ -81,6 +81,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     public configService: ConfigService,
+    public layoutService: LayoutService,
     public authService: AuthService,
     private settingsService: SettingsService,
     private ref: DynamicDialogRef,
@@ -101,9 +102,9 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   private setUserData(): void {
     this.authService.userData$
-      .pipe(take(1))
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe({
-        next: (user) => {
+        next: (user): void => {
           this.user = user;
           this.appearanceForm.patchValue(this.user?.AppearanceSettings);
         }
