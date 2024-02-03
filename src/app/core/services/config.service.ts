@@ -21,10 +21,10 @@ export class ConfigService {
   public ThemeColor: string = '#6153CC';
   public prefixedThemeColors: { Color: string }[] = [
     { Color: '#6153CC' },
-    { Color: '#797C8C' },
     { Color: '#4DAC6D' },
-    { Color: '#50A5F1' },
-    { Color: '#E73E8C' }
+    { Color: '#d03249' },
+    { Color: '#3e8fd7' },
+    { Color: '#797C8C' },
   ];
 
   get themeInitialValue(): string {

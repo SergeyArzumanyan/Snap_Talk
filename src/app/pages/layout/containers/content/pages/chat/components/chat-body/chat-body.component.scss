@@ -1,47 +1,63 @@
 .chat-body {
   width: 100%;
   height: calc(100dvh - 150px);
-
   padding: 15px 20px;
   transition: var(--animation-time) background-color;
   background-color: var(--theme-color-bg);
   overflow-x: hidden;
   overflow-y: auto;
 
-  .message {
-    display: block;
-    width: max-content;
-    max-width: 400px;
-    text-wrap: balance;
-    white-space: pre-wrap;
-    background-color: var(--accent-bg);
-    transition: var(--animation-time) background-color, color;
-    padding: 10px;
-    border-radius: 10px;
-
-    .date {
-      text-align: right;
+  .group-wrapper {
+    .sticky-date {
+      position: sticky;
+      top: 0;
     }
 
-    .message-arrow {
-      width: 10px;
-      height: 15px;
+    .messages-date {
+      width: max-content;
+      height: 28px;
+      padding: 6px;
+      margin: 0 auto;
+      border-radius: 8px;
+      background-color: var(--secondary-bg);
+      transition: var(--animation-time) background-color, color;
+    }
+
+    .message {
+      display: block;
+      width: max-content;
+      max-width: 400px;
+      text-wrap: balance;
+      white-space: pre-wrap;
       background-color: var(--accent-bg);
-      transition: var(--animation-time) background-color;
-      bottom: -5px;
-      left: 10px;
-      border-radius: 0 0 6px 2px;
-    }
-
-    &.user-sent-message {
-      background-color: var(--theme-color);
+      transition: var(--animation-time) background-color, color;
+      padding: 10px;
+      border-radius: 10px;
 
       .date {
-        text-align: left;
+        text-align: right;
       }
 
       .message-arrow {
+        width: 10px;
+        height: 15px;
+        background-color: var(--accent-bg);
+        transition: var(--animation-time) background-color;
+        bottom: -5px;
+        left: 10px;
+        border-radius: 0 0 6px 2px;
+      }
+
+      &.user-sent-message {
         background-color: var(--theme-color);
+
+        .date {
+          text-align: left;
+        }
+
+        .message-arrow {
+          background-color: var(--theme-color);
+        }
       }
     }
   }
@@ -50,16 +66,19 @@
 @media (max-width: 1200px) {
   .chat-body {
     min-height: calc(100dvh - 80px - 70px);
-    .message {
-      max-width: 250px !important;
 
-      &.user-sent-message {
-        align-self: flex-end;
+    .group-wrapper {
+      .message {
+        max-width: 250px !important;
 
-        .message-arrow {
-          left: initial !important;
-          right: 10px !important;
-          border-radius: 0 0 2px 6px;
+        &.user-sent-message {
+          align-self: flex-end;
+
+          .message-arrow {
+            left: initial !important;
+            right: 10px !important;
+            border-radius: 0 0 2px 6px;
+          }
         }
       }
     }
@@ -71,9 +90,11 @@
     height: calc(100dvh - 60px - 70px);
     padding: 15px 10px !important;
 
-    .message {
-      min-width: 75px !important;
-      max-width: 225px !important;
+    .group-wrapper {
+      .message {
+        min-width: 75px !important;
+        max-width: 225px !important;
+      }
     }
   }
 }

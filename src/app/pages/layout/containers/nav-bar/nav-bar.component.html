@@ -1,18 +1,18 @@
 <img src="favicon.ico" width="40px" height="40px" alt="logo">
 <nav class="w-full flex gap-6 flex-column align-items-center">
-  @for (item of navItems; track item) {
+  @for (navItem of navItems; track navItem.Link) {
     <i
       class="text-2xl navbar-icon"
       #rla="routerLinkActive"
-      tabindex="-1"
       [routerLink]="['', {
               outlets: layoutService.isMobile
-                  ? { primary: item.Link, content: null }
-                  : { primary: item.Link }
+                  ? { primary: navItem.Link, content: null }
+                  : { primary: navItem.Link }
           }]"
-      [ngClass]="rla.isActive ? item.ActiveIcon : item.Icon"
+      [ngClass]="rla.isActive ? navItem.ActiveIcon : navItem.Icon"
       [routerLinkActive]="'active'"
-      [pTooltip]="item.Tooltip"
+      [pTooltip]="navItem.Tooltip"
+      (keyup.enter)="navigateToRoute(navItem)"
     ></i>
   }
 </nav>

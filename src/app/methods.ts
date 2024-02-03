@@ -4,6 +4,7 @@ export const Methods = {
   VERIFY_USER: 'auth/verify-user',
   REGISTER: 'auth/register',
   LOGIN: 'auth/login',
+  LOGOUT: 'auth/logout',
   USERS: 'users/',
   GET_FILTERED_USERS: 'users/getFilteredUsers',
   USERS_SETTINGS: 'user-settings/',

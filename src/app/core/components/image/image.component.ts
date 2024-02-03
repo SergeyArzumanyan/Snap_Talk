@@ -29,7 +29,6 @@ import { environment } from "@env/environment";
              '/assets/images/default-avatar.jpg'"
            [alt]="imageName"
            [class]="className"
-           [ngClass]="{'opacity-70': !isImageLoaded}"
            loading="lazy"
            role="presentation"
            (load)="onImageLoad()" />

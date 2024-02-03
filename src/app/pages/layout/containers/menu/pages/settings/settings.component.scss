@@ -1,20 +1,51 @@
-.accordion-wrapper ::ng-deep {
-  //  Personal Info Part
-  .p-accordion-tab {
-    margin: 0;
-    box-shadow: none;
-  }
-
-  .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
-    background-color: var(--accent-bg);
-    transition: var(--animation-time) background-color;
-
-    &:hover, &:active, &:focus, &:focus-visible {
-      background-color: var(--accent-bg);
+.settings-wrapper {
+  .accordion-wrapper ::ng-deep {
+    //  Personal Info Part
+    .p-accordion-tab {
+      margin: 0;
+      box-shadow: none;
     }
 
-    .p-accordion-toggle-icon-end {
-      color: var(--text-normal);
+    .p-accordion-header-link {
+      &:focus-visible {
+        box-shadow: 4px 0 0 0 var(--theme-color);
+      }
+    }
+
+    .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
+      background-color: var(--accent-bg);
+      transition: background-color, box-shadow var(--animation-time);
+
+      &:hover, &:active, &:focus, &:focus-visible {
+        background-color: var(--accent-bg);
+      }
+
+      .p-accordion-toggle-icon-end {
+        color: var(--text-normal);
+      }
+    }
+  }
+
+  .logout-wrapper {
+    min-height: 40px;
+
+    .logout-btn {
+      min-height: 40px;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      background-color: var(--theme-color);
+      transition: background-color, box-shadow var(--animation-time);
+      border-radius: 0 0 8px 8px;
+
+      &:hover {
+        background-color: var(--theme-color-tint);
+      }
+
+      &:focus, &:focus-visible {
+        box-shadow: 0 6px 0 0 var(--theme-color-tint);
+      }
     }
   }
 }
@@ -162,8 +193,12 @@
 }
 
 @media (max-width: 768px) {
-  .accordion-wrapper {
+  .settings-wrapper {
     max-height: calc(100dvh - 248px - 70px);
     overflow: auto;
+
+    .logout-wrapper .logout-btn {
+      border-radius: 0;
+    }
   }
 }

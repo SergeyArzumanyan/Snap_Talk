@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { TooltipModule } from 'primeng/tooltip';
 
@@ -35,5 +35,12 @@ export class NavBarComponent {
     },
   ];
 
-  constructor(public layoutService: LayoutService) {}
+  constructor(
+    private router: Router,
+    public layoutService: LayoutService
+  ) {}
+
+  public navigateToRoute(navItem: IMenuIcon): void {
+    this.router.navigate([navItem.Link]);
+  }
 }

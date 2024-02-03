@@ -11,6 +11,7 @@ export class ChatService implements OnDestroy {
   public chatId: number;
   public chatList: any[] = [];
   public Chat: any;
+  public chatPending: boolean = true;
 
   public isToBottomArrowVisible: boolean = false;
 
@@ -75,6 +76,19 @@ export class ChatService implements OnDestroy {
       chat.Name = otherUser.FullName;
       chat.Image = otherUser.ProfileImage;
     }
+  }
+
+  public groupByDate(arr: any[]): [string, object][] {
+    return Object.entries(
+      arr.reduce((acc, message) => {
+        const date: string = new Date(message.CreatedAt).toDateString();
+
+        acc[date] = acc[date] || [];
+        acc[date].push(message);
+
+        return acc;
+      }, {})
+    );
   }
 
   public startToChatWithUser(SenderId: number, ReceiverId: number): Observable<any> {

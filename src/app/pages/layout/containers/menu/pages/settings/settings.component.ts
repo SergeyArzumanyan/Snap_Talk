@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AsyncPipe, NgClass, NgStyle } from "@angular/common";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
 import { take } from "rxjs/operators";
-import { Subject, takeUntil } from "rxjs";
+import { Subject } from "rxjs";
 
 import { AccordionModule, AccordionTabCloseEvent } from 'primeng/accordion';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -73,9 +74,12 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   public isCustomThemeColor: boolean = false;
 
+  public logoutPending: boolean = false;
+
   private unsubscribe$: Subject<void> = new Subject<void>();
 
   constructor(
+    private router: Router,
     public configService: ConfigService,
     public authService: AuthService,
     private settingsService: SettingsService,
@@ -218,7 +222,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
           this.settingsService.editUserImage(croppedImageFile, userImageProperty)
             .subscribe({
               next: (user): void => {
-                console.log('user => ', user);
                 this.user = user;
                 this.authService.userData$.next(user);
               },
@@ -229,6 +232,22 @@ export class SettingsComponent implements OnInit, OnDestroy {
                 console.groupEnd();
               }
             })
+        }
+      });
+  }
+
+  public logout(): void {
+    this.logoutPending = true;
+
+    this.authService.logout()
+      .pipe(take(1))
+      .subscribe({
+        next: (): void => {
+          this.logoutPending = false;
+          this.router.navigateByUrl('auth');
+        },
+        error: (): void => {
+          this.logoutPending = false;
         }
       });
   }

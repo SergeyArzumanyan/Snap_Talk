@@ -1,9 +1,12 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { AsyncPipe, DatePipe, NgClass } from "@angular/common";
 import { ParamMap } from "@angular/router";
-
 import { Subject, takeUntil } from "rxjs";
+import { finalize } from "rxjs/operators";
+
+import { ChatBodySkeletonComponent } from "../chat-body-skeleton";
 import { ChatComponent } from "../../";
+import { IsInViewListener } from "@core/directives";
 
 @Component({
   selector: 'app-chat-body',
@@ -12,6 +15,8 @@ import { ChatComponent } from "../../";
     AsyncPipe,
     NgClass,
     DatePipe,
+    IsInViewListener,
+    ChatBodySkeletonComponent,
   ],
   templateUrl: './chat-body.component.html',
   styleUrl: './chat-body.component.scss'
@@ -46,7 +51,7 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
       const scrollHeight: number = this.chatBody.nativeElement.scrollHeight;
       const diff: number = scrollHeight - scrollPosition;
 
-      const didntGetAllChatMessages: boolean = (this.skip * this.take) < this.parent.chatService.Chat?.MessagesCount;
+      const didntGetAllChatMessages: boolean = (this.skip + this.take) < this.parent.chatService.Chat?.MessagesCount;
 
       this.parent.chatService.isToBottomArrowVisible = diff >= 1200;
 
@@ -63,7 +68,10 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
       this.take,
       this.skip,
     )
-      .pipe(takeUntil(this.unsubscribe$))
+      .pipe(
+        finalize((): boolean => this.parent.chatService.chatPending = false),
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe({
         next: (changedChatWithMessages): void => {
           this.addMessagesToChat(changedChatWithMessages);
@@ -81,10 +89,27 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
     for (const message of changedChatWithMessages.ChatMessages) {
       if (!this.parent.messages.find(msg => msg.Id === message.Id)) {
         this.parent.messages.unshift(message);
+
+        if (this.firstMessagesLoaded) {
+          const messageDate: string = new Date(message.CreatedAt).toDateString();
+          const thereIsntGroupWithThisMessageDate: boolean = !this.parent.groupedMessages
+            .find((groupEntry: [string, any[]]): boolean => groupEntry[0] === messageDate);
+
+          if (thereIsntGroupWithThisMessageDate) {
+            this.parent.groupedMessages.unshift([messageDate, []]);
+          }
+
+          this.parent.groupedMessages.forEach((groupEntry: [string, any[]]): void => {
+            if (groupEntry[0] === messageDate) {
+              groupEntry[1].unshift(message);
+            }
+          });
+        }
       }
     }
 
     if (!this.firstMessagesLoaded) {
+      this.parent.groupedMessages = this.parent.chatService.groupByDate(this.parent.messages);
       this.scrollChatBodyToBottom();
       this.firstScrollToBottomCompleted = true;
     }
@@ -114,10 +139,12 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (params: ParamMap): void => {
           this.parent.chatService.chatId = +params.get('id');
-
           this.parent.getChatById();
 
+          this.parent.chatService.isToBottomArrowVisible = false;
           this.parent.messages = [];
+          this.parent.groupedMessages = [];
+
           this.skip = 0;
           this.firstMessagesLoaded = false;
           this.getChatMessages();

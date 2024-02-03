@@ -46,163 +46,182 @@
   </div>
 </div>
 
-<div class="accordion-wrapper">
-  <p-accordion [multiple]="true"
-               [activeIndex]="[0]"
-               (onClose)="onAccordionClose($event)"
-               expandIcon="ri-arrow-down-s-line"
-               collapseIcon="ri-arrow-up-s-line"
-  >
-    <p-accordionTab iconPos="end">
-      <ng-template pTemplate="header">
+<div class="settings-wrapper flex flex-column">
+  <div class="accordion-wrapper">
+    <p-accordion [multiple]="true"
+                 [activeIndex]="[0]"
+                 (onClose)="onAccordionClose($event)"
+                 expandIcon="ri-arrow-down-s-line"
+                 collapseIcon="ri-arrow-up-s-line"
+    >
+      <p-accordionTab iconPos="end">
+        <ng-template pTemplate="header">
         <span class="flex align-items-center gap-2 w-full">
           <i class="ri-user-line text-base txt-color"></i>
           <span class="text-sm white-space-nowrap txt-color">
             Personal Info
           </span>
         </span>
-      </ng-template>
+        </ng-template>
 
-      <div class="user-info-wrapper w-full relative">
-        @if (!isEditMode) {
-          <div class="actions-wrapper absolute right-0 flex gap-2">
-            <i class="action-icon p-2 ri-pencil-fill text-base txt-color" (click)="enableEditMode()"></i>
-          </div>
-
-          <div class="info-items flex flex-column gap-3">
-            <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Name</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user?.FullName }}
-              </span>
-            </div>
-
-            <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Gender</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.Gender }}
-              </span>
-            </div>
-
-            <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Username</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.Username }}
-              </span>
-            </div>
-
-            <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-              <span class="w-full info-label font-light text-sm txt-color">Email</span>
-              <span class="w-full info-item-value font-semibold text-sm txt-color">
-                {{ user.Email }}
-              </span>
-            </div>
-          </div>
-
-        } @else {
-          <form [formGroup]="personalInfoForm" (ngSubmit)="onSave()">
+        <div class="user-info-wrapper w-full relative">
+          @if (!isEditMode) {
             <div class="actions-wrapper absolute right-0 flex gap-2">
-              <i class="action-icon p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
-              <i class="action-icon save-icon p-2 ri-save-fill text-base txt-white"
-                 [ngClass]="{'disabled-action-icon': personalInfoForm.pristine && personalInfoForm.valid}"
-                 (click)="onSave()"
-              ></i>
+              <i class="action-icon p-2 ri-pencil-fill text-base txt-color" (click)="enableEditMode()"></i>
             </div>
 
             <div class="info-items flex flex-column gap-3">
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
                 <span class="w-full info-label font-light text-sm txt-color">Name</span>
-                <input type="text"
-                       class="font-semibold text-sm same-text-input txt-color"
-                       spellcheck="false"
-                       formControlName="FullName"/>
+                <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user?.FullName }}
+              </span>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
                 <span class="w-full info-label font-light text-sm txt-color">Gender</span>
-                <span class="w-full info-item-value font-semibold text-sm txt-color">Male</span>
+                <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Gender }}
+              </span>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
                 <span class="w-full info-label font-light text-sm txt-color">Username</span>
                 <span class="w-full info-item-value font-semibold text-sm txt-color">
-                  {{ user.Username }}
-                </span>
+                {{ user.Username }}
+              </span>
               </div>
 
               <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
-                <span class="w-full info-label font-light text-sm txt-color">Email*</span>
-                <input type="text"
-                       class="font-semibold text-sm same-text-input txt-color"
-                       spellcheck="false"
-                       formControlName="Email"/>
+                <span class="w-full info-label font-light text-sm txt-color">Email</span>
+                <span class="w-full info-item-value font-semibold text-sm txt-color">
+                {{ user.Email }}
+              </span>
               </div>
             </div>
-          </form>
-        }
-      </div>
+
+          } @else {
+            <form [formGroup]="personalInfoForm" (ngSubmit)="onSave()">
+              <div class="actions-wrapper absolute right-0 flex gap-2">
+                <i class="action-icon p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
+                <i class="action-icon save-icon p-2 ri-save-fill text-base txt-white"
+                   [ngClass]="{'disabled-action-icon': personalInfoForm.pristine && personalInfoForm.valid}"
+                   (click)="onSave()"
+                ></i>
+              </div>
+
+              <div class="info-items flex flex-column gap-3">
+                <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
+                  <span class="w-full info-label font-light text-sm txt-color">Name</span>
+                  <input type="text"
+                         class="font-semibold text-sm same-text-input txt-color"
+                         spellcheck="false"
+                         formControlName="FullName"/>
+                </div>
+
+                <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
+                  <span class="w-full info-label font-light text-sm txt-color">Gender</span>
+                  <span class="w-full info-item-value font-semibold text-sm txt-color">Male</span>
+                </div>
+
+                <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
+                  <span class="w-full info-label font-light text-sm txt-color">Username</span>
+                  <span class="w-full info-item-value font-semibold text-sm txt-color">
+                  {{ user.Username }}
+                </span>
+                </div>
+
+                <div class="info-item flex flex-column gap-2 align-items-start justify-content-center">
+                  <span class="w-full info-label font-light text-sm txt-color">Email*</span>
+                  <input type="text"
+                         class="font-semibold text-sm same-text-input txt-color"
+                         spellcheck="false"
+                         formControlName="Email"/>
+                </div>
+              </div>
+            </form>
+          }
+        </div>
 
 
-    </p-accordionTab>
+      </p-accordionTab>
 
-    <p-accordionTab iconPos="end">
-      <ng-template pTemplate="header">
+      <p-accordionTab iconPos="end">
+        <ng-template pTemplate="header">
         <span class="flex align-items-center gap-2 w-full">
           <i class="ri-palette-line text-sm txt-color"></i>
           <span class="text-sm white-space-nowrap txt-color">
             Appearance
           </span>
         </span>
-      </ng-template>
+        </ng-template>
 
-      <form [formGroup]="appearanceForm">
-        <div class="appearance-items flex flex-column gap-3 justify-content-center">
-          <div class="appearance-item flex gap-2 align-items-center">
-            <i class="h-full ri-moon-fill text-sm txt-color"></i>
-            <label for="themeSwitcher" class="appearance-item-label font-light text-sm txt-color">Dark Mode</label>
-            <p-inputSwitch inputId="themeSwitcher"
-                           formControlName="IsDarkTheme"
-                           [tabindex]="-1"
-                           (onChange)="configService.changeTheme(true)"/>
-          </div>
+        <form [formGroup]="appearanceForm">
+          <div class="appearance-items flex flex-column gap-3 justify-content-center">
+            <div class="appearance-item flex gap-2 align-items-center">
+              <i class="h-full ri-moon-fill text-sm txt-color"></i>
+              <label for="themeSwitcher" class="appearance-item-label font-light text-sm txt-color">Dark Mode</label>
+              <p-inputSwitch inputId="themeSwitcher"
+                             formControlName="IsDarkTheme"
+                             [tabindex]="-1"
+                             (onChange)="configService.changeTheme(true)"/>
+            </div>
 
-          <div class="appearance-item flex gap-2 align-items-center">
-            <div class="w-full flex flex-column gap-3 justify-content-center align-items-start">
-              <span class="appearance-item-label font-light text-sm txt-color">Choose Theme Color</span>
+            <div class="appearance-item flex gap-2 align-items-center">
+              <div class="w-full flex flex-column gap-3 justify-content-center align-items-start">
+                <span class="appearance-item-label font-light text-sm txt-color">Choose Theme Color</span>
 
-              <div class="flex gap-2 align-items-center">
-                <div class="colors-wrapper flex gap-2 align-items-center">
-                  @for (prefixedColor of prefixedThemeColors; track prefixedColor.Color) {
-                    <div class="color border-circle"
-                         [ngStyle]="{'background-color': prefixedColor.Color}"
-                         [ngClass]="{'active-theme-color': appearanceForm.value.ThemeColor === prefixedColor.Color}"
-                         (click)="changeThemeColor(
+                <div class="flex gap-2 align-items-center">
+                  <div class="colors-wrapper flex gap-2 align-items-center">
+                    @for (prefixedColor of prefixedThemeColors; track prefixedColor.Color) {
+                      <div class="color border-circle"
+                           [ngStyle]="{'background-color': prefixedColor.Color}"
+                           [ngClass]="{'active-theme-color': appearanceForm.value.ThemeColor === prefixedColor.Color}"
+                           (click)="changeThemeColor(
                             appearanceForm.value.ThemeColor !== prefixedColor.Color ?
                             prefixedColor.Color : undefined
                           )"
-                    ></div>
-                  }
-                </div>
-
-                <div class="color-picker-wrapper relative">
-                  <div class="w-full h-full icon-overlay border-circle absolute flex justify-content-center align-items-center"
-                       [ngClass]="{'active-theme-color': isCustomThemeColor}"
-                  >
-                    <i class="ri-sip-line text-xs txt-white"></i>
+                      ></div>
+                    }
                   </div>
-                  <p-colorPicker formControlName="ThemeColor"
-                                 format="hex"
-                                 appendTo="body"
-                                 tabindex="-1"
-                                 (onHide)="changeThemeColor()"/>
-                </div>
-              </div>
 
+                  <div class="color-picker-wrapper relative">
+                    <div class="w-full h-full icon-overlay border-circle absolute flex justify-content-center align-items-center"
+                         [ngClass]="{'active-theme-color': isCustomThemeColor}"
+                    >
+                      <i class="ri-sip-line text-xs txt-white"></i>
+                    </div>
+                    <p-colorPicker formControlName="ThemeColor"
+                                   format="hex"
+                                   appendTo="body"
+                                   tabindex="-1"
+                                   (onHide)="changeThemeColor()"/>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </p-accordionTab>
-  </p-accordion>
+        </form>
+      </p-accordionTab>
+    </p-accordion>
 
+  </div>
+
+  <div class="w-full logout-wrapper">
+    <button type="button"
+            class="w-full logout-btn flex gap-1 justify-content-center align-items-center"
+            [disabled]="logoutPending"
+            (click)="logout()">
+      <span class="txt-white text-xs">
+        Logout
+      </span>
+
+      @if (logoutPending) {
+        <span class="anm-spinner flex justify-content-center align-items-center">
+          <i class="ri-loader-4-fill txt-white text-xs"></i>
+        </span>
+      }
+    </button>
+  </div>
 </div>

@@ -1,23 +1,38 @@
 <main #chatBody
       id="chatBody"
-      class="chat-body flex flex-column gap-4 relative"
+      class="chat-body flex flex-column gap-2"
+      [ngClass]="{'overflow-hidden': parent.chatService.chatPending}"
       (scroll)="onScroll()"
 >
-  @for (message of parent.messages; track message.Id) {
-    <div class="message text-base relative"
-         [ngClass]="{
-         'user-sent-message': isUserSentMessage(message),
-         'txt-white': isUserSentMessage(message),
-         'txt-color': !isUserSentMessage(message)
-         }">
-      <div class="text text-base">
-        {{ message.Text }}
-      </div>
-      <div class="date text-xs font-light">
-        {{ message.CreatedAt | date: 'HH:mm d MMM y' }}
-      </div>
+  @if (parent.chatService.chatPending) {
+    <app-chat-body-skeleton/>
+  } @else {
+    @for (group of parent.groupedMessages; track group) {
+      <div class="w-full group-wrapper flex flex-column gap-4 relative">
+        <div isInViewListener
+             classNameToAdd="sticky-date"
+             class="messages-date text-sm txt-color">
+          {{ group[0] | date: 'MMMM d, EEEE' }}
+        </div>
 
-      <div class="message-arrow absolute"></div>
-    </div>
+        @for (message of group[1]; track message.Id) {
+          <div class="message text-base flex align-items-end relative"
+               [ngClass]="{
+               'user-sent-message': isUserSentMessage(message),
+               'txt-white': isUserSentMessage(message),
+               'txt-color': !isUserSentMessage(message)
+               }">
+            <div class="text text-base">
+              {{ message.Text }}
+            </div>
+            <div class="date text-xs font-light">
+              {{ message.CreatedAt | date: 'HH:mm' }}
+            </div>
+
+            <div class="message-arrow absolute"></div>
+          </div>
+        }
+      </div>
+    }
   }
 </main>

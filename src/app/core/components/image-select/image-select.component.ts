@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
@@ -16,13 +17,14 @@ import { ButtonModule } from "primeng/button";
 })
 export class ImageSelectComponent {
   public ImageFile: File;
-  private CroppedImageUrl: string;
+  private CroppedImageUrl: SafeUrl;
 
   public pending: boolean = true;
 
   constructor(
     private ref: DynamicDialogRef,
-    public config: DynamicDialogConfig
+    public config: DynamicDialogConfig,
+    private sanitizer: DomSanitizer,
   ) {
     this.ImageFile = this.config.data.Image;
   }
@@ -40,7 +42,8 @@ export class ImageSelectComponent {
   }
 
   public imageCropped(e: ImageCroppedEvent): void {
-    this.CroppedImageUrl = e.objectUrl;
+    this.CroppedImageUrl = this.sanitizer
+      .bypassSecurityTrustUrl(e.objectUrl)['changingThisBreaksApplicationSecurity'];
   }
 
   public save(): void {

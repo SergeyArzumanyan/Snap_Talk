@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { take } from "rxjs/operators";
 
@@ -17,6 +17,8 @@ import { ChatComponent } from "../../";
   styleUrl: './chat-footer.component.scss'
 })
 export class ChatFooterComponent {
+  @ViewChild('messageTextArea') messageTextArea: ElementRef;
+
   public MessageText: FormControl<string> = new FormControl<string>(null);
 
   constructor(private parent: ChatComponent) {}
@@ -24,8 +26,11 @@ export class ChatFooterComponent {
   public sendMessage(): void {
     if (this.MessageText.value) {
       const payload: any = {
-        Text: this.MessageText.value
+        Text: this.MessageText.value.trim(),
       };
+
+      this.MessageText.reset();
+      this.messageTextArea.nativeElement.focus();
 
       this.parent.chatService.addMessageToChat(
         this.parent.chatService.chatId,
@@ -34,9 +39,6 @@ export class ChatFooterComponent {
       )
         .pipe(take(1))
         .subscribe({
-          next: (): void => {
-            this.MessageText.reset();
-          },
           error: (err): void => {
             console.group('HTTP Error')
             console.log('Something Went Wrong In \'addMessageToChat\'');

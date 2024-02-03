@@ -30,6 +30,8 @@ import {
 })
 export class ChatComponent {
   public messages: any[] = [];
+  public groupedMessages;
+
 
   constructor(
     public authService: AuthService,
@@ -42,6 +44,9 @@ export class ChatComponent {
   }
 
   public getChatById(): void {
+    /** @desc Setting to false When Pushing Messages Into Chat Body */
+    this.chatService.chatPending = true;
+
     this.chatService.getChatById(this.chatService.chatId)
       .pipe(take(1))
       .subscribe({
@@ -71,6 +76,7 @@ export class ChatComponent {
 
     if (isInSameChatView) {
       this.messages.push(ChatChanges.LastMessage);
+      this.groupedMessages = this.chatService.groupByDate(this.messages);
       this.scrollChatToBottom();
     }
   }

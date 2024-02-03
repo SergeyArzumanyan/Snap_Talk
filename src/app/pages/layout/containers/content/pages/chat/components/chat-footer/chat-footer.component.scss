@@ -1,6 +1,7 @@
 .chat-footer-wrapper {
   height: 70px;
   padding: 10px;
+  gap: 10px;
   transition: var(--animation-time) background-color;
   background-color: var(--theme-color-tint);
 
@@ -21,8 +22,13 @@
   }
 
   .send-button {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    border-radius: 8px;
     font-size: 30px;
-    transition: var(--animation-time) background-color;
+    transition: background-color, box-shadow var(--animation-time);
     background-color: var(--theme-color-tint);
     border: none;
     outline: none;
@@ -30,11 +36,16 @@
     cursor: default;
 
     i {
-      padding: 8px;
+      padding: 0;
+      margin: 0;
       border-radius: 8px;
       transition: var(--animation-time) background-color;
       background-color: var(--theme-color);
       cursor: pointer;
+    }
+
+    &:focus, &:focus-visible {
+      box-shadow: 0 0 0 4px var(--theme-color-bg);
     }
   }
 }
@@ -43,10 +54,10 @@
 @media (max-width: 768px) {
   .chat-footer-wrapper {
     height: 60px;
-    padding: 0;
+    padding: 5px 15px 0;
 
     .message-text-area {
-      padding: 20px 14px 0;
+      padding: 15px 0;
     }
 
     .send-button {

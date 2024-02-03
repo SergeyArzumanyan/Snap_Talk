@@ -1,12 +1,16 @@
 <footer class="w-full chat-footer-wrapper flex justify-content-between align-items-center">
-  <textarea class="h-full message-text-area text-base txt-white"
+  <textarea #messageTextArea
+            class="h-full message-text-area text-base txt-white"
             placeholder="Send a message..."
             spellcheck="false"
             pInputTextarea
+            tabindex="0"
             [formControl]="MessageText"
     ></textarea>
 
-  <button class="h-full send-button flex justify-content-center align-items-center">
-    <i class="ri-arrow-right-line txt-white" (click)="sendMessage()"></i>
+  <button class="send-button flex justify-content-center align-items-center"
+          (click)="sendMessage()">
+    <i class="w-full h-full ri-arrow-right-line txt-white flex justify-content-center align-items-center"
+       tabindex="1"></i>
   </button>
 </footer>

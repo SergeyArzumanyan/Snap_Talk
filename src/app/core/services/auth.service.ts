@@ -40,8 +40,10 @@ export class AuthService {
     );
   }
 
-  public logout(): void {
-    this.userData$.next(null);
-    this.isAuthenticated$.next(false);
+  public logout(): Observable<any> {
+    return this.http.request(
+      'post',
+      Methods.LOGOUT,
+    );
   }
 }
