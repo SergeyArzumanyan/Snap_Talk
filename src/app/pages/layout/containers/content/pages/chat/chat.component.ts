@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { NgClass } from "@angular/common";
@@ -33,6 +33,16 @@ import {
   styleUrl: './chat.component.scss'
 })
 export class ChatComponent implements OnDestroy {
+  @HostListener('window:resize')
+  detectDeviceView(): void {
+    if (
+      this.layoutService.isMobile && window.innerWidth > 768 ||
+      !this.layoutService.isMobile && window.innerWidth < 768
+    ) {
+      this.layoutService.showNavBar = window.innerWidth < 768;
+    }
+  }
+
   public messages: any[] = [];
   public groupedMessages;
 
@@ -44,10 +54,6 @@ export class ChatComponent implements OnDestroy {
     public router: Router,
     public chatService: ChatService,
   ) {
-    if (this.layoutService.isMobile) {
-      this.layoutService.showNavBar = false;
-    }
-
     this.subscribeToMessageEvents();
   }
 
