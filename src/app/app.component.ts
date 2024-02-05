@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AsyncPipe } from "@angular/common";
+
+import { PrimeNGConfig } from "primeng/api";
 
 import { ConfigService, LayoutService } from '@core/services';
 
@@ -14,8 +16,7 @@ import { ConfigService, LayoutService } from '@core/services';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
   @HostListener('window:resize')
   detectDeviceView(): void {
     if (
@@ -29,7 +30,12 @@ export class AppComponent {
   constructor(
     private layoutService: LayoutService,
     public configService: ConfigService,
+    private primengConfig: PrimeNGConfig,
   ) {
     this.detectDeviceView();
+  }
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
   }
 }

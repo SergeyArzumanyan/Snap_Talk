@@ -13,6 +13,7 @@
 
       <span class="p-float-label">
         <p-multiSelect formControlName="Members"
+                       class="no-select"
                        id="Members"
                        [options]="users"
                        optionValue="Id"
@@ -22,7 +23,7 @@
       </span>
     </div>
 
-    <div class="p-dialog-footer">
+    <div class="p-dialog-footer no-select">
       <p-button label="Cancel"
                 icon="ri-close-fill text-xl"
                 iconPos="right"

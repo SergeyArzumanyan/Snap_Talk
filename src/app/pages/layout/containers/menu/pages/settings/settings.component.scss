@@ -12,6 +12,20 @@
       }
     }
 
+    .p-accordion-header {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+
+      &:focus {
+        outline: none !important;
+      }
+    }
+
     .p-accordion-header, .p-accordion-header-link, .p-accordion-content {
       background-color: var(--accent-bg);
       transition: background-color, box-shadow var(--animation-time);
@@ -26,29 +40,25 @@
     }
   }
 
-  .logout-wrapper {
+  .logout-btn {
     min-height: 40px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: var(--theme-color);
+    transition: all var(--animation-time);
+    border-radius: 0 0 8px 8px;
 
-    .logout-btn {
-      min-height: 40px;
-      cursor: pointer;
-      outline: none;
-      border: none;
-      box-shadow: none;
-      background-color: var(--theme-color);
-      transition: background-color, box-shadow var(--animation-time);
-      border-radius: 0 0 8px 8px;
+    &:hover {
+      background-color: var(--theme-color-tint);
+    }
 
-      &:hover {
-        background-color: var(--theme-color-tint);
-      }
-
-      &:focus, &:focus-visible {
-        box-shadow: 0 6px 0 0 var(--theme-color-tint);
-      }
+    &:focus-visible {
+      box-shadow: 0 6px 0 0 var(--theme-color-tint);
     }
   }
-}
+  }
 
 // PrimeNg Styles End ----------------------------------------------------------------
 
@@ -197,7 +207,7 @@
     max-height: calc(100dvh - 248px - 70px);
     overflow: auto;
 
-    .logout-wrapper .logout-btn {
+    .logout-btn {
       border-radius: 0;
     }
   }

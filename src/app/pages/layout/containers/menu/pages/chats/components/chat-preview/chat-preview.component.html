@@ -1,5 +1,7 @@
-<div class="chat-wrapper w-full flex gap-4 justify-content-between align-items-center"
+<div class="chat-wrapper no-select w-full flex gap-4 justify-content-between align-items-center"
+     pRipple
      [routerLink]="['', { outlets: { content: ['chat', Chat.Id] } }]"
+     (keyup.enter)="enterTheChat(Chat.Id)"
      routerLinkActive="active-chat"
 >
 

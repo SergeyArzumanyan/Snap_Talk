@@ -10,6 +10,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputSwitchModule } from "primeng/inputswitch";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
+import { RippleModule } from "primeng/ripple";
 
 import { ImageComponent, ImageSelectComponent } from "@core/components";
 import { AuthService, ConfigService, LayoutService } from "@app/core";
@@ -34,6 +35,7 @@ import { SettingsService } from "./services";
     NgStyle,
     AsyncPipe,
     ImageComponent,
+    RippleModule,
   ],
   providers: [
     SettingsService,

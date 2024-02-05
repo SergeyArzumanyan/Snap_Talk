@@ -10,6 +10,7 @@
 
     .p-dialog-header-icon {
       color: var(--text-heading);
+      @include no-select;
     }
   }
 

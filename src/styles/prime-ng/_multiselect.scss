@@ -31,6 +31,8 @@ p-multiselect {
 
   .p-checkbox-box {
     background: var(--accent-bg);
+    @include no-select;
+
 
     &.p-highlight {
       background-color: var(--theme-color);
@@ -56,6 +58,10 @@ p-multiselect {
         box-shadow: 0 0 0 2px var(--theme-color);
       }
     }
+
+    .p-multiselect-close {
+      @include no-select;
+    }
   }
 
   .p-multiselect-items {
@@ -63,6 +69,7 @@ p-multiselect {
       color: var(--form-input);
       font-size: 16px;
       transition: var(--animation-time) background-color;
+      @include no-select;
 
       &.p-highlight {
         background: var(--theme-color-tint);

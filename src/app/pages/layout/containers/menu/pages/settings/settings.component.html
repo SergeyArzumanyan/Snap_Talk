@@ -1,5 +1,5 @@
 <div class="user-pictures-wrapper relative mb-6">
-  <i class="background-edit p-2 ri-pencil-fill text-sm txt-color absolute z-5"
+  <i class="background-edit no-select p-2 ri-pencil-fill text-sm txt-color absolute z-5"
      (click)="backgroundImageInput.click()"></i>
 
   @if (user.BackgroundImage) {
@@ -31,7 +31,7 @@
            (click)="profileImageInput.value = ''"
     />
 
-    <i class="avatar-camera border-circle p-2 ri-camera-fill text-sm txt-color absolute"
+    <i class="avatar-camera no-select border-circle p-2 ri-camera-fill text-sm txt-color absolute"
        (click)="profileImageInput.click()"></i>
   </div>
 </div>
@@ -57,7 +57,7 @@
         <div class="user-info-wrapper w-full relative">
           @if (!isEditMode) {
             <div class="actions-wrapper absolute right-0 flex gap-2">
-              <i class="action-icon p-2 ri-pencil-fill text-base txt-color" (click)="enableEditMode()"></i>
+              <i class="action-icon no-select p-2 ri-pencil-fill text-base txt-color" (click)="enableEditMode()"></i>
             </div>
 
             <div class="info-items flex flex-column gap-3">
@@ -93,8 +93,8 @@
           } @else {
             <form [formGroup]="personalInfoForm" (ngSubmit)="onSave()">
               <div class="actions-wrapper absolute right-0 flex gap-2">
-                <i class="action-icon p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
-                <i class="action-icon save-icon p-2 ri-save-fill text-base txt-white"
+                <i class="action-icon no-select p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
+                <i class="action-icon no-select save-icon p-2 ri-save-fill text-base txt-white"
                    [ngClass]="{'disabled-action-icon': personalInfoForm.pristine && personalInfoForm.valid}"
                    (click)="onSave()"
                 ></i>
@@ -154,6 +154,7 @@
               <i class="h-full ri-moon-fill text-sm txt-color"></i>
               <label for="themeSwitcher" class="appearance-item-label font-light text-sm txt-color">Dark Mode</label>
               <p-inputSwitch inputId="themeSwitcher"
+                             class="no-select"
                              formControlName="IsDarkTheme"
                              [tabindex]="-1"
                              (onChange)="configService.changeTheme(true)"/>
@@ -166,7 +167,7 @@
                 <div class="flex gap-2 align-items-center">
                   <div class="colors-wrapper flex gap-2 align-items-center">
                     @for (prefixedColor of prefixedThemeColors; track prefixedColor.Color) {
-                      <div class="color border-circle"
+                      <div class="color border-circle no-select"
                            [ngStyle]="{'background-color': prefixedColor.Color}"
                            [ngClass]="{'active-theme-color': appearanceForm.value.ThemeColor === prefixedColor.Color}"
                            (click)="changeThemeColor(
@@ -184,6 +185,7 @@
                       <i class="ri-sip-line text-xs txt-white"></i>
                     </div>
                     <p-colorPicker formControlName="ThemeColor"
+                                   class="no-select"
                                    format="hex"
                                    appendTo="body"
                                    tabindex="-1"
@@ -200,20 +202,19 @@
 
   </div>
 
-  <div class="w-full logout-wrapper">
-    <button type="button"
-            class="w-full logout-btn flex gap-1 justify-content-center align-items-center"
-            [disabled]="logoutPending"
-            (click)="logout()">
-      <span class="txt-white text-xs">
-        Logout
-      </span>
+  <button type="button"
+          pRipple
+          class="w-full logout-btn no-select flex gap-1 justify-content-center align-items-center"
+          [disabled]="logoutPending"
+          (click)="logout()">
+    <span class="txt-white text-xs">
+      Logout
+    </span>
 
-      @if (logoutPending) {
-        <span class="anm-spinner flex justify-content-center align-items-center">
-          <i class="ri-loader-4-fill txt-white text-xs"></i>
-        </span>
-      }
-    </button>
-  </div>
+    @if (logoutPending) {
+      <span class="anm-spinner flex justify-content-center align-items-center">
+        <i class="ri-loader-4-fill txt-white text-xs"></i>
+      </span>
+    }
+  </button>
 </div>

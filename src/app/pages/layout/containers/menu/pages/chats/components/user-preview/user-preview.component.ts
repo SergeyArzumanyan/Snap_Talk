@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { Router, RouterLinkActive } from "@angular/router";
 import { take } from "rxjs/operators";
 
+import { RippleModule } from "primeng/ripple";
+
 import { AuthService, ChatService } from "@app/core";
 import { ImageComponent } from "@core/components";
 import { ChatsComponent } from "../../";
@@ -11,7 +13,8 @@ import { ChatsComponent } from "../../";
   standalone: true,
   imports: [
     RouterLinkActive,
-    ImageComponent
+    ImageComponent,
+    RippleModule
   ],
   templateUrl: './user-preview.component.html',
   styleUrl: './user-preview.component.scss'

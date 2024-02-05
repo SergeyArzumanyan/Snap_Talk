@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { TooltipModule } from 'primeng/tooltip';
+import { ButtonModule } from "primeng/button";
+import { RippleModule } from "primeng/ripple";
 
 import { LayoutService } from '@core/services';
 import { IMenuIcon } from '@core/interfaces';
@@ -15,6 +17,8 @@ import { IMenuIcon } from '@core/interfaces';
     RouterLinkActive,
     NgClass,
     TooltipModule,
+    ButtonModule,
+    RippleModule,
   ],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss',

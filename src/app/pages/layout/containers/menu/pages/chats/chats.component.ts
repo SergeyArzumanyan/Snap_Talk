@@ -6,6 +6,7 @@ import { AsyncPipe } from "@angular/common";
 import { InputTextModule } from "primeng/inputtext";
 import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { TooltipModule } from "primeng/tooltip";
+import { InputSwitchModule } from "primeng/inputswitch";
 
 import { AuthService, ChatService, UsersService } from "@app/core";
 import {
@@ -17,13 +18,14 @@ import {
 @Component({
   selector: 'app-chats',
   standalone: true,
-  imports: [
-    InputTextModule,
-    ChatPreviewComponent,
-    AsyncPipe,
-    UserPreviewComponent,
-    TooltipModule,
-  ],
+    imports: [
+        InputTextModule,
+        ChatPreviewComponent,
+        AsyncPipe,
+        UserPreviewComponent,
+        TooltipModule,
+        InputSwitchModule,
+    ],
   providers: [
     DynamicDialogRef,
     DialogService,

@@ -9,6 +9,10 @@
     background-color: var(--accent-bg);
   }
 
+  &:focus-visible {
+    outline-color: var(--theme-color);
+  }
+
   &.active-chat {
     background-color: var(--theme-color-tint);
   }

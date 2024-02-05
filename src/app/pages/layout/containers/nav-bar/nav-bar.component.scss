@@ -1,27 +1,37 @@
 :host {
   display: flex;
-  gap: 60px;
+  gap: 40px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 15px 18px;
+  padding: 16px 0;
   padding-block: 20px;
   transition: var(--animation-time) background-color;
   background-color: var(--main-bg);
 
-  nav > i {
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 4px;
-    transition: box-shadow var(--animation-time);
+  nav {
+    gap: 2px;
 
-    &.active {
-      color: var(--theme-color);
-    }
+    .navbar-btn {
+      width: 60px;
+      height: 60px;
+      padding: 2px;
+      margin: 0;
+      cursor: pointer;
+      border-radius: 6px;
+      background-color: transparent;
+      transition: all var(--animation-time);
 
-    &:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 2px var(--theme-color);
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px var(--theme-color);
+      }
+
+      .navbar-icon {
+        &.active {
+          color: var(--theme-color);
+        }
+      }
     }
   }
 }
@@ -29,7 +39,7 @@
 @media (max-width: 768px) {
   :host {
     flex-direction: row !important;
-    padding: 15px 30px;
+    padding: 0 0 0 30px;
   }
 
   nav {

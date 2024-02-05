@@ -28,14 +28,14 @@
       width: max-content;
       max-width: 400px;
       text-wrap: balance;
-      white-space: pre-wrap;
+      white-space: pre-line;
       background-color: var(--accent-bg);
       transition: var(--animation-time) background-color, color;
       padding: 10px;
       border-radius: 10px;
 
-      .date {
-        text-align: right;
+      .text {
+        word-break: break-word;
       }
 
       .message-arrow {
@@ -51,10 +51,6 @@
       &.user-sent-message {
         background-color: var(--theme-color);
 
-        .date {
-          text-align: left;
-        }
-
         .message-arrow {
           background-color: var(--theme-color);
         }
@@ -69,7 +65,7 @@
 
     .group-wrapper {
       .message {
-        max-width: 250px !important;
+        max-width: 300px !important;
 
         &.user-sent-message {
           align-self: flex-end;
