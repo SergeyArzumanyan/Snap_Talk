@@ -1,3 +1,19 @@
+.chat-wrapper {
+  app-chat-header {
+    flex: 0 0 auto;
+  }
+
+  app-chat-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  app-chat-footer {
+    flex: 0 0 auto;
+  }
+}
+
 .to-bottom-arrow {
   width: 50px;
   height: 50px;
