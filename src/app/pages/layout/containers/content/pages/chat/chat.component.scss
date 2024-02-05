@@ -1,3 +1,8 @@
+:host {
+  display: block;
+  height: 100dvh;
+}
+
 .chat-wrapper {
   app-chat-header {
     flex: 0 0 auto;

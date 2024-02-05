@@ -1,6 +1,6 @@
 .chat-body {
   width: 100%;
-  height: calc(100dvh - 150px);
+  //height: calc(100dvh - 150px);
   padding: 15px 20px;
   transition: var(--animation-time) background-color;
   background-color: var(--theme-color-bg);
@@ -61,7 +61,7 @@
 
 @media (max-width: 1200px) {
   .chat-body {
-    min-height: calc(100dvh - 80px - 70px);
+    //min-height: calc(100dvh - 80px - 70px);
 
     .group-wrapper {
       .message {
@@ -83,7 +83,7 @@
 
 @media (max-width: 768px) {
   .chat-body {
-    height: calc(100dvh - 60px - 70px);
+    //height: calc(100dvh - 60px - 70px);
     padding: 15px 10px !important;
 
     .group-wrapper {
