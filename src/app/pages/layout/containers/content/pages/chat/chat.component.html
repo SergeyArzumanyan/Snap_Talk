@@ -1,7 +1,7 @@
-<section class="w-full h-full chat-wrapper flex flex-column align-items-center justify-content-between">
-  <app-chat-header class="w-full" />
+<section class="w-full h-full chat-wrapper flex flex-column align-items-center justify-content-between relative">
+  <app-chat-header class="w-full sticky top-0" />
   <app-chat-body class="w-full" />
-  <app-chat-footer class="w-full" />
+  <app-chat-footer class="w-full sticky bottom-0" />
 
   @if (chatService.isToBottomArrowVisible) {
     <div class="to-bottom-arrow absolute z-2 flex justify-content-center align-items-center"
