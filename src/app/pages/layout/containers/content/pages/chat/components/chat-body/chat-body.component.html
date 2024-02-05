@@ -1,6 +1,6 @@
 <main #chatBody
       id="chatBody"
-      class="chat-body flex flex-column gap-2"
+      class="chat-body h-full flex flex-column gap-2"
       [ngClass]="{'overflow-hidden': parent.chatService.chatPending}"
       (scroll)="onScroll()"
 >

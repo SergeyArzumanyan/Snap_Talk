@@ -1,22 +1,6 @@
 :host {
-  display: block;
-  height: 100dvh;
-}
-
-.chat-wrapper {
-  app-chat-header {
-    flex: 0 0 auto;
-  }
-
-  app-chat-body {
-    flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-
-  app-chat-footer {
-    flex: 0 0 auto;
-  }
+  display: flex;
+  flex: 1;
 }
 
 .to-bottom-arrow {

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class LayoutService {
   public isMobile: boolean;
   public showMenu: boolean;
+  public showNavBar: boolean = true;
 
   constructor() {}
 }

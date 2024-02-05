@@ -1,9 +1,13 @@
-<app-nav-bar/>
+@if (layoutService.showNavBar) {
+  <app-nav-bar/>
+}
+
 @if (!layoutService.isMobile || layoutService.showMenu) {
   <app-menu>
     <router-outlet/>
   </app-menu>
 }
+
 <app-content>
   <router-outlet name="content"
                  (activate)="toggleMenuState(false)"

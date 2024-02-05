@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { take } from "rxjs/operators";
 import { NgClass } from "@angular/common";
+
+import { RippleModule } from "primeng/ripple";
 
 import {
   ChatHeaderComponent,
@@ -13,6 +15,7 @@ import {
   ChatService,
   PusherService,
   pusherEvents,
+  LayoutService,
 } from "@app/core";
 
 
@@ -24,23 +27,32 @@ import {
     ChatFooterComponent,
     ChatBodyComponent,
     NgClass,
+    RippleModule,
   ],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent {
+export class ChatComponent implements OnDestroy {
   public messages: any[] = [];
   public groupedMessages;
 
-
   constructor(
+    private layoutService: LayoutService,
     public authService: AuthService,
     private pusherService: PusherService,
     public route: ActivatedRoute,
     public router: Router,
     public chatService: ChatService,
   ) {
+    if (this.layoutService.isMobile) {
+      this.layoutService.showNavBar = false;
+    }
+
     this.subscribeToMessageEvents();
+  }
+
+  ngOnDestroy(): void {
+    this.layoutService.showNavBar = true;
   }
 
   public getChatById(): void {

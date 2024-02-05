@@ -5,6 +5,7 @@ import { take } from "rxjs/operators";
 import { InputTextareaModule } from "primeng/inputtextarea";
 
 import { ChatComponent } from "../../";
+import { RippleModule } from "primeng/ripple";
 
 @Component({
   selector: 'app-chat-footer',
@@ -12,6 +13,7 @@ import { ChatComponent } from "../../";
   imports: [
     InputTextareaModule,
     ReactiveFormsModule,
+    RippleModule,
   ],
   templateUrl: './chat-footer.component.html',
   styleUrl: './chat-footer.component.scss'

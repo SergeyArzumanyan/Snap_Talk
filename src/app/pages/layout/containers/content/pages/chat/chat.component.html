@@ -1,12 +1,13 @@
 <section class="w-full h-full chat-wrapper flex flex-column align-items-center justify-content-between">
   <app-chat-header class="w-full" />
-  <app-chat-body class="w-full" />
+  <app-chat-body class="w-full h-full" />
   <app-chat-footer class="w-full" />
 
   @if (chatService.isToBottomArrowVisible) {
-    <div class="to-bottom-arrow absolute z-2 flex justify-content-center align-items-center"
+    <div class="to-bottom-arrow no-select absolute z-2 flex justify-content-center align-items-center"
+         pRipple
          (click)="scrollChatToBottom()">
-      <i class="ri-arrow-down-double-line text-2xl txt-white"></i>
+      <i class="ri-arrow-down-s-line text-xl txt-white"></i>
     </div>
   }
 </section>

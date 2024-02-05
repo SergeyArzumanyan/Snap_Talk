@@ -20,7 +20,7 @@ body {
   padding: 0;
   font-weight: 400;
   font-family: var(--font-family);
-  color: var(text-normal);
+  color: var(--text-normal);
   background: var(--theme-color-bg);
   transition: background var(--animation-time);
   -webkit-font-smoothing: antialiased;
