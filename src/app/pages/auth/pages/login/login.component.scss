@@ -6,16 +6,6 @@
 .login-wrapper {
   .form-content {
     width: 72%;
-
-    .login-error {
-      padding: 10px;
-      border-radius: 8px;
-      background-color: var(--error-bg);
-
-      span, i {
-        color: var(--error-msg);
-      }
-    }
   }
 }
 

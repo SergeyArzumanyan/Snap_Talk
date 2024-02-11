@@ -4,7 +4,7 @@
          height="50px"
          src="favicon.ico"
          alt="Logo_Snap_Talk"/>
-    <h1 class="txt-white m-0 text-2xl md:text-4xl font-bold">
+    <h1 class="txt-white m-0 text-xl md:text-4xl font-bold">
       {{ headingInfo.Title }}
     </h1>
     @if (!layoutService.isMobile) {
@@ -16,6 +16,6 @@
 </div>
 
 <div
-  class="login-register-wrapper flex flex-column justify-content-center align-items-center gap-3 p-5">
+  class="login-register-wrapper">
   <router-outlet/>
 </div>

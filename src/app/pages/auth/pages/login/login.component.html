@@ -1,5 +1,5 @@
-<div class="login-wrapper w-full h-full flex flex-column gap-4 justify-content-center align-items-center">
-  <h3 class="m-0 txt-heading text-2xl md:text-3xl">
+<div class="login-wrapper w-full h-full flex flex-column gap-3 md:gap-4 justify-content-center align-items-center">
+  <h3 class="m-0 txt-heading text-xl md:text-3xl">
     Sign in
   </h3>
 
@@ -8,8 +8,9 @@
           (ngSubmit)="login()"
           class="w-full h-full flex flex-column gap-4 align-items-center justify-content-center">
 
-      <span class="w-full p-float-label">
+      <span class="w-full p-float-label text-sm md:text-base">
         <input formControlName="Username"
+               class="text-sm md:text-base"
                id="Username"
                aria-describedby="username-help"
                type="text"
@@ -17,28 +18,29 @@
         <label for="Username">Username</label>
       </span>
 
-      <span class="w-full p-float-label">
+      <span class="w-full p-float-label text-sm md:text-base">
         <p-password [toggleMask]="true"
                     [feedback]="false"
+                    class="text-sm md:text-base"
                     inputId="Password"
                     formControlName="Password"/>
         <label for="Password">Password</label>
       </span>
 
-      @if (wrongCredentials || isSubmitted && loginForm.invalid) {
-        <div class="w-full login-error flex gap-2 justify-content-center align-items-center">
+      @if (errorMessage) {
+        <div class="w-full error-msg flex gap-2 justify-content-center align-items-center">
           <i class="ri-error-warning-line text-base"></i>
-          <span class="text-base">Username or password is incorrect</span>
+          <span class="text-sm md:text-base">{{ errorMessage }}</span>
         </div>
       }
 
       <button
-        class="w-full primary-btn login-btn no-select txt-white no-select flex gap-1 justify-content-center align-items-center"
+        class="w-full primary-btn login-btn no-select flex gap-1 justify-content-center align-items-center no-select"
         type="submit"
         [disabled]="loginPending"
         pButton
         pRipple>
-        <span class="txt-white text-base">
+        <span class="txt-white text-sm md:text-base">
           Sign in
         </span>
 
@@ -52,9 +54,9 @@
   </div>
 
 
-  <div>
-    <span class="txt-color">Don't have an account? </span>
+  <div class="text-sm md:text-base">
+    <span class="txt-color">Don't have an account ? </span>
     <a class="link-default"
-       [routerLink]="['..', 'register']">Register</a>
+       [routerLink]="['..', 'register']">Sign up</a>
   </div>
 </div>

@@ -1,11 +1,36 @@
-.p-selectbutton {
-    display: flex;
-
+p-selectButton {
+  &.ng-invalid.ng-touched {
     .p-button {
-        flex: 1;
+      box-shadow: 0 0 0 2px var(--invalid);
     }
+  }
+}
+
+.p-selectbutton {
+  display: flex;
+
+  .p-button {
+    flex: 1;
+    background-color: var(--accent-bg);
+    color: var(--form-input);
+    border: none;
+    outline: none;
+    @include no-select;
+
+    &:nth-child(1) {
+      border-right: 1px solid var(--main-bg);
+    }
+  }
 
   .p-highlight {
     background-color: var(--theme-color);
+  }
+}
+
+@media (max-width: 768px) {
+  .p-selectbutton {
+    .p-button {
+      padding: 0.5rem;
+    }
   }
 }

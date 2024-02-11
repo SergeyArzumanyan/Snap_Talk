@@ -6,6 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { HttpErrorResponse } from "@angular/common/http";
 
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
@@ -39,17 +40,15 @@ export class LoginComponent {
     ]),
   });
 
-  public isSubmitted: boolean = false;
   public wrongCredentials: boolean = false;
   public loginPending: boolean = false;
+  public errorMessage: string;
 
   constructor(
     private parent: AuthComponent,
   ) {}
 
   public login(): void {
-    this.isSubmitted = true;
-
     if (this.loginForm.invalid) {
       return this.loginForm.markAllAsTouched();
     }
@@ -62,9 +61,10 @@ export class LoginComponent {
           this.parent.setUserDataAndSubscribeToChanges(user);
           this.loginPending = false;
         },
-        error: (): void => {
+        error: (err: HttpErrorResponse): void => {
           this.loginPending = false;
           this.wrongCredentials = true;
+          this.errorMessage = err.error.message;
         }
       });
   }

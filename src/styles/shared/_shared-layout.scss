@@ -65,3 +65,13 @@
     box-shadow: 0 0 0 2px var(--theme-color);
   }
 }
+
+.error-msg {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: var(--error-bg);
+
+  span, i {
+    color: var(--error-msg);
+  }
+}

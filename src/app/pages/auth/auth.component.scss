@@ -31,8 +31,8 @@
     flex-direction: column;
 
     .welcome-heading-wrapper {
+      padding: 12px 8px !important;
       flex: initial;
-      padding-top: 2rem !important;
       background-color: var(--secondary-bg);
 
       .heading-items-wrapper {
@@ -44,7 +44,8 @@
     }
 
     .login-register-wrapper {
-      justify-content: flex-start !important;
+      padding: 12px 20px !important;
+      overflow-y: auto;
     }
   }
 }

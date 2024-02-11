@@ -59,6 +59,10 @@ export class RegisterComponent {
     'Female',
   ];
 
+  public registerPending: boolean = false;
+  public wrongCredentials: boolean = false;
+  public errorMessage: string;
+
   constructor(
     private parent: AuthComponent,
     public layoutService: LayoutService,
@@ -68,15 +72,19 @@ export class RegisterComponent {
     if (this.registerForm.invalid) {
       return this.registerForm.markAllAsTouched();
     }
+    this.registerPending = true;
 
     const { ConfirmPassword, ...requestBody } = this.registerForm.getRawValue();
     this.parent.authService.register(requestBody)
       .subscribe({
         next: (user): void => {
+          this.registerPending = false;
           this.parent.setUserDataAndSubscribeToChanges(user);
         },
         error: (err: HttpErrorResponse): void => {
-          console.error(err);
+          this.errorMessage = err.error.message;
+          this.registerPending = false;
+          this.wrongCredentials = true;
         }
       });
   }
