@@ -1,32 +1,60 @@
-<h3 class="m-0 color-text-heading">Sign in to continue.</h3>
-<form
-    [formGroup]="loginForm"
-    (ngSubmit)="login()"
-    class="flex flex-column w-full gap-4">
-    <div class="flex flex-column gap-1">
+<div class="login-wrapper w-full h-full flex flex-column gap-4 justify-content-center align-items-center">
+  <h3 class="m-0 txt-heading text-2xl md:text-3xl">
+    Sign in
+  </h3>
+
+  <div class="form-content px-0 md:px-6">
+    <form [formGroup]="loginForm"
+          (ngSubmit)="login()"
+          class="w-full h-full flex flex-column gap-4 align-items-center justify-content-center">
+
+      <span class="w-full p-float-label">
+        <input formControlName="Username"
+               id="Username"
+               aria-describedby="username-help"
+               type="text"
+               pInputText/>
         <label for="Username">Username</label>
-        <input
-            pInputText
-            aria-describedby="username-help"
-            id="Username"
-            formControlName="Username"/>
-    </div>
-    <div class="flex flex-column gap-1">
+      </span>
+
+      <span class="w-full p-float-label">
+        <p-password [toggleMask]="true"
+                    [feedback]="false"
+                    inputId="Password"
+                    formControlName="Password"/>
         <label for="Password">Password</label>
-        <p-password
-            [toggleMask]="true"
-            [feedback]="false"
-            id="Password"
-            formControlName="Password"/>
-    </div>
-    <button
+      </span>
+
+      @if (wrongCredentials || isSubmitted && loginForm.invalid) {
+        <div class="w-full login-error flex gap-2 justify-content-center align-items-center">
+          <i class="ri-error-warning-line text-base"></i>
+          <span class="text-base">Username or password is incorrect</span>
+        </div>
+      }
+
+      <button
+        class="w-full primary-btn login-btn no-select txt-white no-select flex gap-1 justify-content-center align-items-center"
+        type="submit"
+        [disabled]="loginPending"
         pButton
-        pRipple
-        label="Login"
-        class="shadow">
-    </button>
-</form>
-<div>
-    <span class="color-text-normal">Don't have an account? </span>
-    <a [routerLink]="['..', 'register']">Register</a>
+        pRipple>
+        <span class="txt-white text-base">
+          Sign in
+        </span>
+
+        @if (loginPending) {
+          <span class="anm-spinner flex justify-content-center align-items-center">
+            <i class="ri-loader-4-fill txt-white text-xs"></i>
+          </span>
+        }
+      </button>
+    </form>
+  </div>
+
+
+  <div>
+    <span class="txt-color">Don't have an account? </span>
+    <a class="link-default"
+       [routerLink]="['..', 'register']">Register</a>
+  </div>
 </div>

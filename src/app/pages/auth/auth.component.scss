@@ -1,16 +1,50 @@
 :host {
   display: flex;
   flex: 1;
-  gap: 3rem;
-  padding: 1rem;
 
-  .auth-fields {
-    max-width: 500px;
-    width: 100%;
+  .welcome-heading-wrapper {
+    padding-top: 16% !important;
+    background-color: var(--theme-color-tint);
+    flex: 0.8;
+    text-wrap: balance;
+
+    .heading-items-wrapper {
+      padding: 24px;
+      background-color: rgba(black, 0.2);
+      border-radius: 20px 6px 20px 6px;
+    }
+
+    p {
+      max-width: 600px;
+    }
   }
 
-  @media only screen and (max-width: 768px) {
+  .login-register-wrapper {
+    background-color: var(--secondary-bg);
+    width: 100%;
+    flex: 1;
+  }
+}
+
+@media(max-width: 768px) {
+  :host {
     flex-direction: column;
-    gap: 1rem;
+
+    .welcome-heading-wrapper {
+      flex: initial;
+      padding-top: 2rem !important;
+      background-color: var(--secondary-bg);
+
+      .heading-items-wrapper {
+        align-items: center;
+        padding: 0;
+        background-color: initial;
+        border-radius: 0;
+      }
+    }
+
+    .login-register-wrapper {
+      justify-content: flex-start !important;
+    }
   }
 }

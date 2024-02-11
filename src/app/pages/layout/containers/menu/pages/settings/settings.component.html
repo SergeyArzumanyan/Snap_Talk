@@ -6,7 +6,7 @@
     <app-image [imageName]="user.BackgroundImage"
                skeletonWidth="100%"
                skeletonHeight="200px"
-               className="profile-background-image" />
+               className="profile-background-image"/>
   }
   <input #backgroundImageInput
          type="file"
@@ -22,7 +22,7 @@
                skeletonSize="80px"
                className="profile-avatar-image border-circle"
                loaderClassName="border-circle"
-               (click)="profileImageInput.click()" />
+               (click)="profileImageInput.click()"/>
     <input #profileImageInput
            type="file"
            class="hidden"
@@ -93,7 +93,8 @@
           } @else {
             <form [formGroup]="personalInfoForm" (ngSubmit)="onSave()">
               <div class="actions-wrapper absolute right-0 flex gap-2">
-                <i class="action-icon no-select p-2 ri-close-circle-line text-base txt-color" (click)="cancelEditMode()"></i>
+                <i class="action-icon no-select p-2 ri-close-circle-line text-base txt-color"
+                   (click)="cancelEditMode()"></i>
                 <i class="action-icon no-select save-icon p-2 ri-save-fill text-base txt-white"
                    [ngClass]="{'disabled-action-icon': personalInfoForm.pristine && personalInfoForm.valid}"
                    (click)="onSave()"
@@ -179,8 +180,9 @@
                   </div>
 
                   <div class="color-picker-wrapper relative">
-                    <div class="w-full h-full icon-overlay border-circle absolute flex justify-content-center align-items-center"
-                         [ngClass]="{'active-theme-color': isCustomThemeColor}"
+                    <div
+                      class="w-full h-full icon-overlay border-circle absolute flex justify-content-center align-items-center"
+                      [ngClass]="{'active-theme-color': isCustomThemeColor}"
                     >
                       <i class="ri-sip-line text-xs txt-white"></i>
                     </div>
@@ -204,7 +206,7 @@
 
   <button type="button"
           pRipple
-          class="w-full logout-btn no-select flex gap-1 justify-content-center align-items-center"
+          class="w-full primary-btn logout-btn no-select flex gap-1 justify-content-center align-items-center"
           [disabled]="logoutPending"
           (click)="logout()">
     <span class="txt-white text-xs">

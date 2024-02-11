@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
-import { AuthService, ConfigService } from '@core/services';
+import {
+  AuthService,
+  ConfigService,
+  LayoutService,
+} from '@core/services';
+import { HeadingInfo, IHeadingInfo } from "@pages/auth/auth.consts";
 
 @Component({
   selector: 'app-auth',
@@ -13,10 +18,13 @@ import { AuthService, ConfigService } from '@core/services';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
+  public headingInfo: IHeadingInfo = HeadingInfo;
+
   constructor(
     public router: Router,
     public authService: AuthService,
     private configService: ConfigService,
+    public layoutService: LayoutService,
   ) {}
 
   public setUserDataAndSubscribeToChanges(user: any): void {

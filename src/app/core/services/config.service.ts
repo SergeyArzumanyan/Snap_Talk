@@ -110,6 +110,7 @@ export class ConfigService {
     };
     const bgColor: string = rgbToHex(bgColorRGB);
 
+    document.documentElement.style.setProperty('--theme-color', this.ThemeColor);
     document.documentElement.style.setProperty('--theme-color-tint', tintColor);
     document.documentElement.style.setProperty('--theme-color-bg', bgColor);
 

@@ -1,0 +1,18 @@
+.primary-btn {
+  min-height: 40px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  background-color: var(--theme-color);
+  transition: all var(--animation-time);
+  border-radius: 8px;
+
+  &:hover {
+    background-color: var(--theme-color-tint);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 6px var(--theme-color-tint);
+  }
+}

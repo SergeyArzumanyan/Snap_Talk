@@ -40,25 +40,10 @@
     }
   }
 
-  .logout-btn {
-    min-height: 40px;
-    cursor: pointer;
-    outline: none;
-    border: none;
-    box-shadow: none;
-    background-color: var(--theme-color);
-    transition: all var(--animation-time);
-    border-radius: 0 0 8px 8px;
-
-    &:hover {
-      background-color: var(--theme-color-tint);
-    }
-
-    &:focus-visible {
-      box-shadow: 0 6px 0 0 var(--theme-color-tint);
-    }
+  .logout-btn:focus-visible {
+    box-shadow: 0 6px 0 0 var(--theme-color-tint);
   }
-  }
+}
 
 // PrimeNg Styles End ----------------------------------------------------------------
 

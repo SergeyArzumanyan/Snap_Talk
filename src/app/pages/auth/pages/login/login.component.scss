@@ -1,6 +1,30 @@
 :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.login-wrapper {
+  .form-content {
+    width: 72%;
+
+    .login-error {
+      padding: 10px;
+      border-radius: 8px;
+      background-color: var(--error-bg);
+
+      span, i {
+        color: var(--error-msg);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .login-wrapper {
+    padding-top: 12%;
+
+    .form-content {
+      width: 100%;
+    }
+  }
 }

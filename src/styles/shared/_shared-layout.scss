@@ -24,6 +24,11 @@
   color: var(--text-heading);
 }
 
+.txt-input {
+  transition: var(--animation-time) color;
+  color: var(--form-input);
+}
+
 .no-select {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
@@ -47,3 +52,16 @@
   outline: none !important;
 }
 //  -------------------------
+
+.link-default {
+  color: var(--theme-color);
+  padding: 6px;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  transition: var(--animation-time) box-shadow;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px var(--theme-color);
+  }
+}

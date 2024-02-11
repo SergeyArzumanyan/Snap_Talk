@@ -1,81 +1,78 @@
-<h3 class="m-0 color-text-heading">Sign up to continue.</h3>
-<form
-    [formGroup]="registerForm"
-    (ngSubmit)="register()"
-    class="flex flex-column w-full gap-4">
+<div class="register-wrapper w-full h-full flex flex-column gap-4 justify-content-center align-items-center">
+  <h3 class="m-0 txt-heading text-2xl md:text-3xl">
+    Sign up
+  </h3>
 
-    <div
-        [ngClass]="{
-            'flex-column': layoutService.isMobile
-        }"
-        class="flex gap-4">
-        <div class="flex flex-1 flex-column gap-1">
-            <label for="FullName">Name</label>
-            <input
-                pInputText
-                aria-describedby="FullName-help"
-                id="FullName"
-                formControlName="FullName"/>
-        </div>
-    </div>
+  <div class="form-content px-0 md:px-6">
+    <form [formGroup]="registerForm"
+          (ngSubmit)="register()"
+          class="w-full h-full flex flex-column gap-4 align-items-center justify-content-center">
 
-    <div class="flex flex-column gap-1">
-        <label for="Username">Gender</label>
-        <p-selectButton
-            [options]="genders"
-            [unselectable]="true"
-            formControlName="Gender">
-        </p-selectButton>
-    </div>
+      <span class="w-full p-float-label">
+        <input formControlName="FullName"
+               id="FullName"
+               aria-describedby="FullName-help"
+               type="text"
+               pInputText/>
+        <label for="FullName">Full Name</label>
+      </span>
 
-    <div class="flex flex-column gap-1">
+      <div class="w-full flex flex-column gap-1">
+        <label for="Username" class="txt-input">Gender</label>
+        <p-selectButton [options]="genders"
+                        [unselectable]="true"
+                        formControlName="Gender"/>
+      </div>
+
+      <span class="w-full p-float-label">
+        <input formControlName="Username"
+               id="Username"
+               aria-describedby="username-help"
+               type="text"
+               pInputText/>
         <label for="Username">Username</label>
-        <input
-            pInputText
-            aria-describedby="username-help"
-            id="Username"
-            formControlName="Username"/>
-    </div>
+      </span>
 
-    <div class="flex flex-column gap-1">
+      <span class="w-full p-float-label">
+        <input formControlName="Email"
+               id="Email"
+               aria-describedby="email-help"
+               type="text"
+               pInputText/>
         <label for="Email">Email</label>
-        <input
-            pInputText
-            aria-describedby="email-help"
-            id="Email"
-            type="email"
-            formControlName="Email"/>
-    </div>
+      </span>
 
-    <div class="flex flex-column gap-1">
+      <span class="w-full p-float-label">
+        <p-password [toggleMask]="true"
+                    [feedback]="false"
+                    inputId="Password"
+                    formControlName="Password"/>
         <label for="Password">Password</label>
-        <p-password
-            [toggleMask]="true"
-            [feedback]="false"
-            id="Password"
-            formControlName="Password"/>
-    </div>
+      </span>
 
-    <div class="flex flex-column gap-1">
-        <label for="ConfirmPassword">ConfirmPassword</label>
-        <p-password
-            [toggleMask]="true"
-            [feedback]="false"
-            id="ConfirmPassword"
-            formControlName="ConfirmPassword"
-            [ngClass]="{
+      <span class="w-full p-float-label">
+        <p-password [toggleMask]="true"
+                    [feedback]="false"
+                    inputId="ConfirmPassword"
+                    formControlName="ConfirmPassword"
+                    [ngClass]="{
                 'custom-invalid': registerForm.hasError('passwordsMatch')
             }"/>
-    </div>
+        <label for="ConfirmPassword">Confirm password</label>
+      </span>
 
-    <button
-        pButton
-        pRipple
+      <button
+        class="w-full primary-btn register-btn no-select txt-white"
         label="Register"
-        class="shadow">
-    </button>
-</form>
-<div>
-    <span class="color-text-normal">Already have an account? </span>
-    <a [routerLink]="['..', 'login']">Login</a>
+        pButton
+        pRipple>
+      </button>
+    </form>
+  </div>
+
+  <div>
+    <span class="txt-color">Already have an account? </span>
+    <a class="link-default"
+       [routerLink]="['..', 'login']">Login</a>
+  </div>
 </div>
