@@ -36,10 +36,10 @@ export class ChatComponent implements OnDestroy {
   @HostListener('window:resize')
   detectDeviceView(): void {
     if (
-      this.layoutService.isMobile && window.innerWidth > 768 ||
-      !this.layoutService.isMobile && window.innerWidth < 768
+      !this.layoutService.isMobile && window.innerWidth > 768 ||
+      this.layoutService.isMobile && window.innerWidth < 768
     ) {
-      this.layoutService.showNavBar = window.innerWidth < 768;
+      this.layoutService.showNavBar = window.innerWidth > 768;
     }
   }
 
@@ -54,6 +54,7 @@ export class ChatComponent implements OnDestroy {
     public router: Router,
     public chatService: ChatService,
   ) {
+    this.layoutService.showNavBar = window.innerWidth > 768;
     this.subscribeToMessageEvents();
   }
 
