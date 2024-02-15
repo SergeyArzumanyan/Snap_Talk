@@ -2,13 +2,14 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { AuthService, ConfigService } from '..';
+import { AuthService, ConfigService, UsersService } from '..';
 import { take } from "rxjs/operators";
 
 export const authGuard: CanActivateFn = (route) => {
   const router: Router = inject(Router);
   const authService: AuthService = inject(AuthService);
   const configService: ConfigService = inject(ConfigService);
+  const usersService: UsersService = inject(UsersService);
 
   return new Observable((obs) => {
     if (router.getCurrentNavigation()?.id > 1) {
@@ -31,6 +32,7 @@ export const authGuard: CanActivateFn = (route) => {
             configService.applyUserThemeSettings(Theme, ThemeColor);
 
             configService.subscribeToUserDataChanges(user);
+            usersService.changeStatus(true);
           },
           error: () => {
             authService.userData$.next(null);

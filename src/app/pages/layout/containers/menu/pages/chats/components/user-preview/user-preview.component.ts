@@ -5,7 +5,7 @@ import { take } from "rxjs/operators";
 import { RippleModule } from "primeng/ripple";
 
 import { AuthService, ChatService } from "@app/core";
-import { ImageComponent } from "@core/components";
+import { ImageComponent, UserStatusComponent } from "@core/components";
 import { ChatsComponent } from "../../";
 
 @Component({
@@ -14,7 +14,8 @@ import { ChatsComponent } from "../../";
   imports: [
     RouterLinkActive,
     ImageComponent,
-    RippleModule
+    RippleModule,
+    UserStatusComponent,
   ],
   templateUrl: './user-preview.component.html',
   styleUrl: './user-preview.component.scss'

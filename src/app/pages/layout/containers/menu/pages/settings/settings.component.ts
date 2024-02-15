@@ -19,6 +19,7 @@ import {
   IPersonalInfoForm,
 } from "./interfaces";
 import { SettingsService } from "./services";
+import { UserStatusComponent } from "@core/components";
 
 @Component({
   selector: 'app-settings',
@@ -36,6 +37,7 @@ import { SettingsService } from "./services";
     AsyncPipe,
     ImageComponent,
     RippleModule,
+    UserStatusComponent,
   ],
   providers: [
     SettingsService,

@@ -2,14 +2,17 @@ import { Component } from '@angular/core';
 import { Router } from "@angular/router";
 import { LayoutService } from "@app/core";
 
-import { ImageComponent } from "@core/components";
+import { ImageComponent, UserStatusComponent } from "@core/components";
 import { ChatComponent } from "../../";
+import { TooltipModule } from "primeng/tooltip";
 
 @Component({
   selector: 'app-chat-header',
   standalone: true,
   imports: [
-    ImageComponent
+    ImageComponent,
+    TooltipModule,
+    UserStatusComponent,
   ],
   templateUrl: './chat-header.component.html',
   styleUrl: './chat-header.component.scss'

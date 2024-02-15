@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
 
-import { HttpService } from "@app/core";
+import { AuthService, HttpService } from "@app/core";
 import { Methods } from "@app/methods";
 
 @Injectable({
@@ -9,7 +10,10 @@ import { Methods } from "@app/methods";
 })
 export class UsersService {
 
-  constructor(private http: HttpService) {}
+  constructor(
+    private authService: AuthService,
+    private http: HttpService,
+  ) {}
 
   public getFilteredUsers(UserId: number, SearchString: string): Observable<any> {
     return this.http.request<any>(
@@ -19,5 +23,33 @@ export class UsersService {
       true,
       { params: { UserId, SearchString } }
     );
+  }
+
+  public changeStatus(status: boolean): void {
+    this.http.request<any>(
+      'patch',
+      `${Methods.USERS}${this.authService.userData$.getValue().Id}/change-status`,
+      null,
+      true,
+      { params: { status } }
+    )
+      .pipe(take(1))
+      .subscribe({
+        next: (isOnline): void => {
+          this.authService.userData$.next(
+            {
+              ...this.authService.userData$.getValue(),
+              ...isOnline
+            }
+          );
+        },
+        error: (err): void => {
+          console.group('HTTP Error')
+          console.log('Something Went Wrong In \'changeStatus\'');
+          console.log(err);
+          console.groupEnd();
+        }
+      });
+
   }
 }

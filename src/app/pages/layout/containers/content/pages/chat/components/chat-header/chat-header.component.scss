@@ -14,9 +14,18 @@
     }
 
     .user-info-wrapper {
-      ::ng-deep .user-avatar {
-        width: 50px;
-        height: 50px;
+      .image-wrapper {
+        ::ng-deep .user-avatar {
+          width: 50px;
+          height: 50px;
+        }
+      }
+
+      .name {
+        max-width: 180px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
 

@@ -9,12 +9,17 @@
     }
 
     <div class="user-info-wrapper flex gap-3 align-items-center">
-      <app-image [imageName]="parent.chatService.Chat?.Image"
-                 skeletonShape="circle"
-                 skeletonSize="50px"
-                 className="user-avatar border-circle" />
+      <div class="image-wrapper relative">
+        <app-image [imageName]="parent.chatService.Chat?.Image"
+                   skeletonShape="circle"
+                   skeletonSize="50px"
+                   className="user-avatar border-circle" />
 
-      <span class="name text-base txt-white">
+        <app-user-status [IsOnline]="parent.chatService.Chat?.IsUserOnline" />
+      </div>
+
+      <span class="name text-base txt-white"
+            [pTooltip]="parent.chatService.Chat?.Name">
         {{ parent.chatService.Chat?.Name }}
       </span>
     </div>

@@ -31,6 +31,8 @@
            (click)="profileImageInput.value = ''"
     />
 
+    <app-user-status [IsOnline]="user.IsOnline" />
+
     <i class="avatar-camera no-select border-circle p-2 ri-camera-fill text-sm txt-color absolute"
        (click)="profileImageInput.click()"></i>
   </div>

@@ -2,11 +2,13 @@
      pRipple
      (click)="startToChatWithUser(User)">
 
-  <div class="user-image-wrapper">
+  <div class="user-image-wrapper relative">
     <app-image className="user-image"
                skeletonShape="circle"
                skeletonSize="50px"
                [imageName]="User.ProfileImage" />
+
+    <app-user-status [IsOnline]="User.IsOnline" />
   </div>
 
   <div class="w-full h-full flex flex-column gap-2">

@@ -61,7 +61,7 @@ export class ChatService implements OnDestroy {
       `user-${user.Id}`,
       pusherEvents.onChatMemberChanges,
       (updatedChatMemberData): void => {
-        this.updateChatMemberInfo(user, updatedChatMemberData);
+        this.updateChatMemberInfo(updatedChatMemberData);
       }
     );
   }
@@ -75,6 +75,7 @@ export class ChatService implements OnDestroy {
 
       chat.Name = otherUser.FullName;
       chat.Image = otherUser.ProfileImage;
+      chat.IsUserOnline = otherUser.IsOnline;
     }
   }
 
@@ -128,7 +129,7 @@ export class ChatService implements OnDestroy {
     );
   }
 
-  private updateChatMemberInfo(user, updatedChatMemberData): void {
+  private updateChatMemberInfo(updatedChatMemberData): void {
     for (let i = 0; i < this.chatList.length; i++) {
       for (let j = 0; j < this.chatList[i].Users.length; j++) {
         if (this.chatList[i].Users[j].Id === updatedChatMemberData.Id) {

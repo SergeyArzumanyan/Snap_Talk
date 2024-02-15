@@ -1,0 +1,19 @@
+.status-wrapper {
+  bottom: 2px;
+  left: 2px;
+  background-color: var(--accent-bg);
+  transition: var(--animation-time) background-color;
+
+  .status {
+    width: 10px;
+    height: 10px;
+
+    &.online {
+      background-color: var(--online);
+    }
+
+    &.offline {
+      background-color: var(--offline);
+    }
+  }
+}

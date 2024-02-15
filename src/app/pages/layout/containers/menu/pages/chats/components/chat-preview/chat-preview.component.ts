@@ -5,7 +5,7 @@ import { DatePipe } from "@angular/common";
 import { TooltipModule } from "primeng/tooltip";
 import { RippleModule } from "primeng/ripple";
 
-import { ImageComponent } from "@core/components";
+import { ImageComponent, UserStatusComponent } from "@core/components";
 
 @Component({
   selector: 'app-chat-preview',
@@ -17,6 +17,7 @@ import { ImageComponent } from "@core/components";
     DatePipe,
     TooltipModule,
     RippleModule,
+    UserStatusComponent,
   ],
   templateUrl: './chat-preview.component.html',
   styleUrl: './chat-preview.component.scss'
