@@ -36,7 +36,7 @@ export class ChatService implements OnDestroy {
       .subscribe({
         next: (userData): void => {
           this.chatList = userData.Chats;
-          for (const chat of this.chatList) {
+          for (const chat of this.chatList || []) {
             this.makeChatNameAndImage(chat);
           }
         }

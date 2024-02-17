@@ -41,9 +41,17 @@ export class AuthService {
   }
 
   public logout(): Observable<any> {
+    const UserId: number = this.userData$.getValue().Id;
+
+    this.userData$.next({});
+    this.isAuthenticated$.next(false);
+
     return this.http.request(
       'post',
       Methods.LOGOUT,
+      null,
+      true,
+      { params: { UserId } }
     );
   }
 }
