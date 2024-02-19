@@ -4,9 +4,12 @@ import { ParamMap } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
 import { finalize } from "rxjs/operators";
 
+import { TooltipModule } from "primeng/tooltip";
+
 import { ChatBodySkeletonComponent } from "../chat-body-skeleton";
 import { ChatComponent } from "../../";
 import { IsInViewListener } from "@core/directives";
+import { ImageComponent } from "@core/components";
 
 @Component({
   selector: 'app-chat-body',
@@ -17,6 +20,8 @@ import { IsInViewListener } from "@core/directives";
     DatePipe,
     IsInViewListener,
     ChatBodySkeletonComponent,
+    ImageComponent,
+    TooltipModule,
   ],
   templateUrl: './chat-body.component.html',
   styleUrl: './chat-body.component.scss'
@@ -99,9 +104,9 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
             this.parent.groupedMessages.unshift([messageDate, []]);
           }
 
-          this.parent.groupedMessages.forEach((groupEntry: [string, any[]]): void => {
+          this.parent.groupedMessages.forEach((groupEntry: [string, any[][]]): void => {
             if (groupEntry[0] === messageDate) {
-              groupEntry[1].unshift(message);
+              groupEntry[1][this.parent.chatService.lastUserGroupedIdx].unshift(message);
             }
           });
         }
@@ -117,6 +122,23 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
 
   public isUserSentMessage(message: any): boolean {
     return this.parent.authService.userData$.getValue().Id === message.SenderId;
+  }
+
+  public isGroupAndUserSentMessage(message: any): boolean {
+    return this.parent.authService.userData$.getValue().Id === message.SenderId &&
+      this.parent.chatService.Chat?.IsGroupChat;
+  }
+
+  public isGroupMessage(): boolean {
+    return this.parent.chatService.Chat?.IsGroupChat;
+  }
+
+  public getUserProfileImageName(message: any): string {
+    return this.parent.chatService.Chat?.Users.find(user => user.Id === message.SenderId).ProfileImage;
+  }
+
+  public getUserFullName(message: any): string {
+    return this.parent.chatService.Chat?.Users.find(user => user.Id === message.SenderId).FullName;
   }
 
   private scrollChatBodyToBottom(): void {
@@ -144,6 +166,7 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
           this.parent.chatService.isToBottomArrowVisible = false;
           this.parent.messages = [];
           this.parent.groupedMessages = [];
+          this.parent.chatService.lastUserGroupedIdx = 0;
 
           this.skip = 0;
           this.firstMessagesLoaded = false;

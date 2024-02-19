@@ -12,14 +12,15 @@
       </span>
 
       <span class="p-float-label">
-        <p-multiSelect formControlName="Members"
+        <p-multiSelect formControlName="UserIds"
                        class="no-select"
-                       id="Members"
+                       id="UserIds"
+                       [disabled]="pending"
                        [options]="users"
                        optionValue="Id"
                        optionLabel="FullName"
                        appendTo="body" />
-        <label for="Members">Members</label>
+        <label for="UserIds">Members</label>
       </span>
     </div>
 

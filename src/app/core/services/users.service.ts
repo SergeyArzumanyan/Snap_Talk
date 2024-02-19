@@ -15,6 +15,16 @@ export class UsersService {
     private http: HttpService,
   ) {}
 
+  public getAllUsers(): Observable<any> {
+    return this.http.request<any>(
+      'get',
+      Methods.GET_ALL_USERS,
+      null,
+      true,
+      { params: { UserId: this.authService.userData$.getValue().Id } }
+    );
+  }
+
   public getFilteredUsers(UserId: number, SearchString: string): Observable<any> {
     return this.http.request<any>(
       'get',

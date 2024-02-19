@@ -11,16 +11,19 @@
     <div class="user-info-wrapper flex gap-3 align-items-center">
       <div class="image-wrapper relative">
         <app-image [imageName]="parent.chatService.Chat?.Image"
+                   [isGroupChat]="parent.chatService.Chat?.IsGroupChat"
                    skeletonShape="circle"
                    skeletonSize="50px"
-                   className="user-avatar border-circle" />
+                   className="chat-avatar border-circle" />
 
-        <app-user-status [IsOnline]="parent.chatService.Chat?.IsUserOnline" />
+        @if(!parent.chatService.Chat?.IsGroupChat) {
+          <app-user-status [IsOnline]="parent.chatService.Chat?.IsUserOnline" />
+        }
       </div>
 
       <span class="name text-base txt-white"
             [pTooltip]="parent.chatService.Chat?.Name">
-        {{ parent.chatService.Chat?.Name }}
+        {{ parent.chatService.Chat?.OtherUsersName || parent.chatService.Chat?.Name }}
       </span>
     </div>
 

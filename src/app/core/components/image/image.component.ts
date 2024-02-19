@@ -13,7 +13,7 @@ import { environment } from "@env/environment";
     SkeletonModule,
   ],
   template: `
-    <div class="image-wrapper relative">
+    <div class="image-wrapper">
       @if (!isImageLoaded) {
         <div class="image-loader-overlay absolute flex justify-content-center align-items-center"
              [class]="loaderClassName">
@@ -26,7 +26,9 @@ import { environment } from "@env/environment";
 
       <img [src]="imageName ?
               envImagesUrl + imageName :
-             '/assets/images/default-avatar.jpg'"
+              !isGroupChat ?
+               '/assets/images/default-avatar.jpg' :
+               '/assets/images/group-default-avatar.jpg'"
            [alt]="imageName"
            [class]="className"
            loading="lazy"
@@ -48,6 +50,7 @@ import { environment } from "@env/environment";
 })
 export class ImageComponent implements OnChanges {
   @Input({required: true}) imageName: string;
+  @Input() isGroupChat: boolean;
 
   @Input() skeletonShape: string = '';  // Empty String = Rectangle
   @Input() skeletonSize: string;

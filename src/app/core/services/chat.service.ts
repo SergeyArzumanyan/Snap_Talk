@@ -67,26 +67,35 @@ export class ChatService implements OnDestroy {
   }
 
   public makeChatNameAndImage(chat: any): void {
-    chat.isGroupChat = chat.Users.length > 2;
+    chat.IsGroupChat = chat.Users.length >= 2 && chat.Name;
 
-    if (!chat.isGroupChat) {
+    if (!chat.IsGroupChat) {
       const otherUser = chat.Users
         .find((user) => user.Id !== this.authService.userData$.getValue().Id);
 
-      chat.Name = otherUser.FullName;
+      chat.OtherUsersName = otherUser.FullName;
       chat.Image = otherUser.ProfileImage;
       chat.IsUserOnline = otherUser.IsOnline;
     }
   }
 
+  public lastUserGroupedIdx: number = 0;
+
   public groupByDate(arr: any[]): [string, object][] {
+    let prev: any;
+
     return Object.entries(
       arr.reduce((acc, message) => {
         const date: string = new Date(message.CreatedAt).toDateString();
 
-        acc[date] = acc[date] || [];
-        acc[date].push(message);
+        if (prev && message.SenderId !== prev.SenderId) {
+          this.lastUserGroupedIdx++;
+        }
 
+        acc[date] = acc[date] || [];
+        acc[date][this.lastUserGroupedIdx] = acc[date][this.lastUserGroupedIdx] || [];
+        acc[date][this.lastUserGroupedIdx].push(message);
+        prev = message;
         return acc;
       }, {})
     );
@@ -96,6 +105,19 @@ export class ChatService implements OnDestroy {
     return this.http.request<any>(
       'post',
       Methods.CHATS + `${SenderId}/chat/${ReceiverId}`,
+    );
+  }
+
+  public createGroupChat(GroupData: any): Observable<any> {
+    const payload: any = {
+      UserId: this.authService.userData$.getValue().Id,
+      ...GroupData,
+    };
+
+    return this.http.request<any>(
+      'post',
+      Methods.CREATE_GROUP_CHAT,
+      payload,
     );
   }
 
