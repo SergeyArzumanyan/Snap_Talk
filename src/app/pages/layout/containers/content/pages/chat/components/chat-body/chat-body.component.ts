@@ -104,9 +104,9 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
             this.parent.groupedMessages.unshift([messageDate, []]);
           }
 
-          this.parent.groupedMessages.forEach((groupEntry: [string, any[][]]): void => {
+          this.parent.groupedMessages.forEach((groupEntry: [string, any[]]): void => {
             if (groupEntry[0] === messageDate) {
-              groupEntry[1][this.parent.chatService.lastUserGroupedIdx].unshift(message);
+              groupEntry[1].unshift(message);
             }
           });
         }
@@ -166,7 +166,6 @@ export class ChatBodyComponent implements OnInit, OnDestroy {
           this.parent.chatService.isToBottomArrowVisible = false;
           this.parent.messages = [];
           this.parent.groupedMessages = [];
-          this.parent.chatService.lastUserGroupedIdx = 0;
 
           this.skip = 0;
           this.firstMessagesLoaded = false;

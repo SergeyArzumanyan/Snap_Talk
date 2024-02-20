@@ -23,57 +23,52 @@
       transition: var(--animation-time) background-color, color;
     }
 
-    .user-messages-group-wrapper {
-      .avatar-wrapper {
+    .avatar-wrapper {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+
+      ::ng-deep .user-avatar {
         width: 36px;
         height: 36px;
         border-radius: 50%;
+      }
 
-        ::ng-deep .user-avatar {
-          width: 36px;
-          height: 36px;
-          border-radius: 50%;
+      &.align-right {
+        margin-left: auto;
+      }
+    }
+
+    .message-wrapper {
+      .message {
+        display: block;
+        width: max-content;
+        max-width: 400px;
+        padding: 10px;
+        margin: 0.5rem 0;
+        text-wrap: balance;
+        white-space: pre-line;
+        background-color: var(--accent-bg);
+        transition: var(--animation-time) background-color, color;
+        border-radius: 16px 16px 16px 0;
+
+        &.user-sent-message {
+          margin-left: auto;
+          border-radius: 16px 16px 0 16px;
+          background-color: var(--theme-color);
+
+          .message-arrow {
+            background-color: var(--theme-color);
+          }
         }
 
         &.align-right {
-          margin-left: auto;
+          align-self: flex-end;
+          border-radius: 16px 16px 0 16px;
         }
-      }
 
-      .message-wrapper {
-        .message {
-          display: block;
-          width: max-content;
-          max-width: 400px;
-          padding: 10px;
-          margin: 0.5rem;
-          text-wrap: balance;
-          white-space: pre-line;
-          background-color: var(--accent-bg);
-          transition: var(--animation-time) background-color, color;
-          border-radius: 16px 16px 16px 0;
-
-          &.user-sent-message {
-            border-radius: 16px 16px 16px 0;
-            background-color: var(--theme-color);
-
-            .message-arrow {
-              background-color: var(--theme-color);
-            }
-          }
-
-          &.align-right {
-            align-self: flex-end;
-            border-radius: 16px 16px 0 16px;
-          }
-
-          &.x-spaces {
-            margin: 0.5rem 50px;
-          }
-
-          .text {
-            word-break: break-word;
-          }
+        .text {
+          word-break: break-word;
         }
       }
     }
@@ -102,22 +97,20 @@
     padding: 15px 10px !important;
 
     .group-wrapper {
-      .user-messages-group-wrapper {
-        .avatar-wrapper {
+      .avatar-wrapper {
+        width: 30px;
+        height: 30px;
+
+        ::ng-deep .user-avatar {
           width: 30px;
           height: 30px;
-
-          ::ng-deep .user-avatar {
-            width: 30px;
-            height: 30px;
-          }
         }
+      }
 
-        .message-wrapper {
-          .message {
-            min-width: 75px !important;
-            max-width: 225px !important;
-          }
+      .message-wrapper {
+        .message {
+          min-width: 75px !important;
+          max-width: 225px !important;
         }
       }
     }

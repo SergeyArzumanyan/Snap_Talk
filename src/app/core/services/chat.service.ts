@@ -79,23 +79,14 @@ export class ChatService implements OnDestroy {
     }
   }
 
-  public lastUserGroupedIdx: number = 0;
-
   public groupByDate(arr: any[]): [string, object][] {
-    let prev: any;
-
     return Object.entries(
       arr.reduce((acc, message) => {
         const date: string = new Date(message.CreatedAt).toDateString();
 
-        if (prev && message.SenderId !== prev.SenderId) {
-          this.lastUserGroupedIdx++;
-        }
-
         acc[date] = acc[date] || [];
-        acc[date][this.lastUserGroupedIdx] = acc[date][this.lastUserGroupedIdx] || [];
-        acc[date][this.lastUserGroupedIdx].push(message);
-        prev = message;
+        acc[date].push(message);
+
         return acc;
       }, {})
     );

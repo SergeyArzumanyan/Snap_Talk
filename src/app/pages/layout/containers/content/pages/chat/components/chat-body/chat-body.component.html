@@ -8,48 +8,45 @@
     <app-chat-body-skeleton/>
   } @else {
     @for (dateGroup of parent.groupedMessages; track dateGroup[0]) {
-      <div class="w-full group-wrapper flex flex-column gap-3 relative">
+      <div class="w-full group-wrapper flex flex-column gap-2 relative">
         <div isInViewListener
              classNameToAdd="sticky-date"
              class="messages-date text-xs md:text-sm txt-color z-3">
           {{ dateGroup[0] | date: 'MMMM d, EEEE' }}
         </div>
 
-        @for (userMessagesGroup of dateGroup[1]; track userMessagesGroup) {
-          <div class="user-messages-group-wrapper">
-            @for (message of userMessagesGroup; track message.Id; let idx = $index) {
-              @if (parent.chatService.Chat?.IsGroupChat &&
-              userMessagesGroup[idx]?.SenderId !== userMessagesGroup[idx - 1]?.SenderId) {
-                <div class="avatar-wrapper sticky top-0"
-                     [ngClass]="{
-                    'align-right': isGroupAndUserSentMessage(message),
-                    'user-sent-message': isUserSentMessage(message),
-               }"
-                     [pTooltip]="getUserFullName(message)"
-                     tooltipPosition="bottom">
-                  <app-image [imageName]="getUserProfileImageName(message)" className="user-avatar"/>
-                </div>
-              }
-
-              <div class="message-wrapper w-full flex"
-                   [ngClass]="{'justify-content-end': isGroupAndUserSentMessage(message)}">
-                <div class="message text-base flex gap-2 align-items-end relative"
-                     [ngClass]="{
-                     'x-spaces': isGroupMessage(),
-                     'align-right': isGroupAndUserSentMessage(message),
-                     'user-sent-message': isUserSentMessage(message),
-                     'txt-white': isUserSentMessage(message),
-                     'txt-color': !isUserSentMessage(message)
-                 }">
-                  <div class="text text-sm md:text-base">
-                    {{ message.Text }}
-                  </div>
-                  <div class="text-xs font-light">
-                    {{ message.CreatedAt | date: 'HH:mm' }}
-                  </div>
-                </div>
+        @for (message of dateGroup[1]; track message.Id; let idx = $index) {
+          <div class="flex gap-3 align-items-center" [ngClass]="{'flex-row-reverse': isGroupAndUserSentMessage(message)}">
+            @if (parent.chatService.Chat?.IsGroupChat &&
+            dateGroup[1][idx]?.SenderId !== dateGroup[1][idx - 1]?.SenderId) {
+              <div class="avatar-wrapper"
+                   [ngClass]="{
+                'align-right': isGroupAndUserSentMessage(message),
+                'user-sent-message': isUserSentMessage(message),
+           }"
+                   [pTooltip]="getUserFullName(message)"
+                   tooltipPosition="bottom">
+                <app-image [imageName]="getUserProfileImageName(message)" className="user-avatar"/>
               </div>
             }
+
+            <div class="message-wrapper w-full flex"
+                 [ngClass]="{'justify-content-end': isGroupAndUserSentMessage(message)}">
+              <div class="message text-base flex gap-2 align-items-end relative"
+                   [ngClass]="{
+                   'align-right': isGroupAndUserSentMessage(message),
+                   'user-sent-message': isUserSentMessage(message),
+                   'txt-white': isUserSentMessage(message),
+                   'txt-color': !isUserSentMessage(message)
+             }">
+                <div class="text text-sm md:text-base">
+                  {{ message.Text }}
+                </div>
+                <div class="text-xs font-light">
+                  {{ message.CreatedAt | date: 'HH:mm' }}
+                </div>
+              </div>
+            </div>
           </div>
         }
       </div>
