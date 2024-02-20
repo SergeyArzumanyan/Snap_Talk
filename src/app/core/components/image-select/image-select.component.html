@@ -20,17 +20,27 @@
       />
     </div>
 
-    <div class="p-dialog-footer">
-      <p-button label="Cancel"
-                icon="ri-close-fill text-xl"
-                iconPos="right"
-                (onClick)="cancel()"
-                size="small" />
+  <div class="p-dialog-footer">
+    <button type="button"
+            class="w-full primary-btn no-select flex gap-1 justify-content-center align-items-center no-select"
+            pButton
+            pRipple
+            (click)="cancel()">
+      <span class="txt-white text-sm md:text-base">Cancel</span>
+      <span class="btn-icon-wrapper flex justify-content-center align-items-center">
+          <i class="ri-close-fill txt-white text-base"></i>
+        </span>
+    </button>
 
-      <p-button label="Save"
-                icon="ri-check-fill text-xl"
-                iconPos="right"
-                (onClick)="save()"
-                size="small" />
-    </div>
+    <button type="button"
+            class="w-full primary-btn no-select flex gap-1 justify-content-center align-items-center no-select"
+            pButton
+            pRipple
+            (click)="save()">
+      <span class="txt-white text-sm md:text-base">Save</span>
+      <span class="btn-icon-wrapper flex justify-content-center align-items-center">
+          <i class="ri-check-fill txt-white text-base"></i>
+        </span>
+    </button>
+  </div>
 </div>

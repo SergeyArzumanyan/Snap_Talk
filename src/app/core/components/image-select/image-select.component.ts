@@ -4,14 +4,16 @@ import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
 import { ImageCroppedEvent, ImageCropperModule } from "ngx-image-cropper";
 import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
 import { ButtonModule } from "primeng/button";
+import { RippleModule } from "primeng/ripple";
 
 @Component({
   selector: 'app-image-select',
   standalone: true,
-  imports: [
-    ImageCropperModule,
-    ButtonModule
-  ],
+    imports: [
+        ImageCropperModule,
+        ButtonModule,
+        RippleModule
+    ],
   templateUrl: './image-select.component.html',
   styleUrl: './image-select.component.scss'
 })
