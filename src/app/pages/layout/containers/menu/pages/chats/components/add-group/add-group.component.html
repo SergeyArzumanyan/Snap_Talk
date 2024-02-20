@@ -5,37 +5,48 @@
     <div class="form-content flex flex-column gap-4">
       <span class="p-float-label">
         <input formControlName="Name"
+               class="text-sm md:text-base"
                id="Name"
                type="text"
-               pInputText />
-        <label for="Name">Group Name</label>
+               pInputText/>
+        <label for="Name" class="text-sm md:text-base">Group Name</label>
       </span>
 
       <span class="p-float-label">
         <p-multiSelect formControlName="UserIds"
-                       class="no-select"
+                       class="no-select text-sm md:text-base"
                        id="UserIds"
                        [disabled]="pending"
                        [options]="users"
                        optionValue="Id"
                        optionLabel="FullName"
-                       appendTo="body" />
-        <label for="UserIds">Members</label>
+                       appendTo="body"/>
+        <label for="UserIds" class="text-sm md:text-base">Members</label>
       </span>
     </div>
 
     <div class="p-dialog-footer no-select">
-      <p-button label="Cancel"
-                icon="ri-close-fill text-xl"
-                iconPos="right"
-                (onClick)="cancel()"
-                size="small" />
+      <button type="button"
+              class="w-full primary-btn login-btn no-select flex gap-1 justify-content-center align-items-center no-select"
+              pButton
+              pRipple
+              (click)="cancel()">
+        <span class="txt-white text-sm md:text-base">Cancel</span>
+        <span class="btn-icon-wrapper flex justify-content-center align-items-center">
+          <i class="ri-close-fill txt-white text-base"></i>
+        </span>
+      </button>
 
-      <p-button label="Add"
-                icon="ri-add-fill text-xl"
-                iconPos="right"
-                (onClick)="onAdd()"
-                size="small" />
+      <button type="button"
+              class="w-full primary-btn login-btn no-select flex gap-1 justify-content-center align-items-center no-select"
+              pButton
+              pRipple
+              (click)="onAdd()">
+        <span class="txt-white text-sm md:text-base">Add</span>
+        <span class="btn-icon-wrapper flex justify-content-center align-items-center">
+          <i class="ri-add-fill txt-white text-base"></i>
+        </span>
+      </button>
     </div>
   </form>
 </div>

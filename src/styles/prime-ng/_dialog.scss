@@ -1,5 +1,5 @@
 .dialog-with-footer {
-  padding-bottom: 64px;
+  padding-bottom: 60px;
   overflow: hidden;
 }
 
@@ -31,7 +31,7 @@
 
   .p-dialog-footer {
     width: 100%;
-    height: 64px;
+    height: 60px;
     background: var(--secondary-bg);
     position: absolute;
     bottom: 0;
@@ -42,15 +42,7 @@
     padding: 10px;
 
     .p-button {
-      margin: 0 0.5rem 0 0;
-      width: auto;
-      background: var(--theme-color);
-      color: #FFFFFF;
-      transition: background-color var(--animation-time), width var(--animation-time), height var(--animation-time);
-
-      &:hover {
-        background: var(--theme-color-tint);
-      }
+      width: auto !important;
     }
   }
 }
@@ -62,9 +54,17 @@
       gap: 10px;
       justify-content: center;
 
-      p-button, .p-button {
-        width: 100%;
+      .p-button {
+        width: 100% !important;
+        margin: 0;
       }
     }
   }
 }
+
+//  multiselect overlay centering issue on mobile
+.p-component.p-overlay {
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+// -----------------------------------------------

@@ -17,6 +17,10 @@ p-multiselect {
     .p-multiselect-trigger > chevrondownicon > svg {
       color: var(--form-input);
     }
+
+    .p-multiselect-label-container .p-multiselect-label {
+      font-size: 16px;
+    }
   }
 
   &.ng-invalid.ng-touched {
@@ -33,6 +37,9 @@ p-multiselect {
     background: var(--accent-bg);
     @include no-select;
 
+    &:hover {
+      color: initial;
+    }
 
     &.p-highlight {
       background-color: var(--theme-color);
@@ -51,6 +58,7 @@ p-multiselect {
       background-color: var(--accent-bg);
       color: var(--form-input);
       height: 36px;
+      font-size: 16px;
       border: none;
       box-shadow: none;
 
@@ -77,6 +85,26 @@ p-multiselect {
 
       .p-checkbox-icon {
         color: var(--text-white);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  p-multiSelect {
+    .p-multiselect-label-container .p-multiselect-label {
+      font-size: 14px !important;
+    }
+  }
+
+  .p-multiselect-panel {
+    .p-multiselect-header .p-multiselect-filter {
+      font-size: 14px !important;
+    }
+
+    .p-multiselect-items {
+      .p-multiselect-item {
+        font-size: 14px !important;
       }
     }
   }

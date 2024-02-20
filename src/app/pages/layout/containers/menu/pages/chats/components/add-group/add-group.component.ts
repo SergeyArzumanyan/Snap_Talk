@@ -11,16 +11,18 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
 
 import { ChatService, UsersService } from "@app/core";
 import { IAddGroupForm } from "../../interfaces";
+import { RippleModule } from "primeng/ripple";
 
 @Component({
   selector: 'app-add-group',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    ButtonModule,
-    InputTextModule,
-    MultiSelectModule,
-  ],
+    imports: [
+        ReactiveFormsModule,
+        ButtonModule,
+        InputTextModule,
+        MultiSelectModule,
+        RippleModule,
+    ],
   templateUrl: './add-group.component.html',
   styleUrl: './add-group.component.scss'
 })
