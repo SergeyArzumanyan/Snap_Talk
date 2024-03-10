@@ -16,7 +16,7 @@
 
 
 
-## About The Project
+## Demonstration
 
 ![Screen Shot](screenshots/Single_Chat.png)
 <br>
