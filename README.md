@@ -10,7 +10,7 @@
     Connect with friends, family, and colleagues effortlessly. Start meaningful conversations, share memorable moments,and stay connected wherever you are. Sign in now to begin your journey into the world of seamless communication.
     <br/>
     <br/>
-    <a href="https://snap-talk.vercel.app/">View Demo</a>
+    <a href="https://snap-talk.vercel.app/">View App</a>
     .
   </p>
 </p>
