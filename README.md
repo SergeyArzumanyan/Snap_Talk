@@ -25,7 +25,3 @@
 ## Built With
 
 The project is built using mainly Angular + NestJS combination, You can see other technologies that were used under the repository 'about' section.
-
-## Authors
-
-* **Sergey Arzumanyan** - *Frontend Developer* - [Sergey Arzumanyan](https://github.com/SergeyArzumanyan/) - *Built The Project*
