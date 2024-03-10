@@ -1,6 +1,6 @@
 <br/>
 <p align="center">
-  <a href="https://github.com/SergeyArzumanyan/Snap_Talk">
+  <a href="https://github.com/SergeyArzumanyan/Snap_Talk" target="_blank">
     <img src="screenshots/favicon.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -20,15 +20,12 @@
 ## About The Project
 
 ![Screen Shot](screenshots/Single_Chat.png)
+<br>
 ![Screen Shot](screenshots/Group_Chat.png)
 
 ## Built With
 
 The project is built using mainly Angular + NestJS combination, You can see other technologies that were used under the repository 'about' section.
-
-### Creating A Pull Request
-
-
 
 ## Authors
 
