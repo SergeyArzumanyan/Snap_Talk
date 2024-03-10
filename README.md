@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/SergeyArzumanyan/Snap_Talk">
-    <img src="screensshots/favicon.png" alt="Logo" width="80" height="80">
+    <img src="screenshots/favicon.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Snap Talk</h3>
