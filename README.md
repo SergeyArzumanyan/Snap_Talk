@@ -1,27 +1,35 @@
-# SnapTalk
+<br/>
+<p align="center">
+  <a href="https://github.com/SergeyArzumanyan/Snap_Talk">
+    <img src="screensshots/favicon.png" alt="Logo" width="80" height="80">
+  </a>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+  <h3 align="center">Snap Talk</h3>
 
-## Development server
+  <p align="center">
+    Connect with friends, family, and colleagues effortlessly. Start meaningful conversations, share memorable moments,and stay connected wherever you are. Sign in now to begin your journey into the world of seamless communication.
+    <br/>
+    <br/>
+    <a href="https://snap-talk.vercel.app/">View Demo</a>
+    .
+  </p>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## About The Project
 
-## Build
+![Screen Shot](screenshots/Single_Chat.png)
+![Screen Shot](screenshots/Group_Chat.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Built With
 
-## Running unit tests
+The project is built using mainly Angular + NestJS combination, You can see other technologies that were used under the repository 'about' section.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Creating A Pull Request
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
+## Authors
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+* **Sergey Arzumanyan** - *Frontend Developer* - [Sergey Arzumanyan](https://github.com/SergeyArzumanyan/) - *Built The Project*
