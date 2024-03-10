@@ -14,14 +14,11 @@
   </p>
 </p>
 
+## Built With
 
+The project is built using mainly Angular + NestJS combination, You can see other technologies that were used under the repository 'about' section.
 
 ## Demonstration
 
 ![Screen Shot](screenshots/Single_Chat.png)
-<br>
 ![Screen Shot](screenshots/Group_Chat.png)
-
-## Built With
-
-The project is built using mainly Angular + NestJS combination, You can see other technologies that were used under the repository 'about' section.
